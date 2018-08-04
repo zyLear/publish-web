@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>create-blog</title>
+    <link rel="stylesheet" href="../../../resources/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../resources/vendor/summernote/summernote.css">
+
+
+
+</head>
+<body>
+
+
+
+<div style="margin: 20px auto;width: 1000px;">
+    <input style="margin: 10px 0" type="text" class="form-control" id="title" name="title"
+           placeholder="title">
+    <div id="summernote">Hello Summernote</div>
+    <button class="btn btn-info btn-lg" onclick="insert()">insert</button>
+</div>
+
+
+
+
+<script src="../../../resources/vendor/jquery/jquery.min.js"></script>
+<script src="../../../resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../../resources/vendor/summernote/summernote.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#summernote').summernote();
+    });
+
+    insert = function () {
+//        var html = $('#summernote').summernote('code');
+        $.ajax({
+                url: '/admin/sure-create-blog',
+                type: 'POST',
+                data: {
+                    title:$('#title').val(),
+                    content:$('#summernote').summernote('code')
+                },
+                success: function (data) {
+                    if (data.errorCode == 0) {
+                        alert('添加成功');
+                    } else if(data.errorCode==5) {
+                        alert(data.errorMessage);
+                    }
+                },
+                error: function (data) {
+                    alert('网络错误');
+                }
+            }
+        );
+    };
+</script>
+</body>
+</html>
