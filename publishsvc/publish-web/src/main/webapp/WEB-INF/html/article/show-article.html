@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${article.title}">show-article</title>
+
+    <th:block th:utext="${article.css}"/>
+
+
+    <link rel="stylesheet" th:href="@{/resources/vendor/bootstrap/css/bootstrap.min.css}"
+          href="../../../resources/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/resources/css/common-css.css}"
+          href="../../../resources/css/common-css.css">
+
+
+
+</head>
+<body>
+
+<div class="custom-container">
+    <div class="custom-page-head"></div>
+    <div class="custom-page-main">
+
+        <!--<div class="navbar navbar-inverse">-->
+            <!--<div>-->
+            <!--<div class="container-fluid">-->
+                <!--&lt;!&ndash; Brand and toggle get grouped for better mobile display &ndash;&gt;-->
+                <!--<div class="navbar-header">-->
+                    <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse"-->
+                            <!--data-target="#bs-example-navbar-collapse-1" aria-expanded="false">-->
+                        <!--<span class="sr-only">Toggle navigation</span>-->
+                        <!--<span class="icon-bar"></span>-->
+                        <!--<span class="icon-bar"></span>-->
+                        <!--<span class="icon-bar"></span>-->
+                    <!--</button>-->
+                    <!--<a class="navbar-brand" href="#">Brand</a>-->
+                <!--</div>-->
+
+                <!--&lt;!&ndash; Collect the nav links, forms, and other content for toggling &ndash;&gt;-->
+                <!--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">-->
+                    <!--<ul class="nav navbar-nav">-->
+                        <!--&lt;!&ndash;<li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>&ndash;&gt;-->
+                        <!--<li><a href="#">Link</a></li>-->
+                        <!--<li><a href="#">Link</a></li>-->
+                        <!--<li><a href="#">Link</a></li>-->
+                        <!--<li><a href="#">Link</a></li>-->
+
+                    <!--</ul>-->
+                    <!--<div class="navbar-form navbar-right">-->
+                        <!--<div class="form-group">-->
+                            <!--<input type="text" class="form-control" placeholder="Search">-->
+                        <!--</div>-->
+                        <!--<button type="submit" class="btn btn-default">Submit</button>-->
+                    <!--</div>-->
+                    <!--&lt;!&ndash;<ul class="nav navbar-nav navbar-right">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<li><a href="#">Link</a></li>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</ul>&ndash;&gt;-->
+                <!--</div>&lt;!&ndash; /.navbar-collapse &ndash;&gt;-->
+            <!--</div>&lt;!&ndash; /.container-fluid &ndash;&gt;-->
+            <!--</div>-->
+        <!--</div>-->
+
+        <div class="custom-navigation">
+
+            <div class="custom-navigation-head">Brand</div>
+            <div class="custom-navigation-left-item">Link</div>
+            <div class="custom-navigation-left-item">Link</div>
+            <div class="custom-navigation-left-item">Link</div>
+            <div class="custom-navigation-left-item">Link</div>
+            <div class="custom-navigation-right-item">Link</div>
+
+        </div>
+
+
+        <div class="custom-content-left">
+            <div class="custom-article-title" th:text="${article.title}">title</div>
+            <th:block th:utext="${article.content}">content</th:block>
+
+        </div>
+        <div class="custom-content-right">
+            <div class="right-box"></div>
+        </div>
+        <div class="custom-clear"></div>
+    </div>
+</div>
+
+
+<script src="../../../resources/vendor/jquery/jquery.min.js"></script>
+<script src="../../../resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+</body>
+</html>

@@ -1,49 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>create-blog</title>
-    <link rel="stylesheet" href="../../../resources/vendor/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../../resources/vendor/summernote/summernote.css">
 
+    <link rel="stylesheet" th:href="@{/resources/vendor/summernote/summernote.css}"
+          href="../../../resources/vendor/summernote/summernote.css">
+    <link rel="stylesheet"
+          th:href="@{/resources/vendor/bootstrap/css/bootstrap.min.css}"
+          href="../../../resources/vendor/bootstrap/css/bootstrap.min.css">
 
 
 </head>
 <body>
-
-
+<a id="context" th:href="@{/}" href="/" style="display: none "></a>
 
 <div style="margin: 20px auto;width: 1000px;">
     <input style="margin: 10px 0" type="text" class="form-control" id="title" name="title"
            placeholder="title">
     <div id="summernote">Hello Summernote</div>
     <button class="btn btn-info btn-lg" onclick="insert()">insert</button>
+    <!--<div th:text="sdfsdf"></div>-->
 </div>
 
 
-
-
-<script src="../../../resources/vendor/jquery/jquery.min.js"></script>
-<script src="../../../resources/vendor/bootstrap/js/bootstrap.min.js"></script>
-<script src="../../../resources/vendor/summernote/summernote.js"></script>
+<script th:src="@{/resources/vendor/jquery/jquery.min.js}"
+        src="../../../resources/vendor/jquery/jquery.min.js"></script>
+<script th:src="@{/resources/vendor/bootstrap/js/bootstrap.min.js}"
+        src="../../../resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script th:src="@{/resources/vendor/summernote/summernote.js}"
+        src="../../../resources/vendor/summernote/summernote.js"></script>
 <script>
     $(document).ready(function () {
         $('#summernote').summernote();
     });
 
     insert = function () {
-//        var html = $('#summernote').summernote('code');
+        var html = $('#summernote').summernote('code');
+        var param = new Object();
+        param.title = $('#title').val();
+        param.content = html;
+
+//        alert(html);
+
         $.ajax({
-                url: '/admin/sure-create-blog',
+                url: $('#context').attr('href') + 'admin/sure-create-blog',
                 type: 'POST',
-                data: {
-                    title:$('#title').val(),
-                    content:$('#summernote').summernote('code')
-                },
+                data: param,
                 success: function (data) {
                     if (data.errorCode == 0) {
                         alert('添加成功');
-                    } else if(data.errorCode==5) {
+                    } else {
                         alert(data.errorMessage);
                     }
                 },

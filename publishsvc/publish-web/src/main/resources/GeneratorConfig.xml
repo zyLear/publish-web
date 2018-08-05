@@ -40,13 +40,18 @@
                 <!--enableUpdateByExample="false" enableDeleteByExample="false">-->
         <!--</table>-->
 
-        <table  tableName="t_own_blog" domainObjectName="OwnBlog"
+        <!--<table  tableName="t_own_blog" domainObjectName="OwnBlog"-->
+                <!--enableCountByExample="false" enableSelectByExample="false"-->
+                <!--enableUpdateByExample="false" enableDeleteByExample="false">-->
+        <!--</table>-->
+        <!---->
+
+        <table  tableName="t_article" domainObjectName="Article"
                 enableCountByExample="false" enableSelectByExample="false"
                 enableUpdateByExample="false" enableDeleteByExample="false">
         </table>
 
-
-        <!--<table  tableName="t_player_game_record" domainObjectName="PlayerGameRecord"-->
+        <!--<table  tableName="t_article_content" domainObjectName="ArticleContent"-->
                 <!--enableCountByExample="false" enableSelectByExample="false"-->
                 <!--enableUpdateByExample="false" enableDeleteByExample="false">-->
         <!--</table>-->

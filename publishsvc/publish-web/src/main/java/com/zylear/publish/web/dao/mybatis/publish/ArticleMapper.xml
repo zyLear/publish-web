@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zylear.publish.web.dao.mybatis.publish.ArticleMapper" >
+  <resultMap id="BaseResultMap" type="com.zylear.publish.web.domain.Article" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="source_type" property="sourceType" jdbcType="TINYINT" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="article_category" property="articleCategory" jdbcType="TINYINT" />
+    <result column="post_time" property="postTime" jdbcType="TIMESTAMP" />
+    <result column="content_id" property="contentId" jdbcType="INTEGER" />
+    <result column="source_url" property="sourceUrl" jdbcType="VARCHAR" />
+    <result column="page_view" property="pageView" jdbcType="INTEGER" />
+    <result column="is_deleted" property="isDeleted" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, source_type, title, article_category, post_time, content_id, source_url, page_view, 
+    is_deleted, create_time, last_update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_article
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_article
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zylear.publish.web.domain.Article" >
+    insert into t_article (id, source_type, title, 
+      article_category, post_time, content_id, 
+      source_url, page_view, is_deleted, 
+      create_time, last_update_time)
+    values (#{id,jdbcType=INTEGER}, #{sourceType,jdbcType=TINYINT}, #{title,jdbcType=VARCHAR}, 
+      #{articleCategory,jdbcType=TINYINT}, #{postTime,jdbcType=TIMESTAMP}, #{contentId,jdbcType=INTEGER}, 
+      #{sourceUrl,jdbcType=VARCHAR}, #{pageView,jdbcType=INTEGER}, #{isDeleted,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{lastUpdateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zylear.publish.web.domain.Article" >
+    insert into t_article
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="sourceType != null" >
+        source_type,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="articleCategory != null" >
+        article_category,
+      </if>
+      <if test="postTime != null" >
+        post_time,
+      </if>
+      <if test="contentId != null" >
+        content_id,
+      </if>
+      <if test="sourceUrl != null" >
+        source_url,
+      </if>
+      <if test="pageView != null" >
+        page_view,
+      </if>
+      <if test="isDeleted != null" >
+        is_deleted,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="lastUpdateTime != null" >
+        last_update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="sourceType != null" >
+        #{sourceType,jdbcType=TINYINT},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="articleCategory != null" >
+        #{articleCategory,jdbcType=TINYINT},
+      </if>
+      <if test="postTime != null" >
+        #{postTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contentId != null" >
+        #{contentId,jdbcType=INTEGER},
+      </if>
+      <if test="sourceUrl != null" >
+        #{sourceUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="pageView != null" >
+        #{pageView,jdbcType=INTEGER},
+      </if>
+      <if test="isDeleted != null" >
+        #{isDeleted,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateTime != null" >
+        #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zylear.publish.web.domain.Article" >
+    update t_article
+    <set >
+      <if test="sourceType != null" >
+        source_type = #{sourceType,jdbcType=TINYINT},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="articleCategory != null" >
+        article_category = #{articleCategory,jdbcType=TINYINT},
+      </if>
+      <if test="postTime != null" >
+        post_time = #{postTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contentId != null" >
+        content_id = #{contentId,jdbcType=INTEGER},
+      </if>
+      <if test="sourceUrl != null" >
+        source_url = #{sourceUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="pageView != null" >
+        page_view = #{pageView,jdbcType=INTEGER},
+      </if>
+      <if test="isDeleted != null" >
+        is_deleted = #{isDeleted,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateTime != null" >
+        last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zylear.publish.web.domain.Article" >
+    update t_article
+    set source_type = #{sourceType,jdbcType=TINYINT},
+      title = #{title,jdbcType=VARCHAR},
+      article_category = #{articleCategory,jdbcType=TINYINT},
+      post_time = #{postTime,jdbcType=TIMESTAMP},
+      content_id = #{contentId,jdbcType=INTEGER},
+      source_url = #{sourceUrl,jdbcType=VARCHAR},
+      page_view = #{pageView,jdbcType=INTEGER},
+      is_deleted = #{isDeleted,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

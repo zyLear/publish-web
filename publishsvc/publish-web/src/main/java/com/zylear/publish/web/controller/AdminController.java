@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * Created by xiezongyu on 2018/8/4.
  */
@@ -28,7 +30,10 @@ public class AdminController {
     @ResponseBody
     @RequestMapping("/sure-create-blog")
     public BasePageResult createBlog(@RequestParam("content") String content,
-                                     @RequestParam("title") String title) {
+                                     @RequestParam("title") String title,
+                                     HttpServletRequest request) {
+//        String content = request.getParameter("content");
+//        String title = request.getParameter("title");
         ownBlogService.insert(title, content);
         return BasePageResult.SUCCESS_RESPONSE;
     }
