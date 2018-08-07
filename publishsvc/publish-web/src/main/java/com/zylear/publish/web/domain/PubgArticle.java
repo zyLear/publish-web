@@ -2,7 +2,7 @@ package com.zylear.publish.web.domain;
 
 import java.util.Date;
 
-public class Article {
+public class PubgArticle {
     private Integer id;
 
     private Byte sourceType;

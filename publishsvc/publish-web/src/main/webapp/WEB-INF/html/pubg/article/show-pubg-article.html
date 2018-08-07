@@ -3,15 +3,15 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title th:text="${article.title}">show-article</title>
+    <title th:text="${article.title}">show-pubgArticle</title>
 
     <th:block th:utext="${article.css}"/>
 
 
     <link rel="stylesheet" th:href="@{/resources/vendor/bootstrap/css/bootstrap.min.css}"
-          href="../../../resources/vendor/bootstrap/css/bootstrap.min.css">
+          href="../../../../resources/vendor/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" th:href="@{/resources/css/common-css.css}"
-          href="../../../resources/css/common-css.css">
+          href="../../../../resources/css/common-css.css">
 
 
 
@@ -64,8 +64,8 @@
         <div class="custom-navigation">
 
             <div class="custom-navigation-head">Brand</div>
-            <div class="custom-navigation-left-item">Link</div>
-            <div class="custom-navigation-left-item">Link</div>
+            <a class="custom-navigation-left-item">英雄联盟</a>
+            <div class="custom-navigation-left-item">刺激战场</div>
             <div class="custom-navigation-left-item">Link</div>
             <div class="custom-navigation-left-item">Link</div>
             <div class="custom-navigation-right-item">Link</div>
@@ -86,8 +86,8 @@
 </div>
 
 
-<script src="../../../resources/vendor/jquery/jquery.min.js"></script>
-<script src="../../../resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../../../resources/vendor/jquery/jquery.min.js"></script>
+<script src="../../../../resources/vendor/bootstrap/js/bootstrap.min.js"></script>
 
 </body>
 </html>

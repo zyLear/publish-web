@@ -80,21 +80,26 @@ body {
     padding: 10px;
     color: darkgrey;
     font-weight: bold;
+    text-decoration: none;
 }
 
 .custom-navigation-head:hover {
     color: ghostwhite;
     cursor: pointer;
+    text-decoration: none;
+
 }
 
 .custom-navigation-left-item:hover {
     color: ghostwhite;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .custom-navigation-right-item:hover {
     color: ghostwhite;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .custom-navigation-left-item {
@@ -102,6 +107,7 @@ body {
     font-size: 20px;;
     padding: 10px;
     color: darkgrey;
+    text-decoration: none;
 }
 
 .custom-navigation-right-item {
@@ -109,6 +115,7 @@ body {
     font-size: 20px;;
     padding: 10px;
     color: darkgrey;
+    text-decoration: none;
 }
 
 .custom-clear {
