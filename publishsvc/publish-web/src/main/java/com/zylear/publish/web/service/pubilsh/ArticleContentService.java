@@ -7,4 +7,6 @@ import com.zylear.publish.web.domain.ArticleContentWithBLOBs;
  */
 public interface ArticleContentService {
     ArticleContentWithBLOBs selectByPrimaryKey(Integer contentId);
+
+    void insert(ArticleContentWithBLOBs articleContent);
 }

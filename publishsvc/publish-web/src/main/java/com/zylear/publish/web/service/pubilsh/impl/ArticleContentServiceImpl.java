@@ -19,4 +19,9 @@ public class ArticleContentServiceImpl implements ArticleContentService {
     public ArticleContentWithBLOBs selectByPrimaryKey(Integer contentId) {
         return articleContentMapper.selectByPrimaryKey(contentId);
     }
+
+    @Override
+    public void insert(ArticleContentWithBLOBs articleContent) {
+        articleContentMapper.insert(articleContent);
+    }
 }

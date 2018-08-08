@@ -29,7 +29,7 @@
     delete from t_article_content
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.zylear.publish.web.domain.ArticleContentWithBLOBs" >
+  <insert id="insert" keyColumn="id" useGeneratedKeys="true" keyProperty="id" parameterType="com.zylear.publish.web.domain.ArticleContentWithBLOBs" >
     insert into t_article_content (id, is_deleted, create_time, 
       last_update_time, css, content
       )

@@ -5,7 +5,7 @@ import java.util.Date;
 public class ArticleContent {
     private Integer id;
 
-    private Byte isDeleted;
+    private Boolean isDeleted;
 
     private Date createTime;
 
@@ -19,11 +19,11 @@ public class ArticleContent {
         this.id = id;
     }
 
-    public Byte getIsDeleted() {
+    public Boolean getIsDeleted() {
         return isDeleted;
     }
 
-    public void setIsDeleted(Byte isDeleted) {
+    public void setIsDeleted(Boolean isDeleted) {
         this.isDeleted = isDeleted;
     }
 

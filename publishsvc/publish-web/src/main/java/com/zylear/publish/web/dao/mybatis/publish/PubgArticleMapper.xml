@@ -34,7 +34,7 @@
       source_url, page_view, is_deleted, 
       create_time, last_update_time)
     values (#{id,jdbcType=INTEGER}, #{sourceType,jdbcType=TINYINT}, #{title,jdbcType=VARCHAR}, 
-      #{articleCategory,jdbcType=TINYINT}, #{postTime,jdbcType=TIMESTAMP}, #{contentId,jdbcType=INTEGER}, 
+      #{articleCategory,jdbcType=TINYINT}, #{postTime,jdbcType=TIMESTAMP}, #{contentId,jdbcType=INTEGER},
       #{sourceUrl,jdbcType=VARCHAR}, #{pageView,jdbcType=INTEGER}, #{isDeleted,jdbcType=TINYINT}, 
       #{createTime,jdbcType=TIMESTAMP}, #{lastUpdateTime,jdbcType=TIMESTAMP})
   </insert>

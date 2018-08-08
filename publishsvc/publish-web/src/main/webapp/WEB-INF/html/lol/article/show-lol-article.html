@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${article.title}">show-pubgArticle</title>
+
+    <th:block th:utext="${article.css}"/>
+
+
+    <link rel="stylesheet" th:href="@{/resources/vendor/bootstrap/css/bootstrap.min.css}"
+          href="../../../../resources/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/resources/css/common-css.css}"
+          href="../../../../resources/css/common-css.css">
+
+
+
+</head>
+<body>
+
+<div class="custom-container">
+    <div class="custom-page-head"></div>
+    <div class="custom-page-main">
+
+        <div class="custom-navigation">
+
+            <div class="custom-navigation-head">Brand</div>
+            <a class="custom-navigation-left-item">英雄联盟</a>
+            <div class="custom-navigation-left-item">刺激战场</div>
+            <div class="custom-navigation-left-item">Link</div>
+            <div class="custom-navigation-left-item">Link</div>
+            <div class="custom-navigation-right-item">Link</div>
+
+        </div>
+
+
+        <div class="custom-content-left">
+            <div class="custom-article-title" th:text="${article.title}">title</div>
+            <th:block th:utext="${article.content}">content</th:block>
+
+        </div>
+        <div class="custom-content-right">
+            <div class="right-box"></div>
+        </div>
+        <div class="custom-clear"></div>
+    </div>
+</div>
+
+
+<script src="../../../../resources/vendor/jquery/jquery.min.js"></script>
+<script src="../../../../resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+</body>
+</html>
