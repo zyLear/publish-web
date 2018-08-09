@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
+<!--http://www.thymeleaf.org-->
 <head>
     <meta charset="UTF-8">
     <title>lol-article-list</title>
@@ -36,12 +37,8 @@
             <div class="custom-list">
 
                 <div class="custom-list-item" th:each="item : ${articleListViewBean.articles}">
-                    <a th:href="${item.id}" th:text="${item.title}">#</a>
-                    <div class="custom-list-date" th:text="item.postTime">#</div>
-                    <!--<div >-->
-                    <!--<a href="#">xxxx</a>-->
-                    <!--<div class="custom-list-date">123</div>-->
-                    <!---->
+                    <a th:href="@{/lol/article/{id}.html(id=${item.id})}" th:text="${item.title}">#</a>
+                    <div class="custom-list-date" th:text="${item.postTime}">#</div>
                 </div>
 
 
@@ -57,14 +54,38 @@
             </div>
             <div class="custom-page-box">
 
+                <span th:each="item : ${articleListViewBean.pageButtons}">
 
+                    <a th:if="${item.active}" class="custom-page-button-active"
+                       th:href="@{/lol/article-list/{id}.html(id=${item.pageIndex})}"
+                       th:text="${item.pageIndex}">#</a>
+                    <a th:if="${!item.active}" class="custom-page-button"
+                       th:href="@{/lol/article-list/{id}.html(id=${item.pageIndex})}"
+                       th:text="${item.pageIndex}">#</a>
 
-                <a class="custom-page-button"> 1 </a>
-                <a class="custom-page-button"> 2 </a>
-                <a class="custom-page-button"> 3 </a>
-                <a class="custom-page-button"> 4 </a>
-                <a class="custom-page-button"> 5 </a>
-                <a class="custom-page-button-active"> 6 </a>
+                </span>
+
+                <span>
+                    <a class="custom-page-button custom-page-button-head" th:href="@{/lol/article-list/1.html}">首页</a>
+                </span>
+                <span>
+                    <a class="custom-page-button"
+                       th:href="@{/lol/article-list/{id}.html(id=${articleListViewBean.tailPage})}">尾页</a>
+                </span>
+
+                <span>
+                    <a id="jumpPage" class="custom-page-button custom-page-button-head"
+                       href="javascript:void(0);">跳到</a>
+                </span>
+                <span>
+                    <input  id="jumpPageValue" class="custom-page-input" type="text" value="">
+                </span>
+                <!--<span><a class="custom-page-button"> 1 </a></span>-->
+                <!--<span> <a class="custom-page-button"> 2 </a></span>-->
+                <!--<a class="custom-page-button"> 3 </a>-->
+                <!--<a class="custom-page-button"> 4 </a>-->
+                <!--<a class="custom-page-button"> 5 </a>-->
+                <!--<a class="custom-page-button-active"> 6 </a>-->
             </div>
 
 
@@ -74,6 +95,7 @@
         </div>
         <div class="custom-clear"></div>
     </div>
+    <div style="display: none" id="contextPath" th:href="@{/}"></div>
 </div>
 
 
@@ -81,6 +103,33 @@
         src="../../../../resources/vendor/jquery/jquery.min.js"></script>
 <script th:src="@{/resources/vendor/bootstrap/js/bootstrap.min.js}"
         src="../../../../resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script>
 
+    $(function () {
+        $('#jumpPage').click(function () {
+            window.location.href = $('#contextPath').attr('href') + 'lol/article-list/' + $('#jumpPageValue').val() + '.html';
+        });
+
+        window.onkeydown = function (event) {
+            if (event.keyCode == 13) {
+                if ($('#jumpPageValue').is(':focus')) {
+                    window.location.href = $('#contextPath').attr('href') + 'lol/article-list/' + $('#jumpPageValue').val() + '.html';
+                }
+            }
+//                // Get the focused element:
+//                var $focused = $(':focus');
+//                // No jQuery:
+//                var focused = document.activeElement;
+//                // Does the element have focus:
+//                var hasFocus = $('input').is(':focus');
+//                // No jQuery:
+//                elem === elem.ownerDocument.activeElement;
+        };
+
+    });
+
+
+
+</script>
 </body>
 </html>
