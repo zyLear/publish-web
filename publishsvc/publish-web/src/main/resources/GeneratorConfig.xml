@@ -46,7 +46,7 @@
         <!--</table>-->
         <!---->
 
-        <table  tableName="t_pubg_article" domainObjectName="Article"
+        <table  tableName="t_lol_article" domainObjectName="LolArticle"
                 enableCountByExample="false" enableSelectByExample="false"
                 enableUpdateByExample="false" enableDeleteByExample="false">
         </table>
