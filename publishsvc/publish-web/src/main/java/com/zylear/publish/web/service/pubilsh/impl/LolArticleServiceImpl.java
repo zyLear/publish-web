@@ -1,10 +1,13 @@
 package com.zylear.publish.web.service.pubilsh.impl;
 
+import com.zylear.publish.web.bean.PageParam;
 import com.zylear.publish.web.dao.mybatis.publish.LolArticleMapper;
 import com.zylear.publish.web.domain.LolArticle;
 import com.zylear.publish.web.service.pubilsh.LolArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 /**
  * Created by xiezongyu on 2018/8/8.
@@ -28,5 +31,15 @@ public class LolArticleServiceImpl implements LolArticleService {
     @Override
     public LolArticle findBySourceTypeAndTitle(Integer sourceType, String title) {
         return lolArticleMapper.findBySourceTypeAndTitle(sourceType,title);
+    }
+
+    @Override
+    public List<LolArticle> findLolArticlesByPageParam(PageParam pageParam) {
+        return lolArticleMapper.findLolArticlesByPageParam(pageParam);
+    }
+
+    @Override
+    public Integer maxId() {
+        return lolArticleMapper.maxId();
     }
 }

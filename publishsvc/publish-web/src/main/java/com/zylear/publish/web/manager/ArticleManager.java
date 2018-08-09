@@ -1,6 +1,9 @@
 package com.zylear.publish.web.manager;
 
-import com.zylear.publish.web.bean.ArticleViewBean;
+import com.zylear.publish.web.bean.PageParam;
+import com.zylear.publish.web.bean.viewbean.ArticleListViewBean;
+import com.zylear.publish.web.bean.viewbean.ArticleViewBean;
+import com.zylear.publish.web.bean.viewbean.PageButtonViewBean;
 import com.zylear.publish.web.domain.LolArticle;
 import com.zylear.publish.web.domain.PubgArticle;
 import com.zylear.publish.web.domain.ArticleContentWithBLOBs;
@@ -9,6 +12,9 @@ import com.zylear.publish.web.service.pubilsh.LolArticleService;
 import com.zylear.publish.web.service.pubilsh.PubgArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by xiezongyu on 2018/8/5.
@@ -25,7 +31,7 @@ public class ArticleManager {
         ArticleContentWithBLOBs articleContent;
         if (pubgArticle != null) {
             articleContent = articleContentService.selectByPrimaryKey(pubgArticle.getContentId());
-        }else {
+        } else {
             return null;
         }
         ArticleViewBean articleViewBean = new ArticleViewBean();
@@ -40,7 +46,7 @@ public class ArticleManager {
         ArticleContentWithBLOBs articleContent;
         if (lolArticle != null) {
             articleContent = articleContentService.selectByPrimaryKey(lolArticle.getContentId());
-        }else {
+        } else {
             return null;
         }
         ArticleViewBean articleViewBean = new ArticleViewBean();
@@ -49,6 +55,60 @@ public class ArticleManager {
         articleViewBean.setContent(articleContent.getContent());
         return articleViewBean;
     }
+
+
+    public ArticleListViewBean findArticleListViewBean(Integer pageRange, Integer pageIndex, PageParam pageParam) {
+
+        List<LolArticle> articles = lolArticleService.findLolArticlesByPageParam(pageParam);
+        ArticleListViewBean articleListViewBean = new ArticleListViewBean();
+        articleListViewBean.setArticles(toArticleViewBean(articles));
+        articleListViewBean.setPagebuttons(toPageButtonViewBean(pageRange, pageIndex, pageParam.getPageSize()));
+        return articleListViewBean;
+    }
+
+    private List<PageButtonViewBean> toPageButtonViewBean(Integer pageRange, Integer pageIndex, Integer pageSize) {
+
+
+        Integer maxId = lolArticleService.maxId();
+        Integer maxPage = 455;//maxId / (double) pageSize;
+        Integer lowPage = 0;
+        Integer topPage = pageRange * 2;
+        if (pageIndex - pageRange > 0) {
+            lowPage = pageIndex - pageRange;
+        } else {
+            lowPage = 0;
+        }
+        if (pageIndex + pageRange > maxPage) {
+            topPage = maxPage;
+        } else {
+            topPage = pageIndex + pageRange;
+        }
+        List<PageButtonViewBean> pageButtonViewBeans = new ArrayList<>();
+        for (int i = lowPage; i <= topPage; i++) {
+            PageButtonViewBean pageButtonViewBean = new PageButtonViewBean();
+            pageButtonViewBean.setPageIndex(i);
+            if (i == pageIndex) {
+                pageButtonViewBean.setActive(true);
+            } else {
+                pageButtonViewBean.setActive(false);
+            }
+            pageButtonViewBeans.add(pageButtonViewBean);
+        }
+        return pageButtonViewBeans;
+    }
+
+    private List<ArticleViewBean> toArticleViewBean(List<LolArticle> articles) {
+        List<ArticleViewBean> articleViewBeans = new ArrayList<>(articles.size());
+        for (LolArticle article : articles) {
+            ArticleViewBean articleViewBean = new ArticleViewBean();
+            articleViewBean.setTitle(article.getTitle());
+            articleViewBean.setPostTime(article.getPostTime().toString());
+            articleViewBean.setId(article.getId());
+            articleViewBeans.add(articleViewBean);
+        }
+        return articleViewBeans;
+    }
+
 
     @Autowired
     public void setPubgArticleService(PubgArticleService pubgArticleService) {
@@ -64,4 +124,6 @@ public class ArticleManager {
     public void setLolArticleService(LolArticleService lolArticleService) {
         this.lolArticleService = lolArticleService;
     }
+
+
 }

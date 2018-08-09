@@ -1,6 +1,6 @@
 package com.zylear.publish.web.controller;
 
-import com.zylear.publish.web.bean.ArticleViewBean;
+import com.zylear.publish.web.bean.viewbean.ArticleViewBean;
 import com.zylear.publish.web.manager.ArticleManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
