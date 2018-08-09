@@ -176,4 +176,18 @@
 
     </select>
 
+    <select id="findLolArticlesByPageParam" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM t_lol_article
+        WHERE is_deleted=0;
+        LIMIT #{pageParam.offSet,jdbcType=INTEGER},#{pageParam.pageSize,jdbcType=INTEGER}
+    </select>
+
+    <select id="maxId" resultType="java.lang.Integer">
+        SELECT max(id)
+        FROM t_lol_article
+        WHERE is_deleted = 0
+    </select>
+
 </mapper>

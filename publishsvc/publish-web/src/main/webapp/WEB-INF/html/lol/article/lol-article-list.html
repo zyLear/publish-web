@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>lol-article-list</title>
+
+    <link rel="stylesheet" th:href="@{/resources/vendor/bootstrap/css/bootstrap.min.css}"
+          href="../../../../resources/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/resources/css/common-css.css}"
+          href="../../../../resources/css/common-css.css">
+
+</head>
+<body>
+
+
+<div class="custom-container">
+    <div class="custom-page-head"></div>
+    <div class="custom-page-main">
+
+        <div class="custom-navigation">
+
+            <div class="custom-navigation-head">Brand</div>
+            <a class="custom-navigation-left-item">Link</a>
+            <div class="custom-navigation-left-item">Link</div>
+            <div class="custom-navigation-left-item">Link</div>
+            <div class="custom-navigation-left-item">Link</div>
+            <div class="custom-navigation-right-item">Link</div>
+
+        </div>
+
+
+        <div class="custom-content-left">
+
+
+            <div class="custom-list">
+
+                <div class="custom-list-item" th:each="item : ${articleListViewBean.articles}">
+                    <a th:href="${item.id}" th:text="${item.title}">#</a>
+                    <div class="custom-list-date" th:text="item.postTime">#</div>
+                    <!--<div >-->
+                    <!--<a href="#">xxxx</a>-->
+                    <!--<div class="custom-list-date">123</div>-->
+                    <!---->
+                </div>
+
+
+                <!--<div class="custom-list-item">-->
+                <!--<a href="#">xxxx</a>-->
+                <!--<div class="custom-list-date">123</div>-->
+                <!--</div>-->
+                <!--<div class="custom-list-item">-->
+                <!--<a href="#">xxxx</a>-->
+                <!--<div class="custom-list-date">123</div>-->
+                <!--</div>-->
+
+            </div>
+            <div class="custom-page-box">
+
+
+
+                <a class="custom-page-button"> 1 </a>
+                <a class="custom-page-button"> 2 </a>
+                <a class="custom-page-button"> 3 </a>
+                <a class="custom-page-button"> 4 </a>
+                <a class="custom-page-button"> 5 </a>
+                <a class="custom-page-button-active"> 6 </a>
+            </div>
+
+
+        </div>
+        <div class="custom-content-right">
+            <div class="right-box"></div>
+        </div>
+        <div class="custom-clear"></div>
+    </div>
+</div>
+
+
+<script th:src="@{/resources/vendor/jquery/jquery.min.js}"
+        src="../../../../resources/vendor/jquery/jquery.min.js"></script>
+<script th:src="@{/resources/vendor/bootstrap/js/bootstrap.min.js}"
+        src="../../../../resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+</body>
+</html>
