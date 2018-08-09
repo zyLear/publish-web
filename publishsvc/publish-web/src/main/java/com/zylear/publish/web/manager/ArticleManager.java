@@ -10,6 +10,7 @@ import com.zylear.publish.web.domain.ArticleContentWithBLOBs;
 import com.zylear.publish.web.service.pubilsh.ArticleContentService;
 import com.zylear.publish.web.service.pubilsh.LolArticleService;
 import com.zylear.publish.web.service.pubilsh.PubgArticleService;
+import com.zylear.publish.web.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -122,9 +123,8 @@ public class ArticleManager {
             articleViewBean.setTitle(article.getTitle());
             if (article.getPostTime() == null) {
                 articleViewBean.setPostTime("--");
-
             } else {
-                articleViewBean.setPostTime(article.getPostTime().toString());
+                articleViewBean.setPostTime(DateUtil.formatToYDMHMS(article.getPostTime()));
             }
             articleViewBean.setId(article.getId());
             articleViewBeans.add(articleViewBean);

@@ -55,7 +55,7 @@ public class SubmitManager {
             article.setSourceType(postBean.getSourceType());
             article.setSourceUrl(postBean.getSourceUrl());
             article.setTitle(postBean.getTitle());
-            article.setPostTime(null);
+            article.setPostTime(new Date(postBean.getPostTime()));
             article.setContentId(articleContent.getId());
             article.setPageView(0);
             article.setIsDeleted(false);

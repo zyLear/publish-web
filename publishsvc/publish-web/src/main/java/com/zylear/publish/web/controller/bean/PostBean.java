@@ -14,7 +14,7 @@ public class PostBean {
 
     private Integer spiderCategory;
 
-    private Date postTime;
+    private Long postTime;
 
     private String sourceUrl;
 
@@ -47,11 +47,11 @@ public class PostBean {
         this.spiderCategory = spiderCategory;
     }
 
-    public Date getPostTime() {
+    public Long getPostTime() {
         return postTime;
     }
 
-    public void setPostTime(Date postTime) {
+    public void setPostTime(Long postTime) {
         this.postTime = postTime;
     }
 
