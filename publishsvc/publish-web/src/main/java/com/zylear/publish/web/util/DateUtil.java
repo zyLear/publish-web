@@ -3,8 +3,6 @@ package com.zylear.publish.web.util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.text.ParseException;
-import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -15,34 +13,33 @@ public class DateUtil {
 
     private static final Logger logger = LoggerFactory.getLogger(DateUtil.class);
 
-    private final static SimpleDateFormat YMDHMS = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    private final static SimpleDateFormat YMD = new SimpleDateFormat("yyyy-MM-dd");
-    private final static SimpleDateFormat YMD_COMPACT = new SimpleDateFormat("yyyyMMdd");
+    private final static String YMDHMS = "yyyy-MM-dd HH:mm:ss";
+    private final static String YMD = "yyyy-MM-dd";
+    private final static String YMD_COMPACT = "yyyyMMdd";
 
     public static String formatToYDMHMS(Date date) {
-        return YMDHMS.format(date);
+        SimpleDateFormat formatter = new SimpleDateFormat(YMDHMS);
+        return formatter.format(date);
     }
 
     public static String formatToYMDCompact(Date date) {
-        return YMD_COMPACT.format(date);
+        SimpleDateFormat formatter = new SimpleDateFormat(YMD_COMPACT);
+        return formatter.format(date);
     }
 
     public static String formatToYMD(Date date) {
-        return YMD.format(date);
+        SimpleDateFormat formatter = new SimpleDateFormat(YMD);
+        return formatter.format(date);
     }
 
     public static Date getDateFromYDMHMS(String string) {
         try {
-            return YMDHMS.parse(string);
-        } catch (ParseException e) {
+            SimpleDateFormat formatter = new SimpleDateFormat(YMDHMS);
+            return formatter.parse(string.trim());
+        } catch (Exception e) {
             logger.info("getDateFromYDMHMS fail. string:{}", string, e);
-            return null;
+            throw new RuntimeException("getDateFromYDMHMS fail. string:" + string, e);
         }
     }
 
-
-    public static void main(String[] args) {
-//        System.out.println();
-        System.out.println(formatToYDMHMS(getDateFromYDMHMS("2018-08-09 00:15:24".trim())));
-    }
 }

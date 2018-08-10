@@ -1,13 +1,19 @@
 package com.zylear.publish.web.domain;
 
+import com.zylear.publish.web.bean.viewbean.ArticleInterface;
+
 import java.util.Date;
 
-public class OwnBlog {
+public class OwnBlog implements ArticleInterface {
     private Integer id;
 
     private String title;
 
     private Integer category;
+
+    private Date postTime;
+
+    private Integer blogStatus;
 
     private Integer pageView;
 
@@ -41,6 +47,22 @@ public class OwnBlog {
 
     public void setCategory(Integer category) {
         this.category = category;
+    }
+
+    public Date getPostTime() {
+        return postTime;
+    }
+
+    public void setPostTime(Date postTime) {
+        this.postTime = postTime;
+    }
+
+    public Integer getBlogStatus() {
+        return blogStatus;
+    }
+
+    public void setBlogStatus(Integer blogStatus) {
+        this.blogStatus = blogStatus;
     }
 
     public Integer getPageView() {

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<!--http://www.thymeleaf.org-->
+<head>
+    <meta charset="UTF-8">
+    <title>blog-list</title>
+
+    <link rel="stylesheet" th:href="@{/resources/vendor/bootstrap/css/bootstrap.min.css}"
+          href="../../../resources/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/resources/css/common-css.css}"
+          href="../../../resources/css/common-css.css">
+
+</head>
+<body>
+
+
+<div class="custom-container">
+    <div class="custom-page-head"></div>
+    <div class="custom-page-main">
+
+        <div class="custom-navigation">
+
+            <div class="custom-navigation-head">Brand</div>
+            <a class="custom-navigation-left-item">Link</a>
+            <div class="custom-navigation-left-item">Link</div>
+            <div class="custom-navigation-left-item">Link</div>
+            <div class="custom-navigation-left-item">Link</div>
+            <div class="custom-navigation-right-item">Link</div>
+
+        </div>
+
+
+        <div class="custom-content-left">
+
+
+            <div class="custom-list">
+
+                <div class="custom-list-item" th:each="item : ${articleListViewBean.articles}">
+                    <a th:href="@{/blog/show-blog/{id}.html(id=${item.id})}" th:text="${item.title}">#</a>
+                    <div class="custom-list-date" th:text="${item.postTime}">#</div>
+                </div>
+
+
+                <!--<div class="custom-list-item">-->
+                <!--<a href="#">xxxx</a>-->
+                <!--<div class="custom-list-date">123</div>-->
+                <!--</div>-->
+                <!--<div class="custom-list-item">-->
+                <!--<a href="#">xxxx</a>-->
+                <!--<div class="custom-list-date">123</div>-->
+                <!--</div>-->
+
+            </div>
+            <div class="custom-page-box">
+
+                <span th:each="item : ${articleListViewBean.pageButtons}">
+
+                    <a th:if="${item.active}" class="custom-page-button-active"
+                       th:href="@{/blog/blog-list/{id}.html(id=${item.pageIndex})}"
+                       th:text="${item.pageIndex}">#</a>
+                    <a th:if="${!item.active}" class="custom-page-button"
+                       th:href="@{/blog/blog-list/{id}.html(id=${item.pageIndex})}"
+                       th:text="${item.pageIndex}">#</a>
+
+                </span>
+
+                <span>
+                    <a class="custom-page-button custom-page-button-head" th:href="@{/blog/blog-list/1.html}">首页</a>
+                </span>
+                <span>
+                    <a class="custom-page-button"
+                       th:href="@{/blog/blog-list/{id}.html(id=${articleListViewBean.tailPage})}">尾页</a>
+                </span>
+
+                <span>
+                    <a id="jumpPage" class="custom-page-button custom-page-button-head"
+                       href="javascript:void(0);">跳到</a>
+                </span>
+                <span>
+                    <input  id="jumpPageValue" class="custom-page-input" type="text" value="">
+                </span>
+            </div>
+
+
+        </div>
+        <div class="custom-content-right">
+            <div class="right-box"></div>
+        </div>
+        <div class="custom-clear"></div>
+    </div>
+    <div style="display: none" id="contextPath" th:href="@{/}"></div>
+</div>
+
+
+<script th:src="@{/resources/vendor/jquery/jquery.min.js}"
+        src="../../../resources/vendor/jquery/jquery.min.js"></script>
+<script th:src="@{/resources/vendor/bootstrap/js/bootstrap.min.js}"
+        src="../../../resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script>
+
+    $(function () {
+        $('#jumpPage').click(function () {
+            window.location.href = $('#contextPath').attr('href') + 'blog/blog-list/' + $('#jumpPageValue').val() + '.html';
+        });
+
+        window.onkeydown = function (event) {
+            if (event.keyCode == 13) {
+                if ($('#jumpPageValue').is(':focus')) {
+                    window.location.href = $('#contextPath').attr('href') + 'blog/blog-list/' + $('#jumpPageValue').val() + '.html';
+                }
+            }
+        };
+
+    });
+
+
+
+</script>
+</body>
+</html>
