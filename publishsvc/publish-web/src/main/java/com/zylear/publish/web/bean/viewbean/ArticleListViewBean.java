@@ -7,16 +7,19 @@ import java.util.List;
  */
 public class ArticleListViewBean {
 
-    private List<PageButtonViewBean> pagebuttons;
+    private List<PageButtonViewBean> pageButtons;
 
     private List<ArticleViewBean> articles;
 
-    public List<PageButtonViewBean> getPagebuttons() {
-        return pagebuttons;
+
+    private Integer tailPage;
+
+    public List<PageButtonViewBean> getPageButtons() {
+        return pageButtons;
     }
 
-    public void setPagebuttons(List<PageButtonViewBean> pagebuttons) {
-        this.pagebuttons = pagebuttons;
+    public void setPageButtons(List<PageButtonViewBean> pageButtons) {
+        this.pageButtons = pageButtons;
     }
 
     public List<ArticleViewBean> getArticles() {
@@ -25,5 +28,13 @@ public class ArticleListViewBean {
 
     public void setArticles(List<ArticleViewBean> articles) {
         this.articles = articles;
+    }
+
+    public Integer getTailPage() {
+        return tailPage;
+    }
+
+    public void setTailPage(Integer tailPage) {
+        this.tailPage = tailPage;
     }
 }

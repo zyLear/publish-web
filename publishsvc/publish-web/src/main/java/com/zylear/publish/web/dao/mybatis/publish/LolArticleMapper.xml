@@ -180,7 +180,8 @@
         SELECT
         <include refid="Base_Column_List"/>
         FROM t_lol_article
-        WHERE is_deleted=0;
+        WHERE is_deleted=0
+        ORDER BY post_time DESC
         LIMIT #{pageParam.offSet,jdbcType=INTEGER},#{pageParam.pageSize,jdbcType=INTEGER}
     </select>
 

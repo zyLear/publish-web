@@ -18,7 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class LolController {
 
     private ArticleManager articleManager;
-    private Integer DEFAULT_PAGE_SIZE = 15;
+    private Integer DEFAULT_PAGE_SIZE = 20;
     private Integer DEFAULT_PAGE_RANGE = 3;
 
 
@@ -29,7 +29,7 @@ public class LolController {
         ArticleListViewBean articleListViewBean = articleManager.findArticleListViewBean(DEFAULT_PAGE_RANGE, pageIndex, pageParam);
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("lol/article/show-lol-article");
+        modelAndView.setViewName("lol/article/lol-article-list");
         if (articleListViewBean != null) {
             modelAndView.addObject("articleListViewBean", articleListViewBean);
         }

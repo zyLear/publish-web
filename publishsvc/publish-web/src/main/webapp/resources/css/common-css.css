@@ -1,5 +1,5 @@
 .custom-container {
-    width: 1500px;
+    width: 1300px;
     margin: 10px auto;
     border: 1px solid black;
     min-height: 1300px;
@@ -165,6 +165,20 @@ body {
     text-align: center;
 }
 
+
+.custom-page-input{
+    position: relative;
+    width: 50px;
+    padding: 0 9px;
+    height: 23px;
+    line-height: 23px;
+    border: 1px solid #CCC;
+    font-size: 14px;
+    display: inline-block;
+    margin: 0 2px;
+    top: -1px;
+}
+
 .custom-page-button {
     padding: 0 9px;
     height: 23px;
@@ -174,6 +188,10 @@ body {
     display: inline-block;
     margin: 0 2px;
     color: #333;
+}
+
+.custom-page-button-head{
+    margin-left: 30px;
 }
 
 .custom-page-button:hover {
@@ -197,6 +215,11 @@ body {
 }
 
 
-
+.custom-page-button-active:hover {
+    cursor: pointer;
+    border-color: #7BD827;
+    color: salmon;
+    text-decoration: none;
+}
 
 
