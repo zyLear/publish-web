@@ -5,6 +5,8 @@
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="title" property="title" jdbcType="VARCHAR" />
     <result column="category" property="category" jdbcType="TINYINT" />
+    <result column="post_time" property="postTime" jdbcType="TIMESTAMP" />
+    <result column="blog_status" property="blogStatus" jdbcType="TINYINT" />
     <result column="page_view" property="pageView" jdbcType="INTEGER" />
     <result column="is_deleted" property="isDeleted" jdbcType="TINYINT" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
@@ -14,7 +16,8 @@
     <result column="content" property="content" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, title, category, page_view, is_deleted, create_time, last_update_time
+    id, title, category, post_time, blog_status, page_view, is_deleted, create_time, 
+    last_update_time
   </sql>
   <sql id="Blob_Column_List" >
     content
@@ -33,11 +36,13 @@
   </delete>
   <insert id="insert" parameterType="com.zylear.publish.web.domain.OwnBlog" >
     insert into t_own_blog (id, title, category, 
-      page_view, is_deleted, create_time, 
-      last_update_time, content)
+      post_time, blog_status, page_view, 
+      is_deleted, create_time, last_update_time, 
+      content)
     values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{category,jdbcType=TINYINT}, 
-      #{pageView,jdbcType=INTEGER}, #{isDeleted,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{lastUpdateTime,jdbcType=TIMESTAMP}, #{content,jdbcType=LONGVARCHAR})
+      #{postTime,jdbcType=TIMESTAMP}, #{blogStatus,jdbcType=TINYINT}, #{pageView,jdbcType=INTEGER}, 
+      #{isDeleted,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{lastUpdateTime,jdbcType=TIMESTAMP}, 
+      #{content,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.zylear.publish.web.domain.OwnBlog" >
     insert into t_own_blog
@@ -50,6 +55,12 @@
       </if>
       <if test="category != null" >
         category,
+      </if>
+      <if test="postTime != null" >
+        post_time,
+      </if>
+      <if test="blogStatus != null" >
+        blog_status,
       </if>
       <if test="pageView != null" >
         page_view,
@@ -77,6 +88,12 @@
       <if test="category != null" >
         #{category,jdbcType=TINYINT},
       </if>
+      <if test="postTime != null" >
+        #{postTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="blogStatus != null" >
+        #{blogStatus,jdbcType=TINYINT},
+      </if>
       <if test="pageView != null" >
         #{pageView,jdbcType=INTEGER},
       </if>
@@ -103,6 +120,12 @@
       <if test="category != null" >
         category = #{category,jdbcType=TINYINT},
       </if>
+      <if test="postTime != null" >
+        post_time = #{postTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="blogStatus != null" >
+        blog_status = #{blogStatus,jdbcType=TINYINT},
+      </if>
       <if test="pageView != null" >
         page_view = #{pageView,jdbcType=INTEGER},
       </if>
@@ -125,6 +148,8 @@
     update t_own_blog
     set title = #{title,jdbcType=VARCHAR},
       category = #{category,jdbcType=TINYINT},
+      post_time = #{postTime,jdbcType=TIMESTAMP},
+      blog_status = #{blogStatus,jdbcType=TINYINT},
       page_view = #{pageView,jdbcType=INTEGER},
       is_deleted = #{isDeleted,jdbcType=TINYINT},
       create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -136,10 +161,28 @@
     update t_own_blog
     set title = #{title,jdbcType=VARCHAR},
       category = #{category,jdbcType=TINYINT},
+      post_time = #{postTime,jdbcType=TIMESTAMP},
+      blog_status = #{blogStatus,jdbcType=TINYINT},
       page_view = #{pageView,jdbcType=INTEGER},
       is_deleted = #{isDeleted,jdbcType=TINYINT},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="findBlogsByPageParam" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM t_own_blog
+    WHERE is_deleted=0
+    ORDER BY post_time DESC
+    LIMIT #{pageParam.offSet,jdbcType=INTEGER},#{pageParam.pageSize,jdbcType=INTEGER}
+  </select>
+
+  <select id="maxId" resultType="java.lang.Integer">
+    SELECT max(id)
+    FROM t_own_blog
+    WHERE is_deleted = 0
+  </select>
+
 </mapper>

@@ -51,6 +51,7 @@
                 success: function (data) {
                     if (data.errorCode == 0) {
                         alert('添加成功');
+                        window.location.href = $('#context').attr('href') + 'blog/blog-list/1.html';
                     } else {
                         alert(data.errorMessage);
                     }

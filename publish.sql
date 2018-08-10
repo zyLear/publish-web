@@ -1,6 +1,6 @@
 -- --------------------------------------------------------
--- 主机:                           127.0.0.1
--- 服务器版本:                        5.5.59 - MySQL Community Server (GPL)
+-- 主机:                           localhost
+-- 服务器版本:                        5.7.17-log - MySQL Community Server (GPL)
 -- 服务器操作系统:                      Win64
 -- HeidiSQL 版本:                  9.3.0.4984
 -- --------------------------------------------------------
@@ -55,6 +55,8 @@ CREATE TABLE IF NOT EXISTS `t_own_blog` (
   `title` varchar(128) NOT NULL,
   `content` longtext NOT NULL,
   `category` tinyint(4) NOT NULL,
+  `post_time` datetime NOT NULL,
+  `blog_status` tinyint(4) NOT NULL,
   `page_view` int(11) NOT NULL,
   `is_deleted` tinyint(4) NOT NULL,
   `create_time` datetime NOT NULL,

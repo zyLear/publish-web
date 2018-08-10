@@ -3,12 +3,52 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title th:text="${blog.title}">blog</title>
+    <title th:text="${blog.title}">show-bolg</title>
+
+
+    <link rel="stylesheet" th:href="@{/resources/vendor/bootstrap/css/bootstrap.min.css}"
+          href="../../../resources/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/resources/css/common-css.css}"
+          href="../../../resources/css/common-css.css">
+
+
+
 </head>
 <body>
 
-<div style="margin: 0 auto; width: 800px;" th:utext="${blog.content}">null</div>
+<div class="custom-container">
+    <div class="custom-page-head"></div>
+    <div class="custom-page-main">
 
+        <div class="custom-navigation">
+
+            <div class="custom-navigation-head">Brand</div>
+            <a class="custom-navigation-left-item">英雄联盟</a>
+            <div class="custom-navigation-left-item">刺激战场</div>
+            <div class="custom-navigation-left-item">Link</div>
+            <div class="custom-navigation-left-item">Link</div>
+            <div class="custom-navigation-right-item">Link</div>
+
+        </div>
+
+
+        <div class="custom-content-left">
+            <div class="custom-article-title" th:text="${blog.title}">title</div>
+            <th:block th:utext="${blog.content}">content</th:block>
+
+        </div>
+        <div class="custom-content-right">
+            <div class="right-box"></div>
+        </div>
+        <div class="custom-clear"></div>
+    </div>
+</div>
+
+
+<script th:src="@{/resources/vendor/jquery/jquery.min.js}"
+        src="../../../resources/vendor/jquery/jquery.min.js"></script>
+<script th:src="@{/resources/vendor/bootstrap/js/bootstrap.min.js}"
+        src="../../../resources/vendor/bootstrap/js/bootstrap.min.js"></script>
 
 </body>
 </html>
