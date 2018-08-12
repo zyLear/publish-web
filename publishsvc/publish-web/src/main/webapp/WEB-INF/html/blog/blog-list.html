@@ -27,21 +27,23 @@
             <div class="custom-navigation-left-item">Link</div>
             <div class="custom-navigation-left-item">Link</div>
             <div class="custom-navigation-right-item">Link</div>
-
+            <div class="custom-clear"></div>
         </div>
 
 
         <div class="custom-content-left">
+            <div class="custom-path">
+                <a th:href="@{/index.html}" class="custom-path-button"> 首页</a> »
+                <!--<a th:href="@{/a}" class="custom-path-button"> 英雄联盟</a> »-->
+                <!--<a th:href="@{/lol/article-list/1.html}" class="custom-path-button"> 攻略</a> »-->
+            </div>
 
-
-            <div class="custom-list">
-
+            <!--<div class="custom-list">-->
                 <div class="custom-list-item" th:each="item : ${articleListViewBean.articles}">
                     <a th:href="@{/blog/show-blog/{id}.html(id=${item.id})}" th:text="${item.title}">#</a>
                     <div class="custom-list-date" th:text="${item.postTime}">#</div>
                 </div>
 
-
                 <!--<div class="custom-list-item">-->
                 <!--<a href="#">xxxx</a>-->
                 <!--<div class="custom-list-date">123</div>-->
@@ -51,11 +53,8 @@
                 <!--<div class="custom-list-date">123</div>-->
                 <!--</div>-->
 
-            </div>
             <div class="custom-page-box">
-
                 <span th:each="item : ${articleListViewBean.pageButtons}">
-
                     <a th:if="${item.active}" class="custom-page-button-active"
                        th:href="@{/blog/blog-list/{id}.html(id=${item.pageIndex})}"
                        th:text="${item.pageIndex}">#</a>
@@ -64,7 +63,6 @@
                        th:text="${item.pageIndex}">#</a>
 
                 </span>
-
                 <span>
                     <a class="custom-page-button custom-page-button-head" th:href="@{/blog/blog-list/1.html}">首页</a>
                 </span>
@@ -72,13 +70,12 @@
                     <a class="custom-page-button"
                        th:href="@{/blog/blog-list/{id}.html(id=${articleListViewBean.tailPage})}">尾页</a>
                 </span>
-
                 <span>
                     <a id="jumpPage" class="custom-page-button custom-page-button-head"
                        href="javascript:void(0);">跳到</a>
                 </span>
                 <span>
-                    <input  id="jumpPageValue" class="custom-page-input" type="text" value="">
+                    <input id="jumpPageValue" class="custom-page-input" type="text" value="">
                 </span>
             </div>
 
@@ -113,7 +110,6 @@
         };
 
     });
-
 
 
 </script>

@@ -1,15 +1,43 @@
-package com.zylear.publish.web.bean.viewbean;
+package com.zylear.publish.web.bean.viewbean.video;
 
 /**
  * Created by xiezongyu on 2018/8/5.
  */
-public class ArticleViewBean {
+public class VideoViewBean {
 
     private Integer id;
     private String title;
     private String css;
     private String content;
     private String postTime;
+
+    private String videoSource;
+    private String flashvars;
+    private String coverImgUrl;
+
+    public String getVideoSource() {
+        return videoSource;
+    }
+
+    public void setVideoSource(String videoSource) {
+        this.videoSource = videoSource;
+    }
+
+    public String getFlashvars() {
+        return flashvars;
+    }
+
+    public void setFlashvars(String flashvars) {
+        this.flashvars = flashvars;
+    }
+
+    public String getCoverImgUrl() {
+        return coverImgUrl;
+    }
+
+    public void setCoverImgUrl(String coverImgUrl) {
+        this.coverImgUrl = coverImgUrl;
+    }
 
     public String getTitle() {
         return title;

@@ -1,9 +1,10 @@
 package com.zylear.publish.web.controller;
 
 import com.zylear.publish.web.bean.PageParam;
-import com.zylear.publish.web.bean.viewbean.ArticleListViewBean;
+import com.zylear.publish.web.bean.viewbean.article.ArticleListViewBean;
 import com.zylear.publish.web.domain.OwnBlog;
 import com.zylear.publish.web.manager.OwnBlogManager;
+import com.zylear.publish.web.manager.converter.ViewBeanConverter;
 import com.zylear.publish.web.service.pubilsh.OwnBlogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -47,7 +48,7 @@ public class OwnBlogController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("blog/show-blog");
         if (ownBlog != null) {
-            modelAndView.addObject("blog", ownBlog);
+            modelAndView.addObject("blog", ViewBeanConverter.toArticleViewBean(ownBlog));
         }
         return modelAndView;
     }

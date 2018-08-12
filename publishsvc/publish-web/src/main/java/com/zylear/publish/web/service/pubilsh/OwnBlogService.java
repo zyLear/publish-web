@@ -17,4 +17,7 @@ public interface OwnBlogService {
     Integer maxId();
 
     List<OwnBlog> findBlogsByPageParam(PageParam pageParam);
+
+    Integer count();
+
 }

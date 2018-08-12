@@ -28,12 +28,17 @@
             <div class="custom-navigation-left-item">Link</div>
             <div class="custom-navigation-left-item">Link</div>
             <div class="custom-navigation-right-item">Link</div>
-
+            <div class="custom-clear"></div>
         </div>
 
 
         <div class="custom-content-left">
+            <div class="custom-path">
+                <a th:href="@{/a}" class="custom-path-button"> 首页</a> »
+                <a th:href="@{/blog/blog-list/1.html}" class="custom-path-button"> 博客</a> »
+            </div>
             <div class="custom-article-title" th:text="${blog.title}">title</div>
+            <div class="custom-article-post-time" th:text="'发表时间：'+${blog.postTime}">postTime</div>
             <th:block th:utext="${blog.content}">content</th:block>
 
         </div>

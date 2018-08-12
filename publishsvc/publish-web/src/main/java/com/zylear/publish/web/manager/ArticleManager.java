@@ -1,8 +1,8 @@
 package com.zylear.publish.web.manager;
 
 import com.zylear.publish.web.bean.PageParam;
-import com.zylear.publish.web.bean.viewbean.ArticleListViewBean;
-import com.zylear.publish.web.bean.viewbean.ArticleViewBean;
+import com.zylear.publish.web.bean.viewbean.article.ArticleListViewBean;
+import com.zylear.publish.web.bean.viewbean.article.ArticleViewBean;
 import com.zylear.publish.web.domain.LolArticle;
 import com.zylear.publish.web.domain.PubgArticle;
 import com.zylear.publish.web.domain.ArticleContentWithBLOBs;
@@ -48,10 +48,23 @@ public class ArticleManager {
     }
 
 
-    public ArticleListViewBean findArticleListViewBean(Integer pageRange, Integer pageIndex, PageParam pageParam) {
-        Integer maxId = lolArticleService.maxId();
-        Integer maxPage = (int) Math.ceil(maxId / (double) pageParam.getPageSize());
+    public ArticleListViewBean findLolArticleListViewBean(Integer pageRange, Integer pageIndex, PageParam pageParam) {
+        Integer count = lolArticleService.count();
+        Integer maxPage = (int) Math.ceil(count / (double) pageParam.getPageSize());
         List<LolArticle> articles = lolArticleService.findLolArticlesByPageParam(pageParam);
+        ArticleListViewBean articleListViewBean = new ArticleListViewBean();
+        articleListViewBean.setTailPage(maxPage);
+        articleListViewBean.setArticles(ViewBeanConverter.toArticleViewBean(articles));
+        articleListViewBean.setPageButtons(ViewBeanConverter.toPageButtonViewBean(pageRange, pageIndex, maxPage));
+        return articleListViewBean;
+    }
+
+
+    public ArticleListViewBean findPubgArticleListViewBean(Integer pageRange, Integer pageIndex, PageParam pageParam) {
+
+        Integer count = pubgArticleService.count();
+        Integer maxPage = (int) Math.ceil(count / (double) pageParam.getPageSize());
+        List<PubgArticle> articles = pubgArticleService.findPubgArticlesByPageParam(pageParam);
         ArticleListViewBean articleListViewBean = new ArticleListViewBean();
         articleListViewBean.setTailPage(maxPage);
         articleListViewBean.setArticles(ViewBeanConverter.toArticleViewBean(articles));

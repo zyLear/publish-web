@@ -26,4 +26,6 @@ public interface LolArticleMapper {
     List<LolArticle> findLolArticlesByPageParam(@Param("pageParam") PageParam pageParam);
 
     Integer maxId();
+
+    Integer count();
 }

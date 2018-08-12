@@ -1,6 +1,6 @@
 package com.zylear.publish.web.domain;
 
-import com.zylear.publish.web.bean.viewbean.ArticleInterface;
+import com.zylear.publish.web.bean.viewbean.article.ArticleInterface;
 
 import java.util.Date;
 

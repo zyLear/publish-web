@@ -1,23 +1,31 @@
 package com.zylear.publish.web.domain;
 
-import com.zylear.publish.web.bean.viewbean.article.ArticleInterface;
+import com.zylear.publish.web.bean.viewbean.video.VideoInterface;
 
 import java.util.Date;
 
-public class LolArticle implements ArticleInterface {
+public class LolVideo implements VideoInterface {
     private Integer id;
 
     private Integer sourceType;
 
     private String title;
 
-    private Integer articleCategory;
+    private String coverImgUrl;
+
+    private Integer videoCategory;
 
     private Date postTime;
 
+    private String sourceUrl;
+
+    private String flashvars;
+
     private Integer contentId;
 
-    private String sourceUrl;
+    private String videoSource;
+
+    private Integer videoType;
 
     private Integer pageView;
 
@@ -51,12 +59,20 @@ public class LolArticle implements ArticleInterface {
         this.title = title;
     }
 
-    public Integer getArticleCategory() {
-        return articleCategory;
+    public String getCoverImgUrl() {
+        return coverImgUrl;
     }
 
-    public void setArticleCategory(Integer articleCategory) {
-        this.articleCategory = articleCategory;
+    public void setCoverImgUrl(String coverImgUrl) {
+        this.coverImgUrl = coverImgUrl;
+    }
+
+    public Integer getVideoCategory() {
+        return videoCategory;
+    }
+
+    public void setVideoCategory(Integer videoCategory) {
+        this.videoCategory = videoCategory;
     }
 
     public Date getPostTime() {
@@ -67,6 +83,22 @@ public class LolArticle implements ArticleInterface {
         this.postTime = postTime;
     }
 
+    public String getSourceUrl() {
+        return sourceUrl;
+    }
+
+    public void setSourceUrl(String sourceUrl) {
+        this.sourceUrl = sourceUrl;
+    }
+
+    public String getFlashvars() {
+        return flashvars;
+    }
+
+    public void setFlashvars(String flashvars) {
+        this.flashvars = flashvars;
+    }
+
     public Integer getContentId() {
         return contentId;
     }
@@ -75,12 +107,20 @@ public class LolArticle implements ArticleInterface {
         this.contentId = contentId;
     }
 
-    public String getSourceUrl() {
-        return sourceUrl;
+    public String getVideoSource() {
+        return videoSource;
     }
 
-    public void setSourceUrl(String sourceUrl) {
-        this.sourceUrl = sourceUrl;
+    public void setVideoSource(String videoSource) {
+        this.videoSource = videoSource;
+    }
+
+    public Integer getVideoType() {
+        return videoType;
+    }
+
+    public void setVideoType(Integer videoType) {
+        this.videoType = videoType;
     }
 
     public Integer getPageView() {

@@ -4,7 +4,7 @@
 <!--http://www.thymeleaf.org-->
 <head>
     <meta charset="UTF-8">
-    <title>lol-article-list</title>
+    <title>lol-video-list</title>
 
     <link rel="stylesheet" th:href="@{/resources/vendor/bootstrap/css/bootstrap.min.css}"
           href="../../../../resources/vendor/bootstrap/css/bootstrap.min.css">
@@ -35,16 +35,42 @@
             <div class="custom-path">
                 <a th:href="@{/a}" class="custom-path-button"> 首页</a> »
                 <a th:href="@{/a}" class="custom-path-button"> 英雄联盟</a> »
-                <a th:href="@{/pubg/article-list/1.html}" class="custom-path-button"> 攻略</a> »
+                <a th:href="@{/lol/video-list/1.html}" class="custom-path-button"> 攻略</a> »
             </div>
 
             <div class="custom-list">
 
-                <div class="custom-list-item" th:each="item : ${articleListViewBean.articles}">
-                    <a th:href="@{/pubg/article/{id}.html(id=${item.id})}" th:text="${item.title}">#</a>
-                    <div class="custom-list-date" th:text="${item.postTime}">#</div>
+                <!--<div class="custom-list-item" th:each="item : ${videoListViewBean.videos}">-->
+                <!--<a th:href="@{/lol/video/{id}.html(id=${item.id})}" th:text="${item.title}">#</a>-->
+                <!--<div class="custom-list-date" th:text="${item.postTime}">#</div>-->
+                <!--</div>-->
+
+                <div class="custom-video-list-item" th:each="item : ${videoListViewBean.videos}">
+
+                    <div style="float: left;width: 40%;height: 120px">
+                        <a th:href="@{/lol/video/{id}.html(id=${item.id})}">
+                            <img th:src="${item.coverImgUrl}" class="custom-video-list-img">
+                        </a>
+                    </div>
+
+                    <div style="float: left;width: 60%">
+                    <span class="custom-video-list-title">
+                        <a th:href="@{/lol/video/{id}.html(id=${item.id})}"
+                           th:text="${item.title}">
+                        </a>
+                    <br>
+                        <span class="custom-video-list-date" th:text="${item.postTime}+' 发布'">#</span>
+                    </span>
+                    </div>
+                    <div class="custom-clear"></div>
+
                 </div>
 
+                <!--<div class="custom-video-list-item" th:each="item : ${videoListViewBean.videos}">-->
+                <!--<a th:href="@{/lol/video/{id}.html(id=${item.id})}" th:text="${item.title}">#</a>-->
+                <!--<div class="custom-list-date" th:text="${item.postTime}">#</div>-->
+                <!--</div>-->
+                <div class="custom-clear"></div>
 
                 <!--<div class="custom-list-item">-->
                 <!--<a href="#">xxxx</a>-->
@@ -58,23 +84,23 @@
             </div>
             <div class="custom-page-box">
 
-                <span th:each="item : ${articleListViewBean.pageButtons}">
+                <span th:each="item : ${videoListViewBean.pageButtons}">
 
                     <a th:if="${item.active}" class="custom-page-button-active"
-                       th:href="@{/pubg/article-list/{id}.html(id=${item.pageIndex})}"
+                       th:href="@{/lol/video-list/{id}.html(id=${item.pageIndex})}"
                        th:text="${item.pageIndex}">#</a>
                     <a th:if="${!item.active}" class="custom-page-button"
-                       th:href="@{/pubg/article-list/{id}.html(id=${item.pageIndex})}"
+                       th:href="@{/lol/video-list/{id}.html(id=${item.pageIndex})}"
                        th:text="${item.pageIndex}">#</a>
 
                 </span>
 
                 <span>
-                    <a class="custom-page-button custom-page-button-head" th:href="@{/pubg/article-list/1.html}">首页</a>
+                    <a class="custom-page-button custom-page-button-head" th:href="@{/lol/video-list/1.html}">首页</a>
                 </span>
                 <span>
                     <a class="custom-page-button"
-                       th:href="@{/pubg/article-list/{id}.html(id=${articleListViewBean.tailPage})}">尾页</a>
+                       th:href="@{/lol/video-list/{id}.html(id=${videoListViewBean.tailPage})}">尾页</a>
                 </span>
 
                 <span>
@@ -82,7 +108,7 @@
                        href="javascript:void(0);">跳到</a>
                 </span>
                 <span>
-                    <input  id="jumpPageValue" class="custom-page-input" type="text" value="">
+                    <input id="jumpPageValue" class="custom-page-input" type="text" value="">
                 </span>
                 <!--<span><a class="custom-page-button"> 1 </a></span>-->
                 <!--<span> <a class="custom-page-button"> 2 </a></span>-->
@@ -111,13 +137,13 @@
 
     $(function () {
         $('#jumpPage').click(function () {
-            window.location.href = $('#contextPath').attr('href') + 'pubg/article-list/' + $('#jumpPageValue').val() + '.html';
+            window.location.href = $('#contextPath').attr('href') + 'lol/video-list/' + $('#jumpPageValue').val() + '.html';
         });
 
         window.onkeydown = function (event) {
             if (event.keyCode == 13) {
                 if ($('#jumpPageValue').is(':focus')) {
-                    window.location.href = $('#contextPath').attr('href') + 'pubg/article-list/' + $('#jumpPageValue').val() + '.html';
+                    window.location.href = $('#contextPath').attr('href') + 'lol/video-list/' + $('#jumpPageValue').val() + '.html';
                 }
             }
 //                // Get the focused element:
@@ -131,7 +157,6 @@
         };
 
     });
-
 
 
 </script>

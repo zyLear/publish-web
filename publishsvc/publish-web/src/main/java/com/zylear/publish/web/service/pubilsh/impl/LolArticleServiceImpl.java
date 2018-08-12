@@ -40,6 +40,13 @@ public class LolArticleServiceImpl implements LolArticleService {
 
     @Override
     public Integer maxId() {
-        return lolArticleMapper.maxId();
+        Integer maxId = lolArticleMapper.maxId();
+        return maxId == null ? 0 : maxId;
+    }
+
+    @Override
+    public Integer count() {
+        Integer count = lolArticleMapper.count();
+        return count == null ? 0 : count;
     }
 }

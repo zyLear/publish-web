@@ -1,27 +1,35 @@
 package com.zylear.publish.web.domain;
 
-import com.zylear.publish.web.bean.viewbean.article.ArticleInterface;
+import com.zylear.publish.web.bean.viewbean.video.VideoInterface;
 
 import java.util.Date;
 
-public class LolArticle implements ArticleInterface {
+public class PubgVideo implements VideoInterface {
     private Integer id;
 
-    private Integer sourceType;
+    private Byte sourceType;
 
     private String title;
 
-    private Integer articleCategory;
+    private String coverImgUrl;
+
+    private Byte videoCategory;
 
     private Date postTime;
 
+    private String sourceUrl;
+
+    private String flashvars;
+
     private Integer contentId;
 
-    private String sourceUrl;
+    private String videoSource;
+
+    private Byte videoType;
 
     private Integer pageView;
 
-    private Boolean isDeleted;
+    private Byte isDeleted;
 
     private Date createTime;
 
@@ -35,11 +43,11 @@ public class LolArticle implements ArticleInterface {
         this.id = id;
     }
 
-    public Integer getSourceType() {
+    public Byte getSourceType() {
         return sourceType;
     }
 
-    public void setSourceType(Integer sourceType) {
+    public void setSourceType(Byte sourceType) {
         this.sourceType = sourceType;
     }
 
@@ -51,12 +59,20 @@ public class LolArticle implements ArticleInterface {
         this.title = title;
     }
 
-    public Integer getArticleCategory() {
-        return articleCategory;
+    public String getCoverImgUrl() {
+        return coverImgUrl;
     }
 
-    public void setArticleCategory(Integer articleCategory) {
-        this.articleCategory = articleCategory;
+    public void setCoverImgUrl(String coverImgUrl) {
+        this.coverImgUrl = coverImgUrl;
+    }
+
+    public Byte getVideoCategory() {
+        return videoCategory;
+    }
+
+    public void setVideoCategory(Byte videoCategory) {
+        this.videoCategory = videoCategory;
     }
 
     public Date getPostTime() {
@@ -67,6 +83,22 @@ public class LolArticle implements ArticleInterface {
         this.postTime = postTime;
     }
 
+    public String getSourceUrl() {
+        return sourceUrl;
+    }
+
+    public void setSourceUrl(String sourceUrl) {
+        this.sourceUrl = sourceUrl;
+    }
+
+    public String getFlashvars() {
+        return flashvars;
+    }
+
+    public void setFlashvars(String flashvars) {
+        this.flashvars = flashvars;
+    }
+
     public Integer getContentId() {
         return contentId;
     }
@@ -75,12 +107,20 @@ public class LolArticle implements ArticleInterface {
         this.contentId = contentId;
     }
 
-    public String getSourceUrl() {
-        return sourceUrl;
+    public String getVideoSource() {
+        return videoSource;
     }
 
-    public void setSourceUrl(String sourceUrl) {
-        this.sourceUrl = sourceUrl;
+    public void setVideoSource(String videoSource) {
+        this.videoSource = videoSource;
+    }
+
+    public Byte getVideoType() {
+        return videoType;
+    }
+
+    public void setVideoType(Byte videoType) {
+        this.videoType = videoType;
     }
 
     public Integer getPageView() {
@@ -91,11 +131,11 @@ public class LolArticle implements ArticleInterface {
         this.pageView = pageView;
     }
 
-    public Boolean getIsDeleted() {
+    public Byte getIsDeleted() {
         return isDeleted;
     }
 
-    public void setIsDeleted(Boolean isDeleted) {
+    public void setIsDeleted(Byte isDeleted) {
         this.isDeleted = isDeleted;
     }
 

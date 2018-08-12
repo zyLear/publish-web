@@ -1,6 +1,6 @@
 -- --------------------------------------------------------
--- 主机:                           localhost
--- 服务器版本:                        5.7.17-log - MySQL Community Server (GPL)
+-- 主机:                           127.0.0.1
+-- 服务器版本:                        5.5.59 - MySQL Community Server (GPL)
 -- 服务器操作系统:                      Win64
 -- HeidiSQL 版本:                  9.3.0.4984
 -- --------------------------------------------------------
@@ -35,9 +35,33 @@ CREATE TABLE IF NOT EXISTS `t_lol_article` (
   `source_type` tinyint(4) NOT NULL,
   `title` varchar(256) NOT NULL,
   `article_category` tinyint(4) NOT NULL,
-  `post_time` datetime DEFAULT NULL,
+  `post_time` datetime NOT NULL,
   `content_id` int(11) NOT NULL,
   `source_url` varchar(1024) NOT NULL,
+  `page_view` int(11) NOT NULL,
+  `is_deleted` tinyint(4) NOT NULL,
+  `create_time` datetime NOT NULL,
+  `last_update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_source_type_title` (`source_type`,`title`(191))
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- 数据导出被取消选择。
+
+
+-- 导出  表 publish.t_lol_video 结构
+CREATE TABLE IF NOT EXISTS `t_lol_video` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `source_type` tinyint(4) NOT NULL,
+  `title` varchar(256) NOT NULL,
+  `cover_img_url` varchar(1024) NOT NULL,
+  `video_category` tinyint(4) NOT NULL,
+  `post_time` datetime NOT NULL,
+  `source_url` varchar(1024) NOT NULL,
+  `flashvars` varchar(1024) DEFAULT NULL,
+  `content_id` int(11) DEFAULT NULL,
+  `video_source` varchar(1024) DEFAULT NULL,
+  `video_type` tinyint(4) NOT NULL COMMENT '1:source_url 2:iframe 3:content_html 4:embed',
   `page_view` int(11) NOT NULL,
   `is_deleted` tinyint(4) NOT NULL,
   `create_time` datetime NOT NULL,
@@ -53,11 +77,11 @@ CREATE TABLE IF NOT EXISTS `t_lol_article` (
 CREATE TABLE IF NOT EXISTS `t_own_blog` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(128) NOT NULL,
+  `blog_status` tinyint(4) NOT NULL DEFAULT '1',
   `content` longtext NOT NULL,
   `category` tinyint(4) NOT NULL,
-  `post_time` datetime NOT NULL,
-  `blog_status` tinyint(4) NOT NULL,
   `page_view` int(11) NOT NULL,
+  `post_time` datetime NOT NULL,
   `is_deleted` tinyint(4) NOT NULL,
   `create_time` datetime NOT NULL,
   `last_update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -74,9 +98,33 @@ CREATE TABLE IF NOT EXISTS `t_pubg_article` (
   `source_type` tinyint(4) NOT NULL,
   `title` varchar(256) NOT NULL,
   `article_category` tinyint(4) NOT NULL,
-  `post_time` datetime DEFAULT NULL,
+  `post_time` datetime NOT NULL,
   `content_id` int(11) NOT NULL,
   `source_url` varchar(1024) NOT NULL,
+  `page_view` int(11) NOT NULL,
+  `is_deleted` tinyint(4) NOT NULL,
+  `create_time` datetime NOT NULL,
+  `last_update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_source_type_title` (`source_type`,`title`(191))
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- 数据导出被取消选择。
+
+
+-- 导出  表 publish.t_pubg_video 结构
+CREATE TABLE IF NOT EXISTS `t_pubg_video` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `source_type` tinyint(4) NOT NULL,
+  `title` varchar(256) NOT NULL,
+  `cover_img_url` varchar(1024) NOT NULL,
+  `video_category` tinyint(4) NOT NULL,
+  `post_time` datetime NOT NULL,
+  `source_url` varchar(1024) NOT NULL,
+  `flashvars` varchar(1024) DEFAULT NULL,
+  `content_id` int(11) DEFAULT NULL,
+  `video_source` varchar(1024) DEFAULT NULL,
+  `video_type` tinyint(4) NOT NULL COMMENT '1:source_url 2:iframe 3:content_html 4:embed',
   `page_view` int(11) NOT NULL,
   `is_deleted` tinyint(4) NOT NULL,
   `create_time` datetime NOT NULL,

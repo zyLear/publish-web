@@ -1,11 +1,12 @@
 package com.zylear.publish.web.manager.converter;
 
-import com.zylear.publish.web.bean.viewbean.ArticleInterface;
-import com.zylear.publish.web.bean.viewbean.ArticleViewBean;
-import com.zylear.publish.web.bean.viewbean.PageButtonViewBean;
-import com.zylear.publish.web.domain.ArticleContent;
+import com.zylear.publish.web.bean.viewbean.article.ArticleInterface;
+import com.zylear.publish.web.bean.viewbean.article.ArticleViewBean;
+import com.zylear.publish.web.bean.viewbean.base.PageButtonViewBean;
+import com.zylear.publish.web.bean.viewbean.video.VideoInterface;
+import com.zylear.publish.web.bean.viewbean.video.VideoViewBean;
 import com.zylear.publish.web.domain.ArticleContentWithBLOBs;
-import com.zylear.publish.web.domain.LolArticle;
+import com.zylear.publish.web.domain.OwnBlog;
 import com.zylear.publish.web.util.DateUtil;
 import com.zylear.publish.web.util.PaginationUtil;
 import com.zylear.publish.web.util.PaginationUtil.PaginationResult;
@@ -69,17 +70,59 @@ public class ViewBeanConverter {
     }
 
 
-
-
     public static ArticleViewBean toArticleViewBean(ArticleInterface articleInterface, ArticleContentWithBLOBs articleContent) {
         ArticleViewBean articleViewBean = new ArticleViewBean();
         articleViewBean.setTitle(articleInterface.getTitle());
         articleViewBean.setCss(articleContent.getCss());
         articleViewBean.setContent(articleContent.getContent());
+        if (articleInterface.getPostTime() == null) {
+            articleViewBean.setPostTime("--");
+        } else {
+            articleViewBean.setPostTime(DateUtil.formatToYDMHMS(articleInterface.getPostTime()));
+        }
         return articleViewBean;
     }
 
 
+    public static ArticleViewBean toArticleViewBean(OwnBlog ownBlog) {
+        ArticleViewBean articleViewBean = new ArticleViewBean();
+        articleViewBean.setTitle(ownBlog.getTitle());
+        articleViewBean.setContent(ownBlog.getContent());
+//        if (ownBlog.getPostTime() == null) {
+//            articleViewBean.setPostTime("--");
+//        } else {
+        articleViewBean.setPostTime(DateUtil.formatToYDMHMS(ownBlog.getPostTime()));
+//        }
+        return articleViewBean;
+    }
 
 
+    public static VideoViewBean toVideoViewBean(VideoInterface videoInterface, ArticleContentWithBLOBs articleContent) {
+        VideoViewBean videoViewBean = new VideoViewBean();
+        videoViewBean.setTitle(videoInterface.getTitle());
+        if (articleContent != null) {
+            videoViewBean.setCss(articleContent.getCss());
+            videoViewBean.setContent(articleContent.getContent());
+        }
+        videoViewBean.setFlashvars(videoInterface.getFlashvars());
+        videoViewBean.setVideoSource(videoInterface.getVideoSource());
+        videoViewBean.setCoverImgUrl(videoInterface.getCoverImgUrl());
+        videoViewBean.setPostTime(DateUtil.formatToYDMHMS(videoInterface.getPostTime()));
+
+        return videoViewBean;
+    }
+
+
+    public static <T extends VideoInterface> List<VideoViewBean> toVideoViewBean(List<T> videos) {
+        List<VideoViewBean> videoViewBeans = new ArrayList<>(videos.size());
+        for (VideoInterface video : videos) {
+            VideoViewBean videoViewBean = new VideoViewBean();
+            videoViewBean.setTitle(video.getTitle());
+            videoViewBean.setPostTime(DateUtil.formatToYDMHMS(video.getPostTime()));
+            videoViewBean.setCoverImgUrl(video.getCoverImgUrl());
+            videoViewBean.setId(video.getId());
+            videoViewBeans.add(videoViewBean);
+        }
+        return videoViewBeans;
+    }
 }

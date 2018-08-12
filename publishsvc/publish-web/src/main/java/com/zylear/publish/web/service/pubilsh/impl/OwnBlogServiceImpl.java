@@ -49,6 +49,12 @@ public class OwnBlogServiceImpl implements OwnBlogService {
         return ownBlogMapper.findBlogsByPageParam(pageParam);
     }
 
+    @Override
+    public Integer count() {
+        Integer count = ownBlogMapper.count();
+        return count == null ? 0 : count;
+    }
+
     @Autowired
     public void setOwnBlogMapper(OwnBlogMapper ownBlogMapper) {
         this.ownBlogMapper = ownBlogMapper;

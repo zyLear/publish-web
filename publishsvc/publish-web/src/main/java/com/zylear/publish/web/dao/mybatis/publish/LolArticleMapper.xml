@@ -28,7 +28,7 @@
         DELETE FROM t_lol_article
         WHERE id = #{id,jdbcType=INTEGER}
     </delete>
-    <insert id="insert" parameterType="com.zylear.publish.web.domain.LolArticle">
+    <insert id="insert" keyProperty="id" keyColumn="id" useGeneratedKeys="true" parameterType="com.zylear.publish.web.domain.LolArticle">
         INSERT INTO t_lol_article (id, source_type, title,
                                    article_category, post_time, content_id,
                                    source_url, page_view, is_deleted,
@@ -187,6 +187,12 @@
 
     <select id="maxId" resultType="java.lang.Integer">
         SELECT max(id)
+        FROM t_lol_article
+        WHERE is_deleted = 0
+    </select>
+
+    <select id="count" resultType="java.lang.Integer">
+        SELECT count(*)
         FROM t_lol_article
         WHERE is_deleted = 0
     </select>

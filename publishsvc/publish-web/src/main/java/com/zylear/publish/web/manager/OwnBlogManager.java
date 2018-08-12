@@ -1,7 +1,7 @@
 package com.zylear.publish.web.manager;
 
 import com.zylear.publish.web.bean.PageParam;
-import com.zylear.publish.web.bean.viewbean.ArticleListViewBean;
+import com.zylear.publish.web.bean.viewbean.article.ArticleListViewBean;
 import com.zylear.publish.web.domain.OwnBlog;
 import com.zylear.publish.web.manager.converter.ViewBeanConverter;
 import com.zylear.publish.web.service.pubilsh.OwnBlogService;
@@ -20,8 +20,8 @@ public class OwnBlogManager {
     private OwnBlogService ownBlogService;
 
     public ArticleListViewBean findArticleListViewBean(Integer pageRange, Integer pageIndex, PageParam pageParam) {
-        Integer maxId = ownBlogService.maxId();
-        Integer maxPage = (int) Math.ceil(maxId / (double) pageParam.getPageSize());
+        Integer count = ownBlogService.count();
+        Integer maxPage = (int) Math.ceil(count / (double) pageParam.getPageSize());
         List<OwnBlog> articles = ownBlogService.findBlogsByPageParam(pageParam);
         ArticleListViewBean articleListViewBean = new ArticleListViewBean();
         articleListViewBean.setTailPage(maxPage);

@@ -24,4 +24,6 @@ public interface OwnBlogMapper {
     Integer maxId();
 
     List<OwnBlog> findBlogsByPageParam(@Param("pageParam") PageParam pageParam);
+
+    Integer count();
 }
