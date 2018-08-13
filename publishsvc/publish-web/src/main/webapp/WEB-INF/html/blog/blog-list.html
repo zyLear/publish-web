@@ -19,17 +19,7 @@
     <div class="custom-page-head"></div>
     <div class="custom-page-main">
 
-        <div class="custom-navigation">
-
-            <div class="custom-navigation-head">Brand</div>
-            <a class="custom-navigation-left-item">Link</a>
-            <div class="custom-navigation-left-item">Link</div>
-            <div class="custom-navigation-left-item">Link</div>
-            <div class="custom-navigation-left-item">Link</div>
-            <div class="custom-navigation-right-item">Link</div>
-            <div class="custom-clear"></div>
-        </div>
-
+        <div th:replace="common/common-navigation :: div.custom-navigation" ></div>
 
         <div class="custom-content-left">
             <div class="custom-path">
@@ -39,19 +29,19 @@
             </div>
 
             <!--<div class="custom-list">-->
-                <div class="custom-list-item" th:each="item : ${articleListViewBean.articles}">
-                    <a th:href="@{/blog/show-blog/{id}.html(id=${item.id})}" th:text="${item.title}">#</a>
-                    <div class="custom-list-date" th:text="${item.postTime}">#</div>
-                </div>
+            <div class="custom-list-item" th:each="item : ${articleListViewBean.articles}">
+                <a th:href="@{/blog/show-blog/{id}.html(id=${item.id})}" th:text="${item.title}">#</a>
+                <div class="custom-list-date" th:text="${item.postTime}">#</div>
+            </div>
 
-                <!--<div class="custom-list-item">-->
-                <!--<a href="#">xxxx</a>-->
-                <!--<div class="custom-list-date">123</div>-->
-                <!--</div>-->
-                <!--<div class="custom-list-item">-->
-                <!--<a href="#">xxxx</a>-->
-                <!--<div class="custom-list-date">123</div>-->
-                <!--</div>-->
+            <!--<div class="custom-list-item">-->
+            <!--<a href="#">xxxx</a>-->
+            <!--<div class="custom-list-date">123</div>-->
+            <!--</div>-->
+            <!--<div class="custom-list-item">-->
+            <!--<a href="#">xxxx</a>-->
+            <!--<div class="custom-list-date">123</div>-->
+            <!--</div>-->
 
             <div class="custom-page-box">
                 <span th:each="item : ${articleListViewBean.pageButtons}">
@@ -94,6 +84,8 @@
         src="../../../resources/vendor/jquery/jquery.min.js"></script>
 <script th:src="@{/resources/vendor/bootstrap/js/bootstrap.min.js}"
         src="../../../resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script th:src="@{/resources/js/common-js.js}"
+        src="../../../resources/js/common-js.js"></script>
 <script>
 
     $(function () {
@@ -109,6 +101,7 @@
             }
         };
 
+//        BindSelected('lol','lolAfter');
     });
 
 

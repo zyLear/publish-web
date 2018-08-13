@@ -1,0 +1,40 @@
+
+
+<!--<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">-->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+
+<div class="custom-navigation">
+
+    <div class="custom-navigation-head">Brand</div>
+    <div id="lol" class="custom-navigation-left-item">英雄联盟
+        <div class="custom-hide custom-after-div">
+            <div>
+                <a th:href="@{/lol/article-list/1.html}"> 攻略</a>
+            </div>
+            <div>
+                <a th:href="@{/lol/video-list/1.html}"> 视频</a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="custom-navigation-left-item">刺激战场
+        <div class="custom-hide custom-after-div">
+            <div>
+                <a th:href="@{/pubg/article-list/1.html}"> 攻略</a>
+            </div>
+            <div>
+                <a th:href="@{/pubg/video-list/1.html}"> 视频</a>
+            </div>
+        </div>
+    </div>
+    <div class="custom-navigation-left-item">note</div>
+    <div class="custom-navigation-right-item">games</div>
+
+    <div class="custom-navigation-left-item">about</div>
+    <div class="custom-clear"></div>
+</div>
+</body>
+</html>
