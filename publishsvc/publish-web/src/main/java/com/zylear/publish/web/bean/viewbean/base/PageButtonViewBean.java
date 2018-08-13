@@ -1,4 +1,4 @@
-package com.zylear.publish.web.bean.viewbean;
+package com.zylear.publish.web.bean.viewbean.base;
 
 /**
  * Created by xiezongyu on 2018/8/9.

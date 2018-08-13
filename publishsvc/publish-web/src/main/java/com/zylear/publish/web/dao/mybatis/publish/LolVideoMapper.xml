@@ -1,45 +1,53 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zylear.publish.web.dao.mybatis.publish.PubgArticleMapper" >
-  <resultMap id="BaseResultMap" type="com.zylear.publish.web.domain.PubgArticle" >
+<mapper namespace="com.zylear.publish.web.dao.mybatis.publish.LolVideoMapper" >
+  <resultMap id="BaseResultMap" type="com.zylear.publish.web.domain.LolVideo" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="source_type" property="sourceType" jdbcType="TINYINT" />
     <result column="title" property="title" jdbcType="VARCHAR" />
-    <result column="article_category" property="articleCategory" jdbcType="TINYINT" />
+    <result column="cover_img_url" property="coverImgUrl" jdbcType="VARCHAR" />
+    <result column="video_category" property="videoCategory" jdbcType="TINYINT" />
     <result column="post_time" property="postTime" jdbcType="TIMESTAMP" />
-    <result column="content_id" property="contentId" jdbcType="INTEGER" />
     <result column="source_url" property="sourceUrl" jdbcType="VARCHAR" />
+    <result column="flashvars" property="flashvars" jdbcType="VARCHAR" />
+    <result column="content_id" property="contentId" jdbcType="INTEGER" />
+    <result column="video_source" property="videoSource" jdbcType="VARCHAR" />
+    <result column="video_type" property="videoType" jdbcType="TINYINT" />
     <result column="page_view" property="pageView" jdbcType="INTEGER" />
     <result column="is_deleted" property="isDeleted" jdbcType="TINYINT" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, source_type, title, article_category, post_time, content_id, source_url, page_view, 
-    is_deleted, create_time, last_update_time
+    id, source_type, title, cover_img_url, video_category, post_time, source_url, flashvars, 
+    content_id, video_source, video_type, page_view, is_deleted, create_time, last_update_time
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from t_pubg_article
+    from t_lol_video
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from t_pubg_article
+    delete from t_lol_video
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" keyProperty="id" keyColumn="id" useGeneratedKeys="true" parameterType="com.zylear.publish.web.domain.PubgArticle" >
-    insert into t_pubg_article (id, source_type, title,
-      article_category, post_time, content_id, 
-      source_url, page_view, is_deleted, 
-      create_time, last_update_time)
+  <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id" parameterType="com.zylear.publish.web.domain.LolVideo" >
+    insert into t_lol_video (id, source_type, title, 
+      cover_img_url, video_category, post_time, 
+      source_url, flashvars, content_id, 
+      video_source, video_type, page_view, 
+      is_deleted, create_time, last_update_time
+      )
     values (#{id,jdbcType=INTEGER}, #{sourceType,jdbcType=TINYINT}, #{title,jdbcType=VARCHAR}, 
-      #{articleCategory,jdbcType=TINYINT}, #{postTime,jdbcType=TIMESTAMP}, #{contentId,jdbcType=INTEGER},
-      #{sourceUrl,jdbcType=VARCHAR}, #{pageView,jdbcType=INTEGER}, #{isDeleted,jdbcType=TINYINT}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{lastUpdateTime,jdbcType=TIMESTAMP})
+      #{coverImgUrl,jdbcType=VARCHAR}, #{videoCategory,jdbcType=TINYINT}, #{postTime,jdbcType=TIMESTAMP}, 
+      #{sourceUrl,jdbcType=VARCHAR}, #{flashvars,jdbcType=VARCHAR}, #{contentId,jdbcType=INTEGER}, 
+      #{videoSource,jdbcType=VARCHAR}, #{videoType,jdbcType=TINYINT}, #{pageView,jdbcType=INTEGER}, 
+      #{isDeleted,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{lastUpdateTime,jdbcType=TIMESTAMP}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.zylear.publish.web.domain.PubgArticle" >
-    insert into t_pubg_article
+  <insert id="insertSelective" parameterType="com.zylear.publish.web.domain.LolVideo" >
+    insert into t_lol_video
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -50,17 +58,29 @@
       <if test="title != null" >
         title,
       </if>
-      <if test="articleCategory != null" >
-        article_category,
+      <if test="coverImgUrl != null" >
+        cover_img_url,
+      </if>
+      <if test="videoCategory != null" >
+        video_category,
       </if>
       <if test="postTime != null" >
         post_time,
       </if>
+      <if test="sourceUrl != null" >
+        source_url,
+      </if>
+      <if test="flashvars != null" >
+        flashvars,
+      </if>
       <if test="contentId != null" >
         content_id,
       </if>
-      <if test="sourceUrl != null" >
-        source_url,
+      <if test="videoSource != null" >
+        video_source,
+      </if>
+      <if test="videoType != null" >
+        video_type,
       </if>
       <if test="pageView != null" >
         page_view,
@@ -85,17 +105,29 @@
       <if test="title != null" >
         #{title,jdbcType=VARCHAR},
       </if>
-      <if test="articleCategory != null" >
-        #{articleCategory,jdbcType=TINYINT},
+      <if test="coverImgUrl != null" >
+        #{coverImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="videoCategory != null" >
+        #{videoCategory,jdbcType=TINYINT},
       </if>
       <if test="postTime != null" >
         #{postTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="sourceUrl != null" >
+        #{sourceUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="flashvars != null" >
+        #{flashvars,jdbcType=VARCHAR},
+      </if>
       <if test="contentId != null" >
         #{contentId,jdbcType=INTEGER},
       </if>
-      <if test="sourceUrl != null" >
-        #{sourceUrl,jdbcType=VARCHAR},
+      <if test="videoSource != null" >
+        #{videoSource,jdbcType=VARCHAR},
+      </if>
+      <if test="videoType != null" >
+        #{videoType,jdbcType=TINYINT},
       </if>
       <if test="pageView != null" >
         #{pageView,jdbcType=INTEGER},
@@ -111,8 +143,8 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zylear.publish.web.domain.PubgArticle" >
-    update t_pubg_article
+  <update id="updateByPrimaryKeySelective" parameterType="com.zylear.publish.web.domain.LolVideo" >
+    update t_lol_video
     <set >
       <if test="sourceType != null" >
         source_type = #{sourceType,jdbcType=TINYINT},
@@ -120,17 +152,29 @@
       <if test="title != null" >
         title = #{title,jdbcType=VARCHAR},
       </if>
-      <if test="articleCategory != null" >
-        article_category = #{articleCategory,jdbcType=TINYINT},
+      <if test="coverImgUrl != null" >
+        cover_img_url = #{coverImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="videoCategory != null" >
+        video_category = #{videoCategory,jdbcType=TINYINT},
       </if>
       <if test="postTime != null" >
         post_time = #{postTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="sourceUrl != null" >
+        source_url = #{sourceUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="flashvars != null" >
+        flashvars = #{flashvars,jdbcType=VARCHAR},
+      </if>
       <if test="contentId != null" >
         content_id = #{contentId,jdbcType=INTEGER},
       </if>
-      <if test="sourceUrl != null" >
-        source_url = #{sourceUrl,jdbcType=VARCHAR},
+      <if test="videoSource != null" >
+        video_source = #{videoSource,jdbcType=VARCHAR},
+      </if>
+      <if test="videoType != null" >
+        video_type = #{videoType,jdbcType=TINYINT},
       </if>
       <if test="pageView != null" >
         page_view = #{pageView,jdbcType=INTEGER},
@@ -147,14 +191,18 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zylear.publish.web.domain.PubgArticle" >
-    update t_pubg_article
+  <update id="updateByPrimaryKey" parameterType="com.zylear.publish.web.domain.LolVideo" >
+    update t_lol_video
     set source_type = #{sourceType,jdbcType=TINYINT},
       title = #{title,jdbcType=VARCHAR},
-      article_category = #{articleCategory,jdbcType=TINYINT},
+      cover_img_url = #{coverImgUrl,jdbcType=VARCHAR},
+      video_category = #{videoCategory,jdbcType=TINYINT},
       post_time = #{postTime,jdbcType=TIMESTAMP},
-      content_id = #{contentId,jdbcType=INTEGER},
       source_url = #{sourceUrl,jdbcType=VARCHAR},
+      flashvars = #{flashvars,jdbcType=VARCHAR},
+      content_id = #{contentId,jdbcType=INTEGER},
+      video_source = #{videoSource,jdbcType=VARCHAR},
+      video_type = #{videoType,jdbcType=TINYINT},
       page_view = #{pageView,jdbcType=INTEGER},
       is_deleted = #{isDeleted,jdbcType=TINYINT},
       create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -162,30 +210,32 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
+
   <select id="findBySourceTypeAndTitle" resultMap="BaseResultMap">
     SELECT
     <include refid="Base_Column_List"/>
-    FROM t_pubg_article
+    FROM t_lol_video
     WHERE
     source_type =#{sourceType,jdbcType=TINYINT}
     AND title = #{title,jdbcType=VARCHAR}
     AND is_deleted = 0
   </select>
 
-
   <select id="count" resultType="java.lang.Integer">
     SELECT count(*)
-    FROM t_pubg_article
+    FROM t_lol_video
     WHERE is_deleted = 0
   </select>
 
-  <select id="findPubgArticlesByPageParam" resultMap="BaseResultMap">
+  <select id="findLolVideosByPageParam" resultMap="BaseResultMap">
     SELECT
     <include refid="Base_Column_List"/>
-    FROM t_pubg_article
+    FROM t_lol_video
     WHERE is_deleted=0
     ORDER BY post_time DESC
     LIMIT #{pageParam.offSet,jdbcType=INTEGER},#{pageParam.pageSize,jdbcType=INTEGER}
   </select>
+
+
 
 </mapper>

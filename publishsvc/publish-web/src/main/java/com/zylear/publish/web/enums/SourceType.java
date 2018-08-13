@@ -7,7 +7,8 @@ public enum SourceType {
 
     unknown(-1),
     web_78g(1),
-    duowan(2);
+    duowan(2),
+    yxdown(3);
 
 
     SourceType(Integer value) {
@@ -19,6 +20,15 @@ public enum SourceType {
 
     public Integer getValue() {
         return value;
+    }
+
+    public static SourceType valueOf(Integer value) {
+        for (SourceType sourceType : values()) {
+            if (sourceType.getValue().equals(value)) {
+                return sourceType;
+            }
+        }
+        throw new RuntimeException("get sourceType fail. value:"+value);
     }
 
 }

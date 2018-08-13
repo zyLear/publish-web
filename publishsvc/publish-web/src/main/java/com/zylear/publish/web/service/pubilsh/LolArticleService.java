@@ -18,4 +18,6 @@ public interface LolArticleService {
     List<LolArticle> findLolArticlesByPageParam(PageParam pageParam);
 
     Integer maxId();
+
+    Integer count();
 }

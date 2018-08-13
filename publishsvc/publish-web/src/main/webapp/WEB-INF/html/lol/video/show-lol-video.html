@@ -3,9 +3,9 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title th:text="${article.title}">show-pubgArticle</title>
+    <title th:text="${video.title}">show-pubgArticle</title>
 
-    <th:block th:utext="${article.css}"/>
+    <th:block th:utext="${video.css}"/>
 
 
     <link rel="stylesheet" th:href="@{/resources/vendor/bootstrap/css/bootstrap.min.css}"
@@ -39,9 +39,20 @@
                 <a th:href="@{/a}" class="custom-path-button"> 英雄联盟</a> »
                 <a th:href="@{/lol/article-list/1.html}" class="custom-path-button"> 攻略</a> »
             </div>
-            <div class="custom-article-title" th:text="${article.title}">title</div>
-            <div class="custom-article-post-time" th:text="'发表时间：'+${article.postTime}">postTime</div>
-            <th:block th:utext="${article.content}">content</th:block>
+            <div class="custom-article-title" th:text="${video.title}">title</div>
+            <div class="custom-article-post-time" th:text="'发表时间：'+${video.postTime}">postTime</div>
+            <!--<th:block th:utext="${video.content}">content</th:block>-->
+
+            <div class="custom-embed">
+                <embed class="custom-embed"
+                       th:src="${video.videoSource}"
+                       type="application/x-shockwave-flash"
+                       allowfullscreen="true" quality="high"
+                       align="middle"
+                       th:attr="flashvars=${video.flashvars}"></embed>
+                <div id="flashvars" th:text="${video.flashvars}" style="display: none;"></div>
+            </div>
+
 
         </div>
         <div class="custom-content-right">
@@ -56,6 +67,10 @@
         src="../../../../resources/vendor/jquery/jquery.min.js"></script>
 <script th:src="@{/resources/vendor/bootstrap/js/bootstrap.min.js}"
         src="../../../../resources/vendor/bootstrap/js/bootstrap.min.js"></script>
-
+<script>
+//    $(function () {
+//        $('embed').attr('flashvars', $('#flashvars').text());
+//    })
+</script>
 </body>
 </html>

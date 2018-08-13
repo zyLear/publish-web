@@ -1,15 +1,17 @@
-package com.zylear.publish.web.bean.viewbean;
+package com.zylear.publish.web.bean.viewbean.video;
+
+import com.zylear.publish.web.bean.viewbean.base.PageButtonViewBean;
 
 import java.util.List;
 
 /**
  * Created by xiezongyu on 2018/8/9.
  */
-public class ArticleListViewBean {
+public class VideoListViewBean {
 
     private List<PageButtonViewBean> pageButtons;
 
-    private List<ArticleViewBean> articles;
+    private List<VideoViewBean> videos;
 
 
     private Integer tailPage;
@@ -22,13 +24,6 @@ public class ArticleListViewBean {
         this.pageButtons = pageButtons;
     }
 
-    public List<ArticleViewBean> getArticles() {
-        return articles;
-    }
-
-    public void setArticles(List<ArticleViewBean> articles) {
-        this.articles = articles;
-    }
 
     public Integer getTailPage() {
         return tailPage;
@@ -36,5 +31,13 @@ public class ArticleListViewBean {
 
     public void setTailPage(Integer tailPage) {
         this.tailPage = tailPage;
+    }
+
+    public List<VideoViewBean> getVideos() {
+        return videos;
+    }
+
+    public void setVideos(List<VideoViewBean> videos) {
+        this.videos = videos;
     }
 }

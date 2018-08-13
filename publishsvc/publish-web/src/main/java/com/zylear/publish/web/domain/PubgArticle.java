@@ -1,17 +1,17 @@
 package com.zylear.publish.web.domain;
 
-import com.zylear.publish.web.bean.viewbean.ArticleInterface;
+import com.zylear.publish.web.bean.viewbean.article.ArticleInterface;
 
 import java.util.Date;
 
 public class PubgArticle implements ArticleInterface {
     private Integer id;
 
-    private Byte sourceType;
+    private Integer sourceType;
 
     private String title;
 
-    private Byte articleCategory;
+    private Integer articleCategory;
 
     private Date postTime;
 
@@ -21,7 +21,7 @@ public class PubgArticle implements ArticleInterface {
 
     private Integer pageView;
 
-    private Byte isDeleted;
+    private Boolean isDeleted;
 
     private Date createTime;
 
@@ -35,11 +35,11 @@ public class PubgArticle implements ArticleInterface {
         this.id = id;
     }
 
-    public Byte getSourceType() {
+    public Integer getSourceType() {
         return sourceType;
     }
 
-    public void setSourceType(Byte sourceType) {
+    public void setSourceType(Integer sourceType) {
         this.sourceType = sourceType;
     }
 
@@ -51,11 +51,11 @@ public class PubgArticle implements ArticleInterface {
         this.title = title;
     }
 
-    public Byte getArticleCategory() {
+    public Integer getArticleCategory() {
         return articleCategory;
     }
 
-    public void setArticleCategory(Byte articleCategory) {
+    public void setArticleCategory(Integer articleCategory) {
         this.articleCategory = articleCategory;
     }
 
@@ -91,11 +91,11 @@ public class PubgArticle implements ArticleInterface {
         this.pageView = pageView;
     }
 
-    public Byte getIsDeleted() {
+    public Boolean getIsDeleted() {
         return isDeleted;
     }
 
-    public void setIsDeleted(Byte isDeleted) {
+    public void setIsDeleted(Boolean isDeleted) {
         this.isDeleted = isDeleted;
     }
 

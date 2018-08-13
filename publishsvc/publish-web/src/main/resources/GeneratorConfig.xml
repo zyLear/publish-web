@@ -40,10 +40,15 @@
                 <!--enableUpdateByExample="false" enableDeleteByExample="false">-->
         <!--</table>-->
 
-        <table  tableName="t_own_blog" domainObjectName="OwnBlog"
-                enableCountByExample="false" enableSelectByExample="false"
-                enableUpdateByExample="false" enableDeleteByExample="false">
-        </table>
+        <!--<table  tableName="t_lol_video" domainObjectName="LolVideo"-->
+                <!--enableCountByExample="false" enableSelectByExample="false"-->
+                <!--enableUpdateByExample="false" enableDeleteByExample="false">-->
+        <!--</table>-->
+
+        <!--<table  tableName="t_pubg_video" domainObjectName="PubgVideo"-->
+                <!--enableCountByExample="false" enableSelectByExample="false"-->
+                <!--enableUpdateByExample="false" enableDeleteByExample="false">-->
+        <!--</table>-->
 
 
         <!--<table  tableName="t_lol_article" domainObjectName="LolArticle"-->

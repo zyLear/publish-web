@@ -1,18 +1,16 @@
 package com.zylear.publish.web.controller.bean;
 
-import java.util.Date;
-
 /**
  * Created by xiezongyu on 2018/8/8.
  */
-public class PostBean {
+public class VideoPostBean {
 
 
     private Integer sourceType;
 
     private String title;
 
-    private Integer spiderCategory;
+    private Integer videoCategory;
 
     private Long postTime;
 
@@ -22,6 +20,45 @@ public class PostBean {
 
     private String content;
 
+    private String coverImgUrl;
+
+    private String flashvars;
+
+    private Integer videoType;
+
+    private String videoSource;
+
+    public String getCoverImgUrl() {
+        return coverImgUrl;
+    }
+
+    public void setCoverImgUrl(String coverImgUrl) {
+        this.coverImgUrl = coverImgUrl;
+    }
+
+    public String getFlashvars() {
+        return flashvars;
+    }
+
+    public void setFlashvars(String flashvars) {
+        this.flashvars = flashvars;
+    }
+
+    public Integer getVideoType() {
+        return videoType;
+    }
+
+    public void setVideoType(Integer videoType) {
+        this.videoType = videoType;
+    }
+
+    public String getVideoSource() {
+        return videoSource;
+    }
+
+    public void setVideoSource(String videoSource) {
+        this.videoSource = videoSource;
+    }
 
     public Integer getSourceType() {
         return sourceType;
@@ -39,12 +76,12 @@ public class PostBean {
         this.title = title;
     }
 
-    public Integer getSpiderCategory() {
-        return spiderCategory;
+    public Integer getVideoCategory() {
+        return videoCategory;
     }
 
-    public void setSpiderCategory(Integer spiderCategory) {
-        this.spiderCategory = spiderCategory;
+    public void setVideoCategory(Integer videoCategory) {
+        this.videoCategory = videoCategory;
     }
 
     public Long getPostTime() {
@@ -79,4 +116,5 @@ public class PostBean {
     public void setContent(String content) {
         this.content = content;
     }
+
 }

@@ -1,188 +1,194 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zylear.publish.web.dao.mybatis.publish.OwnBlogMapper" >
-  <resultMap id="BaseResultMap" type="com.zylear.publish.web.domain.OwnBlog" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="title" property="title" jdbcType="VARCHAR" />
-    <result column="category" property="category" jdbcType="TINYINT" />
-    <result column="post_time" property="postTime" jdbcType="TIMESTAMP" />
-    <result column="blog_status" property="blogStatus" jdbcType="TINYINT" />
-    <result column="page_view" property="pageView" jdbcType="INTEGER" />
-    <result column="is_deleted" property="isDeleted" jdbcType="TINYINT" />
-    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
-    <result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP" />
-  </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.zylear.publish.web.domain.OwnBlog" extends="BaseResultMap" >
-    <result column="content" property="content" jdbcType="LONGVARCHAR" />
-  </resultMap>
-  <sql id="Base_Column_List" >
-    id, title, category, post_time, blog_status, page_view, is_deleted, create_time, 
-    last_update_time
-  </sql>
-  <sql id="Blob_Column_List" >
-    content
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from t_own_blog
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from t_own_blog
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.zylear.publish.web.domain.OwnBlog" >
-    insert into t_own_blog (id, title, category, 
-      post_time, blog_status, page_view, 
-      is_deleted, create_time, last_update_time, 
-      content)
-    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{category,jdbcType=TINYINT}, 
-      #{postTime,jdbcType=TIMESTAMP}, #{blogStatus,jdbcType=TINYINT}, #{pageView,jdbcType=INTEGER}, 
-      #{isDeleted,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{lastUpdateTime,jdbcType=TIMESTAMP}, 
-      #{content,jdbcType=LONGVARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.zylear.publish.web.domain.OwnBlog" >
-    insert into t_own_blog
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="title != null" >
-        title,
-      </if>
-      <if test="category != null" >
-        category,
-      </if>
-      <if test="postTime != null" >
-        post_time,
-      </if>
-      <if test="blogStatus != null" >
-        blog_status,
-      </if>
-      <if test="pageView != null" >
-        page_view,
-      </if>
-      <if test="isDeleted != null" >
-        is_deleted,
-      </if>
-      <if test="createTime != null" >
-        create_time,
-      </if>
-      <if test="lastUpdateTime != null" >
-        last_update_time,
-      </if>
-      <if test="content != null" >
-        content,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="title != null" >
-        #{title,jdbcType=VARCHAR},
-      </if>
-      <if test="category != null" >
-        #{category,jdbcType=TINYINT},
-      </if>
-      <if test="postTime != null" >
-        #{postTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="blogStatus != null" >
-        #{blogStatus,jdbcType=TINYINT},
-      </if>
-      <if test="pageView != null" >
-        #{pageView,jdbcType=INTEGER},
-      </if>
-      <if test="isDeleted != null" >
-        #{isDeleted,jdbcType=TINYINT},
-      </if>
-      <if test="createTime != null" >
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="lastUpdateTime != null" >
-        #{lastUpdateTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="content != null" >
-        #{content,jdbcType=LONGVARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zylear.publish.web.domain.OwnBlog" >
-    update t_own_blog
-    <set >
-      <if test="title != null" >
-        title = #{title,jdbcType=VARCHAR},
-      </if>
-      <if test="category != null" >
-        category = #{category,jdbcType=TINYINT},
-      </if>
-      <if test="postTime != null" >
-        post_time = #{postTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="blogStatus != null" >
-        blog_status = #{blogStatus,jdbcType=TINYINT},
-      </if>
-      <if test="pageView != null" >
-        page_view = #{pageView,jdbcType=INTEGER},
-      </if>
-      <if test="isDeleted != null" >
-        is_deleted = #{isDeleted,jdbcType=TINYINT},
-      </if>
-      <if test="createTime != null" >
-        create_time = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="lastUpdateTime != null" >
-        last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="content != null" >
-        content = #{content,jdbcType=LONGVARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.zylear.publish.web.domain.OwnBlog" >
-    update t_own_blog
-    set title = #{title,jdbcType=VARCHAR},
-      category = #{category,jdbcType=TINYINT},
-      post_time = #{postTime,jdbcType=TIMESTAMP},
-      blog_status = #{blogStatus,jdbcType=TINYINT},
-      page_view = #{pageView,jdbcType=INTEGER},
-      is_deleted = #{isDeleted,jdbcType=TINYINT},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
-      content = #{content,jdbcType=LONGVARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.zylear.publish.web.domain.OwnBlog" >
-    update t_own_blog
-    set title = #{title,jdbcType=VARCHAR},
-      category = #{category,jdbcType=TINYINT},
-      post_time = #{postTime,jdbcType=TIMESTAMP},
-      blog_status = #{blogStatus,jdbcType=TINYINT},
-      page_view = #{pageView,jdbcType=INTEGER},
-      is_deleted = #{isDeleted,jdbcType=TINYINT},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+<mapper namespace="com.zylear.publish.web.dao.mybatis.publish.OwnBlogMapper">
+    <resultMap id="BaseResultMap" type="com.zylear.publish.web.domain.OwnBlog">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="title" property="title" jdbcType="VARCHAR"/>
+        <result column="category" property="category" jdbcType="TINYINT"/>
+        <result column="post_time" property="postTime" jdbcType="TIMESTAMP"/>
+        <result column="blog_status" property="blogStatus" jdbcType="TINYINT"/>
+        <result column="page_view" property="pageView" jdbcType="INTEGER"/>
+        <result column="is_deleted" property="isDeleted" jdbcType="TINYINT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <resultMap id="ResultMapWithBLOBs" type="com.zylear.publish.web.domain.OwnBlog" extends="BaseResultMap">
+        <result column="content" property="content" jdbcType="LONGVARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, title, category, post_time, blog_status, page_view, is_deleted, create_time,
+        last_update_time
+    </sql>
+    <sql id="Blob_Column_List">
+        content
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from t_own_blog
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        DELETE FROM t_own_blog
+        WHERE id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.zylear.publish.web.domain.OwnBlog">
+        INSERT INTO t_own_blog (id, title, category,
+                                post_time, blog_status, page_view,
+                                is_deleted, create_time, last_update_time,
+                                content)
+        VALUES (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{category,jdbcType=TINYINT},
+                #{postTime,jdbcType=TIMESTAMP}, #{blogStatus,jdbcType=TINYINT}, #{pageView,jdbcType=INTEGER},
+                #{isDeleted,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{lastUpdateTime,jdbcType=TIMESTAMP},
+                #{content,jdbcType=LONGVARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.zylear.publish.web.domain.OwnBlog">
+        insert into t_own_blog
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="title != null">
+                title,
+            </if>
+            <if test="category != null">
+                category,
+            </if>
+            <if test="postTime != null">
+                post_time,
+            </if>
+            <if test="blogStatus != null">
+                blog_status,
+            </if>
+            <if test="pageView != null">
+                page_view,
+            </if>
+            <if test="isDeleted != null">
+                is_deleted,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="lastUpdateTime != null">
+                last_update_time,
+            </if>
+            <if test="content != null">
+                content,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="title != null">
+                #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="category != null">
+                #{category,jdbcType=TINYINT},
+            </if>
+            <if test="postTime != null">
+                #{postTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="blogStatus != null">
+                #{blogStatus,jdbcType=TINYINT},
+            </if>
+            <if test="pageView != null">
+                #{pageView,jdbcType=INTEGER},
+            </if>
+            <if test="isDeleted != null">
+                #{isDeleted,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastUpdateTime != null">
+                #{lastUpdateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="content != null">
+                #{content,jdbcType=LONGVARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.zylear.publish.web.domain.OwnBlog">
+        update t_own_blog
+        <set>
+            <if test="title != null">
+                title = #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="category != null">
+                category = #{category,jdbcType=TINYINT},
+            </if>
+            <if test="postTime != null">
+                post_time = #{postTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="blogStatus != null">
+                blog_status = #{blogStatus,jdbcType=TINYINT},
+            </if>
+            <if test="pageView != null">
+                page_view = #{pageView,jdbcType=INTEGER},
+            </if>
+            <if test="isDeleted != null">
+                is_deleted = #{isDeleted,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastUpdateTime != null">
+                last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="content != null">
+                content = #{content,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.zylear.publish.web.domain.OwnBlog">
+        UPDATE t_own_blog
+        SET title            = #{title,jdbcType=VARCHAR},
+            category         = #{category,jdbcType=TINYINT},
+            post_time        = #{postTime,jdbcType=TIMESTAMP},
+            blog_status      = #{blogStatus,jdbcType=TINYINT},
+            page_view        = #{pageView,jdbcType=INTEGER},
+            is_deleted       = #{isDeleted,jdbcType=TINYINT},
+            create_time      = #{createTime,jdbcType=TIMESTAMP},
+            last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
+            content          = #{content,jdbcType=LONGVARCHAR}
+        WHERE id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.zylear.publish.web.domain.OwnBlog">
+        UPDATE t_own_blog
+        SET title            = #{title,jdbcType=VARCHAR},
+            category         = #{category,jdbcType=TINYINT},
+            post_time        = #{postTime,jdbcType=TIMESTAMP},
+            blog_status      = #{blogStatus,jdbcType=TINYINT},
+            page_view        = #{pageView,jdbcType=INTEGER},
+            is_deleted       = #{isDeleted,jdbcType=TINYINT},
+            create_time      = #{createTime,jdbcType=TIMESTAMP},
+            last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP}
+        WHERE id = #{id,jdbcType=INTEGER}
+    </update>
 
-  <select id="findBlogsByPageParam" resultMap="BaseResultMap">
-    SELECT
-    <include refid="Base_Column_List"/>
-    FROM t_own_blog
-    WHERE is_deleted=0
-    ORDER BY post_time DESC
-    LIMIT #{pageParam.offSet,jdbcType=INTEGER},#{pageParam.pageSize,jdbcType=INTEGER}
-  </select>
+    <select id="findBlogsByPageParam" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM t_own_blog
+        WHERE is_deleted=0
+        ORDER BY post_time DESC
+        LIMIT #{pageParam.offSet,jdbcType=INTEGER},#{pageParam.pageSize,jdbcType=INTEGER}
+    </select>
 
-  <select id="maxId" resultType="java.lang.Integer">
-    SELECT max(id)
-    FROM t_own_blog
-    WHERE is_deleted = 0
-  </select>
+    <select id="maxId" resultType="java.lang.Integer">
+        SELECT max(id)
+        FROM t_own_blog
+        WHERE is_deleted = 0
+    </select>
+
+    <select id="count" resultType="java.lang.Integer">
+        SELECT count(*)
+        FROM t_own_blog
+        WHERE is_deleted = 0
+    </select>
 
 </mapper>
