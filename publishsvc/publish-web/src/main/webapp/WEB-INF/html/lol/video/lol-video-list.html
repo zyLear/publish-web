@@ -6,10 +6,7 @@
     <meta charset="UTF-8">
     <title>lol-video-list</title>
 
-    <link rel="stylesheet" th:href="@{/resources/vendor/bootstrap/css/bootstrap.min.css}"
-          href="../../../../resources/vendor/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" th:href="@{/resources/css/common-css.css}"
-          href="../../../../resources/css/common-css.css">
+    <th:block th:replace="common/common-css :: link" />
 
 </head>
 <body>
@@ -120,10 +117,7 @@
 </div>
 
 
-<script th:src="@{/resources/vendor/jquery/jquery.min.js}"
-        src="../../../../resources/vendor/jquery/jquery.min.js"></script>
-<script th:src="@{/resources/vendor/bootstrap/js/bootstrap.min.js}"
-        src="../../../../resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+<div th:replace="common/common-js :: script"></div>
 <script>
 
     $(function () {

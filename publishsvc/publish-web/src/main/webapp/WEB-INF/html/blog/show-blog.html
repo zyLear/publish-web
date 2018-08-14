@@ -6,11 +6,8 @@
     <title th:text="${blog.title}">show-bolg</title>
 
 
-    <link rel="stylesheet" th:href="@{/resources/vendor/bootstrap/css/bootstrap.min.css}"
-          href="../../../resources/vendor/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" th:href="@{/resources/css/common-css.css}"
-          href="../../../resources/css/common-css.css">
 
+    <div th:replace="common/css :: link"></div>
 
 
 </head>
@@ -49,13 +46,7 @@
     </div>
 </div>
 
-
-<script th:src="@{/resources/vendor/jquery/jquery.min.js}"
-        src="../../../resources/vendor/jquery/jquery.min.js"></script>
-<script th:src="@{/resources/vendor/bootstrap/js/bootstrap.min.js}"
-        src="../../../resources/vendor/bootstrap/js/bootstrap.min.js"></script>
-<script th:src="@{/resources/js/common-js.js}"
-        src="../../../resources/js/common-js.js"></script>
+<div th:replace="common/common-js :: script"></div>
 
 
 </body>

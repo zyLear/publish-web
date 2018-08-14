@@ -6,10 +6,7 @@
     <meta charset="UTF-8">
     <title>lol-article-list</title>
 
-    <link rel="stylesheet" th:href="@{/resources/vendor/bootstrap/css/bootstrap.min.css}"
-          href="../../../../resources/vendor/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" th:href="@{/resources/css/common-css.css}"
-          href="../../../../resources/css/common-css.css">
+    <th:block th:replace="common/common-css :: link" />
 
 </head>
 <body>
@@ -24,8 +21,8 @@
 
         <div class="custom-content-left">
             <div class="custom-path">
-                <a th:href="@{/a}" class="custom-path-button"> 首页</a> »
-                <a th:href="@{/a}" class="custom-path-button"> 英雄联盟</a> »
+                <a th:href="@{/index}" class="custom-path-button"> 首页</a> »
+                <a href="#" class="custom-path-button"> 刺激战场</a> »
                 <a th:href="@{/pubg/article-list/1.html}" class="custom-path-button"> 攻略</a> »
             </div>
 
@@ -75,12 +72,6 @@
                 <span>
                     <input  id="jumpPageValue" class="custom-page-input" type="text" value="">
                 </span>
-                <!--<span><a class="custom-page-button"> 1 </a></span>-->
-                <!--<span> <a class="custom-page-button"> 2 </a></span>-->
-                <!--<a class="custom-page-button"> 3 </a>-->
-                <!--<a class="custom-page-button"> 4 </a>-->
-                <!--<a class="custom-page-button"> 5 </a>-->
-                <!--<a class="custom-page-button-active"> 6 </a>-->
             </div>
 
 
@@ -94,10 +85,7 @@
 </div>
 
 
-<script th:src="@{/resources/vendor/jquery/jquery.min.js}"
-        src="../../../../resources/vendor/jquery/jquery.min.js"></script>
-<script th:src="@{/resources/vendor/bootstrap/js/bootstrap.min.js}"
-        src="../../../../resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+<div th:replace="common/common-js :: script"></div>
 <script>
 
     $(function () {
