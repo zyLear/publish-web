@@ -1,9 +1,11 @@
 package com.zylear.publish.web;
 
+import org.mybatis.spring.boot.autoconfigure.MybatisAutoConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
@@ -14,13 +16,13 @@ import org.springframework.context.annotation.ComponentScan;
 //@EnableAutoConfiguration
 @ComponentScan("com.zylear.publish.web.*")
 @EnableAutoConfiguration(exclude = {
-////		DataSourceAutoConfiguration.class,
-//		DataSourceTransactionManagerAutoConfiguration.class,
-//		MybatisAutoConfiguration.class,
+		DataSourceAutoConfiguration.class,
+		DataSourceTransactionManagerAutoConfiguration.class,
+		MybatisAutoConfiguration.class
 ////		DispatcherServletAutoConfiguration.class, /**如果需要自定义servlet dispatch,需要exclude*/
 ////		ErrorMvcAutoConfiguration.class,
 ////		RabbitAutoConfiguration.class,
-        DataSourceAutoConfiguration.class
+//        DataSourceAutoConfiguration.class
 })
 public class PublishWebApplication extends SpringBootServletInitializer implements EmbeddedServletContainerCustomizer {
 

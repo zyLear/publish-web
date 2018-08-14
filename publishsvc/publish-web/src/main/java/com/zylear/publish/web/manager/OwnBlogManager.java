@@ -2,7 +2,7 @@ package com.zylear.publish.web.manager;
 
 import com.zylear.publish.web.bean.PageParam;
 import com.zylear.publish.web.bean.viewbean.article.ArticleListViewBean;
-import com.zylear.publish.web.domain.OwnBlog;
+import com.zylear.publish.web.domain.publish.OwnBlog;
 import com.zylear.publish.web.manager.converter.ViewBeanConverter;
 import com.zylear.publish.web.service.pubilsh.OwnBlogService;
 import org.springframework.beans.factory.annotation.Autowired;

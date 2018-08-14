@@ -1,10 +1,10 @@
-package com.zylear.publish.web.domain;
+package com.zylear.publish.web.domain.publish;
 
 import com.zylear.publish.web.bean.viewbean.article.ArticleInterface;
 
 import java.util.Date;
 
-public class PubgArticle implements ArticleInterface {
+public class LolArticle implements ArticleInterface {
     private Integer id;
 
     private Integer sourceType;

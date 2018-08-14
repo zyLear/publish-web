@@ -1,6 +1,6 @@
 package com.zylear.publish.web.dao.mybatis.publish;
 
-import com.zylear.publish.web.domain.PubgVideo;
+import com.zylear.publish.web.domain.publish.PubgVideo;
 
 public interface PubgVideoMapper {
     int deleteByPrimaryKey(Integer id);

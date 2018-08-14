@@ -1,4 +1,4 @@
-package com.zylear.publish.web.domain;
+package com.zylear.publish.web.domain.publish;
 
 public class ArticleContentWithBLOBs extends ArticleContent {
     private String css;

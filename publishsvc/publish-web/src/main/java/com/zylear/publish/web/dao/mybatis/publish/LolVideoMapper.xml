@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.zylear.publish.web.dao.mybatis.publish.LolVideoMapper" >
-  <resultMap id="BaseResultMap" type="com.zylear.publish.web.domain.LolVideo" >
+  <resultMap id="BaseResultMap" type="com.zylear.publish.web.domain.publish.LolVideo" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="source_type" property="sourceType" jdbcType="TINYINT" />
     <result column="title" property="title" jdbcType="VARCHAR" />
@@ -32,7 +32,7 @@
     delete from t_lol_video
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id" parameterType="com.zylear.publish.web.domain.LolVideo" >
+  <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id" parameterType="com.zylear.publish.web.domain.publish.LolVideo" >
     insert into t_lol_video (id, source_type, title, 
       cover_img_url, video_category, post_time, 
       source_url, flashvars, content_id, 
@@ -46,7 +46,7 @@
       #{isDeleted,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{lastUpdateTime,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.zylear.publish.web.domain.LolVideo" >
+  <insert id="insertSelective" parameterType="com.zylear.publish.web.domain.publish.LolVideo" >
     insert into t_lol_video
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -143,7 +143,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zylear.publish.web.domain.LolVideo" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.zylear.publish.web.domain.publish.LolVideo" >
     update t_lol_video
     <set >
       <if test="sourceType != null" >
@@ -191,7 +191,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zylear.publish.web.domain.LolVideo" >
+  <update id="updateByPrimaryKey" parameterType="com.zylear.publish.web.domain.publish.LolVideo" >
     update t_lol_video
     set source_type = #{sourceType,jdbcType=TINYINT},
       title = #{title,jdbcType=VARCHAR},
