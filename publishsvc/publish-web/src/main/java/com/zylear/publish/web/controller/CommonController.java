@@ -12,10 +12,25 @@ import org.springframework.web.servlet.ModelAndView;
 public class CommonController {
 
     @RequestMapping("/common-navigation")
-    public ModelAndView createBlog() {
+    public ModelAndView commonNavigation() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("common/common-navigation");
         return modelAndView;
     }
+
+    @RequestMapping("/common-css")
+    public ModelAndView commonCss() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("common/common-css");
+        return modelAndView;
+    }
+
+    @RequestMapping("/common-js")
+    public ModelAndView commonJs() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("common/common-js");
+        return modelAndView;
+    }
+
 
 }
