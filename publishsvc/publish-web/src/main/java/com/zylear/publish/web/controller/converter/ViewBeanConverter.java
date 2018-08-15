@@ -1,4 +1,4 @@
-package com.zylear.publish.web.manager.converter;
+package com.zylear.publish.web.controller.converter;
 
 import com.zylear.publish.web.bean.viewbean.article.ArticleInterface;
 import com.zylear.publish.web.bean.viewbean.article.ArticleViewBean;

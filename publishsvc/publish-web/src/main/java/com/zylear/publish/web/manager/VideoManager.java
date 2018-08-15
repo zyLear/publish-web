@@ -6,7 +6,7 @@ import com.zylear.publish.web.bean.viewbean.video.VideoViewBean;
 import com.zylear.publish.web.domain.publish.ArticleContentWithBLOBs;
 import com.zylear.publish.web.domain.publish.LolVideo;
 import com.zylear.publish.web.enums.VideoType;
-import com.zylear.publish.web.manager.converter.ViewBeanConverter;
+import com.zylear.publish.web.controller.converter.ViewBeanConverter;
 import com.zylear.publish.web.service.pubilsh.ArticleContentService;
 import com.zylear.publish.web.service.pubilsh.LolVideoService;
 import com.zylear.publish.web.service.pubilsh.PubgVideoService;
