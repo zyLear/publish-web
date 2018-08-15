@@ -1,7 +1,7 @@
 package com.zylear.publish.web.dao.mybatis.publish;
 
 import com.zylear.publish.web.bean.PageParam;
-import com.zylear.publish.web.domain.LolVideo;
+import com.zylear.publish.web.domain.publish.LolVideo;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

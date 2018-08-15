@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <title>create-blog</title>
 
+
+
     <link rel="stylesheet" th:href="@{/resources/vendor/summernote/summernote.css}"
           href="../../../resources/vendor/summernote/summernote.css">
     <link rel="stylesheet"
@@ -30,7 +32,9 @@
         src="../../../resources/vendor/summernote/summernote.js"></script>
 <script>
     $(document).ready(function () {
-        $('#summernote').summernote();
+        $('#summernote').summernote({
+            height: 600
+        });
     });
 
     insert = function () {

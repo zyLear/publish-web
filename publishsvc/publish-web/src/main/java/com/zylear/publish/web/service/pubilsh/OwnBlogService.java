@@ -1,7 +1,7 @@
 package com.zylear.publish.web.service.pubilsh;
 
 import com.zylear.publish.web.bean.PageParam;
-import com.zylear.publish.web.domain.OwnBlog;
+import com.zylear.publish.web.domain.publish.OwnBlog;
 
 import java.util.List;
 

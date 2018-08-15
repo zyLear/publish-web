@@ -2,7 +2,7 @@ package com.zylear.publish.web.service.pubilsh.impl;
 
 import com.zylear.publish.web.bean.PageParam;
 import com.zylear.publish.web.dao.mybatis.publish.PubgArticleMapper;
-import com.zylear.publish.web.domain.PubgArticle;
+import com.zylear.publish.web.domain.publish.PubgArticle;
 import com.zylear.publish.web.service.pubilsh.PubgArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

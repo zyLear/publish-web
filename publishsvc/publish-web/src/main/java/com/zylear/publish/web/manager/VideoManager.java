@@ -1,13 +1,10 @@
 package com.zylear.publish.web.manager;
 
 import com.zylear.publish.web.bean.PageParam;
-import com.zylear.publish.web.bean.viewbean.article.ArticleListViewBean;
 import com.zylear.publish.web.bean.viewbean.video.VideoListViewBean;
 import com.zylear.publish.web.bean.viewbean.video.VideoViewBean;
-import com.zylear.publish.web.domain.ArticleContentWithBLOBs;
-import com.zylear.publish.web.domain.LolArticle;
-import com.zylear.publish.web.domain.LolVideo;
-import com.zylear.publish.web.domain.PubgVideo;
+import com.zylear.publish.web.domain.publish.ArticleContentWithBLOBs;
+import com.zylear.publish.web.domain.publish.LolVideo;
 import com.zylear.publish.web.enums.VideoType;
 import com.zylear.publish.web.manager.converter.ViewBeanConverter;
 import com.zylear.publish.web.service.pubilsh.ArticleContentService;

@@ -1,7 +1,7 @@
 package com.zylear.publish.web.dao.mybatis.publish;
 
-import com.zylear.publish.web.domain.ArticleContent;
-import com.zylear.publish.web.domain.ArticleContentWithBLOBs;
+import com.zylear.publish.web.domain.publish.ArticleContent;
+import com.zylear.publish.web.domain.publish.ArticleContentWithBLOBs;
 
 public interface ArticleContentMapper {
     int deleteByPrimaryKey(Integer id);

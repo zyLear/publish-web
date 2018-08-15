@@ -297,6 +297,15 @@ body {
     display: none;
 }
 
+
+.custom-game-list{
+    text-align: center;
+    padding: 50px;
+    font-size: 50px;
+    font-family: "YaHei Consolas Hybrid", Consolas, "微软雅黑", "Meiryo UI", "Malgun Gothic", "Segoe UI", "Trebuchet MS", Helvetica, "Monaco", courier, monospace;
+}
+
+
 /*****************fix style*********************/
 
 .custom-content-left img {

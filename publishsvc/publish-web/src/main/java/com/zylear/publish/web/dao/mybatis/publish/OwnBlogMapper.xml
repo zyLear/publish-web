@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.zylear.publish.web.dao.mybatis.publish.OwnBlogMapper">
-    <resultMap id="BaseResultMap" type="com.zylear.publish.web.domain.OwnBlog">
+    <resultMap id="BaseResultMap" type="com.zylear.publish.web.domain.publish.OwnBlog">
         <id column="id" property="id" jdbcType="INTEGER"/>
         <result column="title" property="title" jdbcType="VARCHAR"/>
         <result column="category" property="category" jdbcType="TINYINT"/>
@@ -12,7 +12,7 @@
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
         <result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP"/>
     </resultMap>
-    <resultMap id="ResultMapWithBLOBs" type="com.zylear.publish.web.domain.OwnBlog" extends="BaseResultMap">
+    <resultMap id="ResultMapWithBLOBs" type="com.zylear.publish.web.domain.publish.OwnBlog" extends="BaseResultMap">
         <result column="content" property="content" jdbcType="LONGVARCHAR"/>
     </resultMap>
     <sql id="Base_Column_List">
@@ -34,7 +34,7 @@
         DELETE FROM t_own_blog
         WHERE id = #{id,jdbcType=INTEGER}
     </delete>
-    <insert id="insert" parameterType="com.zylear.publish.web.domain.OwnBlog">
+    <insert id="insert" parameterType="com.zylear.publish.web.domain.publish.OwnBlog">
         INSERT INTO t_own_blog (id, title, category,
                                 post_time, blog_status, page_view,
                                 is_deleted, create_time, last_update_time,
@@ -44,7 +44,7 @@
                 #{isDeleted,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{lastUpdateTime,jdbcType=TIMESTAMP},
                 #{content,jdbcType=LONGVARCHAR})
     </insert>
-    <insert id="insertSelective" parameterType="com.zylear.publish.web.domain.OwnBlog">
+    <insert id="insertSelective" parameterType="com.zylear.publish.web.domain.publish.OwnBlog">
         insert into t_own_blog
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -111,7 +111,7 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.zylear.publish.web.domain.OwnBlog">
+    <update id="updateByPrimaryKeySelective" parameterType="com.zylear.publish.web.domain.publish.OwnBlog">
         update t_own_blog
         <set>
             <if test="title != null">
@@ -144,7 +144,7 @@
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
-    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.zylear.publish.web.domain.OwnBlog">
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.zylear.publish.web.domain.publish.OwnBlog">
         UPDATE t_own_blog
         SET title            = #{title,jdbcType=VARCHAR},
             category         = #{category,jdbcType=TINYINT},
@@ -157,7 +157,7 @@
             content          = #{content,jdbcType=LONGVARCHAR}
         WHERE id = #{id,jdbcType=INTEGER}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.zylear.publish.web.domain.OwnBlog">
+    <update id="updateByPrimaryKey" parameterType="com.zylear.publish.web.domain.publish.OwnBlog">
         UPDATE t_own_blog
         SET title            = #{title,jdbcType=VARCHAR},
             category         = #{category,jdbcType=TINYINT},

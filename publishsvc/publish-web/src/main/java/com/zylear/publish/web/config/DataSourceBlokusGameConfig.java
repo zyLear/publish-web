@@ -1,8 +1,8 @@
 package com.zylear.publish.web.config;
 
-
 import com.zylear.publish.web.util.MybatisDataSourceConfigHelper;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,21 +20,21 @@ import java.util.List;
  * @date 2018/1/10.
  */
 @Configuration
-@MapperScan(basePackages = DataSourcePublishConfig.SCAN_PACKAGE)
+@MapperScan(basePackages = DataSourceBlokusGameConfig.SCAN_PACKAGE)
 @EnableTransactionManagement
-public class DataSourcePublishConfig {
+public class DataSourceBlokusGameConfig {
 
-    public final static String DATA_SOURCE = "dataSourcePublish";
-    public final static String SCAN_PACKAGE = "com.zylear.publish.web.dao.mybatis.publish";
+    public final static String DATA_SOURCE = "dataSourceBlokusGame";
+    public final static String SCAN_PACKAGE = "com.zylear.publish.web.dao.mybatis.blokusgame";
     public final static String SQL_SESSION_FACTORY = "sqlSessionFactory";
-    public final static String TX_MANAGER = "txManagerPublish";
-    public final static String SQL_SESSION_TEMPLATE = "sqlSessionTemplatePublish";   //don't set this is ok
-    public final static List<String> XML_PATHS = Arrays.asList("classpath:com/zylear/publish/web/dao/mybatis/publish/*.xml");
-    @Value("${database.publish.username}")
+    public final static String TX_MANAGER = "txManagerBlokusGame";
+    public final static String SQL_SESSION_TEMPLATE = "sqlSessionTemplateBlokusGame";   //don't set this is ok
+    public final static List<String> XML_PATHS = Arrays.asList("classpath:com/zylear/publish/web/dao/mybatis/blokusgame/*.xml");
+    @Value("${database.blokusgame.username}")
     private String username;
-    @Value("${database.publish.password}")
+    @Value("${database.blokusgame.password}")
     private String password;
-    @Value("${database.publish.url}")
+    @Value("${database.blokusgame.url}")
     private String url;
     @Value("${mybatis.config.path}")
     private String configPath;

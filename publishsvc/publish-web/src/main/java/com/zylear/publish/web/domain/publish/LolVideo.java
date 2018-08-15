@@ -1,19 +1,19 @@
-package com.zylear.publish.web.domain;
+package com.zylear.publish.web.domain.publish;
 
 import com.zylear.publish.web.bean.viewbean.video.VideoInterface;
 
 import java.util.Date;
 
-public class PubgVideo implements VideoInterface {
+public class LolVideo implements VideoInterface {
     private Integer id;
 
-    private Byte sourceType;
+    private Integer sourceType;
 
     private String title;
 
     private String coverImgUrl;
 
-    private Byte videoCategory;
+    private Integer videoCategory;
 
     private Date postTime;
 
@@ -25,11 +25,11 @@ public class PubgVideo implements VideoInterface {
 
     private String videoSource;
 
-    private Byte videoType;
+    private Integer videoType;
 
     private Integer pageView;
 
-    private Byte isDeleted;
+    private Boolean isDeleted;
 
     private Date createTime;
 
@@ -43,11 +43,11 @@ public class PubgVideo implements VideoInterface {
         this.id = id;
     }
 
-    public Byte getSourceType() {
+    public Integer getSourceType() {
         return sourceType;
     }
 
-    public void setSourceType(Byte sourceType) {
+    public void setSourceType(Integer sourceType) {
         this.sourceType = sourceType;
     }
 
@@ -67,11 +67,11 @@ public class PubgVideo implements VideoInterface {
         this.coverImgUrl = coverImgUrl;
     }
 
-    public Byte getVideoCategory() {
+    public Integer getVideoCategory() {
         return videoCategory;
     }
 
-    public void setVideoCategory(Byte videoCategory) {
+    public void setVideoCategory(Integer videoCategory) {
         this.videoCategory = videoCategory;
     }
 
@@ -115,11 +115,11 @@ public class PubgVideo implements VideoInterface {
         this.videoSource = videoSource;
     }
 
-    public Byte getVideoType() {
+    public Integer getVideoType() {
         return videoType;
     }
 
-    public void setVideoType(Byte videoType) {
+    public void setVideoType(Integer videoType) {
         this.videoType = videoType;
     }
 
@@ -131,11 +131,11 @@ public class PubgVideo implements VideoInterface {
         this.pageView = pageView;
     }
 
-    public Byte getIsDeleted() {
+    public Boolean getIsDeleted() {
         return isDeleted;
     }
 
-    public void setIsDeleted(Byte isDeleted) {
+    public void setIsDeleted(Boolean isDeleted) {
         this.isDeleted = isDeleted;
     }
 

@@ -1,4 +1,4 @@
-package com.zylear.publish.web.domain;
+package com.zylear.publish.web.domain.publish;
 
 import java.util.Date;
 

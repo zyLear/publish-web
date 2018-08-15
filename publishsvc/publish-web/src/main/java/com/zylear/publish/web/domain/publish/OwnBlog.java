@@ -1,23 +1,19 @@
-package com.zylear.publish.web.domain;
+package com.zylear.publish.web.domain.publish;
 
 import com.zylear.publish.web.bean.viewbean.article.ArticleInterface;
 
 import java.util.Date;
 
-public class LolArticle implements ArticleInterface {
+public class OwnBlog implements ArticleInterface {
     private Integer id;
-
-    private Integer sourceType;
 
     private String title;
 
-    private Integer articleCategory;
+    private Integer category;
 
     private Date postTime;
 
-    private Integer contentId;
-
-    private String sourceUrl;
+    private Integer blogStatus;
 
     private Integer pageView;
 
@@ -27,20 +23,14 @@ public class LolArticle implements ArticleInterface {
 
     private Date lastUpdateTime;
 
+    private String content;
+
     public Integer getId() {
         return id;
     }
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getSourceType() {
-        return sourceType;
-    }
-
-    public void setSourceType(Integer sourceType) {
-        this.sourceType = sourceType;
     }
 
     public String getTitle() {
@@ -51,12 +41,12 @@ public class LolArticle implements ArticleInterface {
         this.title = title;
     }
 
-    public Integer getArticleCategory() {
-        return articleCategory;
+    public Integer getCategory() {
+        return category;
     }
 
-    public void setArticleCategory(Integer articleCategory) {
-        this.articleCategory = articleCategory;
+    public void setCategory(Integer category) {
+        this.category = category;
     }
 
     public Date getPostTime() {
@@ -67,20 +57,12 @@ public class LolArticle implements ArticleInterface {
         this.postTime = postTime;
     }
 
-    public Integer getContentId() {
-        return contentId;
+    public Integer getBlogStatus() {
+        return blogStatus;
     }
 
-    public void setContentId(Integer contentId) {
-        this.contentId = contentId;
-    }
-
-    public String getSourceUrl() {
-        return sourceUrl;
-    }
-
-    public void setSourceUrl(String sourceUrl) {
-        this.sourceUrl = sourceUrl;
+    public void setBlogStatus(Integer blogStatus) {
+        this.blogStatus = blogStatus;
     }
 
     public Integer getPageView() {
@@ -113,5 +95,13 @@ public class LolArticle implements ArticleInterface {
 
     public void setLastUpdateTime(Date lastUpdateTime) {
         this.lastUpdateTime = lastUpdateTime;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 }

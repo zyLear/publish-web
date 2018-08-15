@@ -2,7 +2,7 @@ package com.zylear.publish.web.service.pubilsh.impl;
 
 import com.zylear.publish.web.bean.PageParam;
 import com.zylear.publish.web.dao.mybatis.publish.LolVideoMapper;
-import com.zylear.publish.web.domain.LolVideo;
+import com.zylear.publish.web.domain.publish.LolVideo;
 import com.zylear.publish.web.service.pubilsh.LolVideoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

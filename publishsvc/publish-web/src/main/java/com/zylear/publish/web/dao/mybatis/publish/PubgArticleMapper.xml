@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.zylear.publish.web.dao.mybatis.publish.PubgArticleMapper" >
-  <resultMap id="BaseResultMap" type="com.zylear.publish.web.domain.PubgArticle" >
+  <resultMap id="BaseResultMap" type="com.zylear.publish.web.domain.publish.PubgArticle" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="source_type" property="sourceType" jdbcType="TINYINT" />
     <result column="title" property="title" jdbcType="VARCHAR" />
@@ -28,7 +28,7 @@
     delete from t_pubg_article
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" keyProperty="id" keyColumn="id" useGeneratedKeys="true" parameterType="com.zylear.publish.web.domain.PubgArticle" >
+  <insert id="insert" keyProperty="id" keyColumn="id" useGeneratedKeys="true" parameterType="com.zylear.publish.web.domain.publish.PubgArticle" >
     insert into t_pubg_article (id, source_type, title,
       article_category, post_time, content_id, 
       source_url, page_view, is_deleted, 
@@ -38,7 +38,7 @@
       #{sourceUrl,jdbcType=VARCHAR}, #{pageView,jdbcType=INTEGER}, #{isDeleted,jdbcType=TINYINT}, 
       #{createTime,jdbcType=TIMESTAMP}, #{lastUpdateTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.zylear.publish.web.domain.PubgArticle" >
+  <insert id="insertSelective" parameterType="com.zylear.publish.web.domain.publish.PubgArticle" >
     insert into t_pubg_article
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -111,7 +111,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zylear.publish.web.domain.PubgArticle" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.zylear.publish.web.domain.publish.PubgArticle" >
     update t_pubg_article
     <set >
       <if test="sourceType != null" >
@@ -147,7 +147,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zylear.publish.web.domain.PubgArticle" >
+  <update id="updateByPrimaryKey" parameterType="com.zylear.publish.web.domain.publish.PubgArticle" >
     update t_pubg_article
     set source_type = #{sourceType,jdbcType=TINYINT},
       title = #{title,jdbcType=VARCHAR},
