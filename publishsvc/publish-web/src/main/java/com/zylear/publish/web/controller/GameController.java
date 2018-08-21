@@ -148,8 +148,8 @@ public class GameController {
     @ResponseBody
     @RequestMapping(value = "blokus/rank")
     public BlokusRankResponse blokusRank() {
-        List<PlayerGameRecord> twoPlayersRanks = playerGameRecordService.findRanks(1);
-        List<PlayerGameRecord> fourPlayersRanks = playerGameRecordService.findRanks(2);
+        List<PlayerGameRecord> fourPlayersRanks = playerGameRecordService.findRanks(1);
+        List<PlayerGameRecord> twoPlayersRanks = playerGameRecordService.findRanks(2);
         return formatRankInfoMessage(twoPlayersRanks, fourPlayersRanks);
     }
 
