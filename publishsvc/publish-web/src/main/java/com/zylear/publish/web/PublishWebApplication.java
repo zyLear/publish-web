@@ -14,9 +14,9 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 //@EnableAutoConfiguration
-@ComponentScan("com.zylear.publish.web.*")
+
 @EnableAutoConfiguration(exclude = {
-		DataSourceAutoConfiguration.class,
+        DataSourceAutoConfiguration.class,
 		DataSourceTransactionManagerAutoConfiguration.class,
 		MybatisAutoConfiguration.class
 ////		DispatcherServletAutoConfiguration.class, /**如果需要自定义servlet dispatch,需要exclude*/
@@ -24,6 +24,7 @@ import org.springframework.context.annotation.ComponentScan;
 ////		RabbitAutoConfiguration.class,
 //        DataSourceAutoConfiguration.class
 })
+@ComponentScan("com.zylear.publish.web.*")
 public class PublishWebApplication extends SpringBootServletInitializer implements EmbeddedServletContainerCustomizer {
 
     public static void main(String[] args) {

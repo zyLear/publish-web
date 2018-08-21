@@ -20,13 +20,13 @@ import java.util.List;
  * @date 2018/1/10.
  */
 @Configuration
-@MapperScan(basePackages = DataSourcePublishConfig.SCAN_PACKAGE)
+@MapperScan(basePackages = DataSourcePublishConfig.SCAN_PACKAGE, sqlSessionFactoryRef = DataSourcePublishConfig.SQL_SESSION_FACTORY)
 @EnableTransactionManagement
 public class DataSourcePublishConfig {
 
     public final static String DATA_SOURCE = "dataSourcePublish";
     public final static String SCAN_PACKAGE = "com.zylear.publish.web.dao.mybatis.publish";
-    public final static String SQL_SESSION_FACTORY = "sqlSessionFactory";
+    public final static String SQL_SESSION_FACTORY = "sqlSessionFactoryPublish";
     public final static String TX_MANAGER = "txManagerPublish";
     public final static String SQL_SESSION_TEMPLATE = "sqlSessionTemplatePublish";   //don't set this is ok
     public final static List<String> XML_PATHS = Arrays.asList("classpath:com/zylear/publish/web/dao/mybatis/publish/*.xml");
