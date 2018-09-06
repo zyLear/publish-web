@@ -20,13 +20,13 @@ import java.util.List;
  * @date 2018/1/10.
  */
 @Configuration
-@MapperScan(basePackages = DataSourceBlokusGameConfig.SCAN_PACKAGE)
+@MapperScan(basePackages = DataSourceBlokusGameConfig.SCAN_PACKAGE, sqlSessionFactoryRef = DataSourceBlokusGameConfig.SQL_SESSION_FACTORY)
 @EnableTransactionManagement
 public class DataSourceBlokusGameConfig {
 
     public final static String DATA_SOURCE = "dataSourceBlokusGame";
     public final static String SCAN_PACKAGE = "com.zylear.publish.web.dao.mybatis.blokusgame";
-    public final static String SQL_SESSION_FACTORY = "sqlSessionFactory";
+    public final static String SQL_SESSION_FACTORY = "sqlSessionFactoryBlokusGame";
     public final static String TX_MANAGER = "txManagerBlokusGame";
     public final static String SQL_SESSION_TEMPLATE = "sqlSessionTemplateBlokusGame";   //don't set this is ok
     public final static List<String> XML_PATHS = Arrays.asList("classpath:com/zylear/publish/web/dao/mybatis/blokusgame/*.xml");
