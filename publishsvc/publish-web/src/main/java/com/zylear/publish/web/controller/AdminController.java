@@ -1,10 +1,13 @@
 package com.zylear.publish.web.controller;
 
 import com.zylear.publish.web.bean.BasePageResponse;
+import com.zylear.publish.web.bean.GobangResponse;
 import com.zylear.publish.web.bean.SubmitResponse;
 import com.zylear.publish.web.controller.bean.ArticlePostBean;
 import com.zylear.publish.web.controller.bean.VideoPostBean;
+import com.zylear.publish.web.domain.blokusgame.GobangOptimize;
 import com.zylear.publish.web.manager.SubmitManager;
+import com.zylear.publish.web.service.blokusgame.GobangOptimizeService;
 import com.zylear.publish.web.service.pubilsh.OwnBlogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 /**
  * Created by xiezongyu on 2018/8/4.
@@ -23,6 +28,7 @@ public class AdminController {
 
     private OwnBlogService ownBlogService;
     private SubmitManager submitManager;
+    private GobangOptimizeService gobangOptimizeService;
 
     @RequestMapping("/create-blog")
     public ModelAndView createBlog() {
@@ -65,6 +71,23 @@ public class AdminController {
         }
     }
 
+
+    @RequestMapping(value = "/gobang/submit", produces = "application/json;charset=utf-8;")
+    @ResponseBody
+    public BasePageResponse submit(@RequestBody GobangOptimize gobangOptimize) {
+        gobangOptimizeService.insert(gobangOptimize);
+        return BasePageResponse.SUCCESS_RESPONSE;
+    }
+
+
+    @RequestMapping(value = "/gobang/all-record", produces = "application/json;charset=utf-8;")
+    @ResponseBody
+    public GobangResponse sync() {
+        GobangResponse gobangResponse = new GobangResponse();
+        gobangResponse.setList(gobangOptimizeService.findAll());
+        return gobangResponse;
+    }
+
     @Autowired
     public void setOwnBlogService(OwnBlogService ownBlogService) {
         this.ownBlogService = ownBlogService;
@@ -73,5 +96,10 @@ public class AdminController {
     @Autowired
     public void setSubmitManager(SubmitManager submitManager) {
         this.submitManager = submitManager;
+    }
+
+    @Autowired
+    public void setGobangOptimizeService(GobangOptimizeService gobangOptimizeService) {
+        this.gobangOptimizeService = gobangOptimizeService;
     }
 }
