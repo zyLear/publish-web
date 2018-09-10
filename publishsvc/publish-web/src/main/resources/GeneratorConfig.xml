@@ -36,20 +36,20 @@
         </javaClientGenerator>
 
 
-        <table  tableName="t_game_log" domainObjectName="GameLog"
+        <table  tableName="t_gobang_optimize" domainObjectName="GobangOptimize"
                 enableCountByExample="false" enableSelectByExample="false"
                 enableUpdateByExample="false" enableDeleteByExample="false">
         </table>
 
-        <table  tableName="t_player_game_log" domainObjectName="PlayerGameLog"
-                enableCountByExample="false" enableSelectByExample="false"
-                enableUpdateByExample="false" enableDeleteByExample="false">
-        </table>
+        <!--<table  tableName="t_player_game_log" domainObjectName="PlayerGameLog"-->
+                <!--enableCountByExample="false" enableSelectByExample="false"-->
+                <!--enableUpdateByExample="false" enableDeleteByExample="false">-->
+        <!--</table>-->
 
-        <table  tableName="t_player_game_record" domainObjectName="PlayerGameRecord"
-                enableCountByExample="false" enableSelectByExample="false"
-                enableUpdateByExample="false" enableDeleteByExample="false">
-        </table>
+        <!--<table  tableName="t_player_game_record" domainObjectName="PlayerGameRecord"-->
+                <!--enableCountByExample="false" enableSelectByExample="false"-->
+                <!--enableUpdateByExample="false" enableDeleteByExample="false">-->
+        <!--</table>-->
 
         <!--<table  tableName="t_lol_video" domainObjectName="LolVideo"-->
                 <!--enableCountByExample="false" enableSelectByExample="false"-->

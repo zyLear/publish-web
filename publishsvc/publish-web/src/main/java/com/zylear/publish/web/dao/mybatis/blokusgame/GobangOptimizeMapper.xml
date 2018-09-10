@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zylear.publish.web.dao.mybatis.blokusgame.GobangOptimizeMapper" >
+  <resultMap id="BaseResultMap" type="com.zylear.publish.web.domain.blokusgame.GobangOptimize" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="all_chess" property="allChess" jdbcType="VARCHAR" />
+    <result column="score" property="score" jdbcType="INTEGER" />
+    <result column="x" property="x" jdbcType="TINYINT" />
+    <result column="y" property="y" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, all_chess, score, x, y
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_gobang_optimize
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_gobang_optimize
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zylear.publish.web.domain.blokusgame.GobangOptimize" >
+    insert into t_gobang_optimize (id, all_chess, score, 
+      x, y)
+    values (#{id,jdbcType=BIGINT}, #{allChess,jdbcType=VARCHAR}, #{score,jdbcType=INTEGER}, 
+      #{x,jdbcType=TINYINT}, #{y,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zylear.publish.web.domain.blokusgame.GobangOptimize" >
+    insert into t_gobang_optimize
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="allChess != null" >
+        all_chess,
+      </if>
+      <if test="score != null" >
+        score,
+      </if>
+      <if test="x != null" >
+        x,
+      </if>
+      <if test="y != null" >
+        y,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="allChess != null" >
+        #{allChess,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=INTEGER},
+      </if>
+      <if test="x != null" >
+        #{x,jdbcType=TINYINT},
+      </if>
+      <if test="y != null" >
+        #{y,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zylear.publish.web.domain.blokusgame.GobangOptimize" >
+    update t_gobang_optimize
+    <set >
+      <if test="allChess != null" >
+        all_chess = #{allChess,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null" >
+        score = #{score,jdbcType=INTEGER},
+      </if>
+      <if test="x != null" >
+        x = #{x,jdbcType=TINYINT},
+      </if>
+      <if test="y != null" >
+        y = #{y,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zylear.publish.web.domain.blokusgame.GobangOptimize" >
+    update t_gobang_optimize
+    set all_chess = #{allChess,jdbcType=VARCHAR},
+      score = #{score,jdbcType=INTEGER},
+      x = #{x,jdbcType=TINYINT},
+      y = #{y,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="findAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_gobang_optimize
+  </select>
+
+  <select id="findByAllChess" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_gobang_optimize
+    where  all_chess = #{allChess,jdbcType=VARCHAR}
+  </select>
+
+</mapper>
