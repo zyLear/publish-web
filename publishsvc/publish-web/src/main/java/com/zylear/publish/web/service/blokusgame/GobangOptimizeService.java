@@ -11,5 +11,5 @@ public interface GobangOptimizeService {
 
     List<GobangOptimize> findAll();
 
-    void insert(GobangOptimize gobangOptimize);
+    void upsert(GobangOptimize gobangOptimize);
 }

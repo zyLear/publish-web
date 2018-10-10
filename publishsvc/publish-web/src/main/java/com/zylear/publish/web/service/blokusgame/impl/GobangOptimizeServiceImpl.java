@@ -24,9 +24,13 @@ public class GobangOptimizeServiceImpl implements GobangOptimizeService {
     }
 
     @Override
-    public void insert(GobangOptimize gobangOptimize) {
-        if (gobangOptimizeMapper.findByAllChess(gobangOptimize.getAllChess()) == null) {
+    public void upsert(GobangOptimize gobangOptimize) {
+        GobangOptimize oldChess = gobangOptimizeMapper.findByAllChess(gobangOptimize.getAllChess());
+        if (oldChess == null) {
             gobangOptimizeMapper.insert(gobangOptimize);
+        }else {
+            gobangOptimize.setId(oldChess.getId());
+            gobangOptimizeMapper.updateByPrimaryKey(gobangOptimize);
         }
     }
 }

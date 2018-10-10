@@ -75,7 +75,7 @@ public class AdminController {
     @RequestMapping(value = "/gobang/submit", produces = "application/json;charset=utf-8;")
     @ResponseBody
     public BasePageResponse submit(@RequestBody GobangOptimize gobangOptimize) {
-        gobangOptimizeService.insert(gobangOptimize);
+        gobangOptimizeService.upsert(gobangOptimize);
         return BasePageResponse.SUCCESS_RESPONSE;
     }
 
