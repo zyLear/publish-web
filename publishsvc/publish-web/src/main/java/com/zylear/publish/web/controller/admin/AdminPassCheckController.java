@@ -4,6 +4,7 @@ import com.zylear.publish.web.bean.BasePageResponse;
 import com.zylear.publish.web.bean.GobangResponse;
 import com.zylear.publish.web.bean.SubmitResponse;
 import com.zylear.publish.web.controller.bean.ArticlePostBean;
+import com.zylear.publish.web.controller.bean.PassCheckBean;
 import com.zylear.publish.web.controller.bean.VideoPostBean;
 import com.zylear.publish.web.domain.blokusgame.GobangOptimize;
 import com.zylear.publish.web.domain.passcheck.PassCheckCode;
@@ -19,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * Created by xiezongyu on 2018/8/4.
  */
@@ -28,7 +31,7 @@ public class AdminPassCheckController {
 
 
     private PassCheckCodeService passCheckCodeService;
-    private static final String VERSION_KEY = "VERSION_KEY";
+//    private static final String VERSION_KEY = "VERSION_KEY";
 
 //    @RequestMapping(value = "/gobang/submit", produces = "application/json;charset=utf-8;")
 //    @ResponseBody
@@ -48,8 +51,9 @@ public class AdminPassCheckController {
 
     @RequestMapping(value = "/pull-pass-check-code", produces = "application/json;charset=utf-8;")
     @ResponseBody
-    public String pullPassCheckCode() {
-        PassCheckCode passCheckCode = passCheckCodeService.findByConfigKey(VERSION_KEY);
+    public String pullPassCheckCode(HttpServletRequest request,
+                                    @RequestBody PassCheckBean passCheckBean) {
+        PassCheckCode passCheckCode = passCheckCodeService.findByConfigKey(passCheckBean.getCodeKey());
         if (passCheckCode != null) {
             passCheckCode = passCheckCodeService.findByConfigKey(passCheckCode.getConfigValue());
             if (passCheckCode != null) {
