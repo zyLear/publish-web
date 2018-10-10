@@ -1,4 +1,4 @@
-package com.zylear.publish.web.controller;
+package com.zylear.publish.web.controller.admin;
 
 import com.zylear.publish.web.bean.BasePageResponse;
 import com.zylear.publish.web.bean.GobangResponse;
@@ -87,6 +87,10 @@ public class AdminController {
         gobangResponse.setList(gobangOptimizeService.findAll());
         return gobangResponse;
     }
+
+
+
+
 
     @Autowired
     public void setOwnBlogService(OwnBlogService ownBlogService) {

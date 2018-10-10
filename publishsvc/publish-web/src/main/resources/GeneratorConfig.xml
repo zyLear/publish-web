@@ -8,13 +8,13 @@
     <!--E:\maven\repository\mysql\mysql-connector-java\5.1.44\mysql-connector-java-5.1.44.jar-->
     <!--D:\repo\mysql\mysql-connector-java\5.1.41\mysql-connector-java-5.1.41.jar-->
     <!--C:\Users\xiezongyu\.m2\repository\mysql\mysql-connector-java\5.1.41\mysql-connector-java-5.1.41.jar-->
-    <classPathEntry location="C:\Develop\maven-repository\mysql\mysql-connector-java\5.1.44\mysql-connector-java-5.1.44.jar" />
+    <classPathEntry location="C:\Users\xiezongyu\.m2\repository\mysql\mysql-connector-java\5.1.41\mysql-connector-java-5.1.41.jar" />
     <context id="DB2Tables" targetRuntime="MyBatis3">
         <commentGenerator>
             <property name="suppressAllComments" value="true"/>
         </commentGenerator>
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/blokus_game?characterEncoding=UTF-8"
+                        connectionURL="jdbc:mysql://localhost:3306/pass_check?characterEncoding=UTF-8"
                         userId="root"
                         password="root">
         </jdbcConnection>
@@ -22,21 +22,21 @@
             <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
 
-        <javaModelGenerator targetPackage="com.zylear.publish.web.domain.blokusgame" targetProject="src/main/java">
+        <javaModelGenerator targetPackage="com.zylear.publish.web.domain.passcheck" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="false"/>
         </javaModelGenerator>
 
-        <sqlMapGenerator targetPackage="com.zylear.publish.web.dao.mybatis.blokusgame" targetProject="src/main/java">
+        <sqlMapGenerator targetPackage="com.zylear.publish.web.dao.mybatis.passcheck" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.zylear.publish.web.dao.mybatis.blokusgame" targetProject="src/main/java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.zylear.publish.web.dao.mybatis.passcheck" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
 
-        <table  tableName="t_gobang_optimize" domainObjectName="GobangOptimize"
+        <table  tableName="t_pass_check_code" domainObjectName="PassCheckCode"
                 enableCountByExample="false" enableSelectByExample="false"
                 enableUpdateByExample="false" enableDeleteByExample="false">
         </table>
