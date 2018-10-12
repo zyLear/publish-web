@@ -1,6 +1,6 @@
 package com.zylear.publish.web.controller;
 
-import com.zylear.publish.web.bean.BasePageResponse;
+import com.zylear.publish.web.bean.BaseResponse;
 import com.zylear.publish.web.bean.blokus.BlokusGameLog;
 import com.zylear.publish.web.bean.blokus.BlokusProfileResponse;
 import com.zylear.publish.web.bean.blokus.BlokusRankInfo;
@@ -25,7 +25,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -77,16 +76,16 @@ public class GameController {
 
     @ResponseBody
     @RequestMapping(value = "blokus/sure-register")
-    public BasePageResponse sureRegister(@Param("account") String account,
-                                         @Param("password") String password) {
+    public BaseResponse sureRegister(@Param("account") String account,
+                                     @Param("password") String password) {
 
 
         GameAccount gameAccount = gameAccountService.findByAccount(account);
         if (gameAccount != null) {
-            return BasePageResponse.ERROR_RESPONSE;
+            return BaseResponse.ERROR_RESPONSE;
         }
         blokusTxManager.register(account, password);
-        return BasePageResponse.SUCCESS_RESPONSE;
+        return BaseResponse.SUCCESS_RESPONSE;
     }
 
     @ResponseBody

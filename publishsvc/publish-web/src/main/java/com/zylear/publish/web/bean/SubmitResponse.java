@@ -3,7 +3,7 @@ package com.zylear.publish.web.bean;
 /**
  * Created by xiezongyu on 2018/8/12.
  */
-public class SubmitResponse extends BasePageResponse {
+public class SubmitResponse extends BaseResponse {
 
     private Integer refId;
 
@@ -11,8 +11,8 @@ public class SubmitResponse extends BasePageResponse {
         this.refId = refId;
     }
 
-    public SubmitResponse(Integer refId, BasePageResponse basePageResponse) {
-        super(basePageResponse);
+    public SubmitResponse(Integer refId, BaseResponse baseResponse) {
+        super(baseResponse);
         this.refId = refId;
     }
 

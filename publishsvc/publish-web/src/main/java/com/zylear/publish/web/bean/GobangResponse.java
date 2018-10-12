@@ -1,6 +1,5 @@
 package com.zylear.publish.web.bean;
 
-import com.zylear.publish.web.bean.BasePageResponse;
 import com.zylear.publish.web.domain.blokusgame.GobangOptimize;
 
 import java.util.List;

@@ -1,6 +1,6 @@
 package com.zylear.publish.web.controller.admin;
 
-import com.zylear.publish.web.bean.BasePageResponse;
+import com.zylear.publish.web.bean.BaseResponse;
 import com.zylear.publish.web.bean.GobangResponse;
 import com.zylear.publish.web.bean.SubmitResponse;
 import com.zylear.publish.web.controller.bean.ArticlePostBean;
@@ -16,8 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.List;
 
 /**
  * Created by xiezongyu on 2018/8/4.
@@ -39,44 +37,44 @@ public class AdminController {
 
     @ResponseBody
     @RequestMapping("/sure-create-blog")
-    public BasePageResponse createBlog(@RequestParam("content") String content,
-                                       @RequestParam("title") String title) {
+    public BaseResponse createBlog(@RequestParam("content") String content,
+                                   @RequestParam("title") String title) {
 
         ownBlogService.insert(title, content);
-        return BasePageResponse.SUCCESS_RESPONSE;
+        return BaseResponse.SUCCESS_RESPONSE;
     }
 
     @ResponseBody
     @RequestMapping(value = "/submit-article", produces = "application/json;charset=utf-8;")
-    public BasePageResponse submit(@RequestBody ArticlePostBean articlePostBean) {
+    public BaseResponse submit(@RequestBody ArticlePostBean articlePostBean) {
 
         Integer id = submitManager.submitArticle(articlePostBean);
         if (id == -1) {
-            return new SubmitResponse(id, BasePageResponse.ERROR_RESPONSE);
+            return new SubmitResponse(id, BaseResponse.ERROR_RESPONSE);
         } else {
-            return new SubmitResponse(id, BasePageResponse.SUCCESS_RESPONSE);
+            return new SubmitResponse(id, BaseResponse.SUCCESS_RESPONSE);
         }
     }
 
     @ResponseBody
     @RequestMapping(value = "/submit-video", produces = "application/json;charset=utf-8;")
-    public BasePageResponse submitVideo(@RequestBody VideoPostBean videoPostBean) {
+    public BaseResponse submitVideo(@RequestBody VideoPostBean videoPostBean) {
 
 
         Integer id = submitManager.submitVideo(videoPostBean);
         if (id == -1) {
-            return new SubmitResponse(id, BasePageResponse.ERROR_RESPONSE);
+            return new SubmitResponse(id, BaseResponse.ERROR_RESPONSE);
         } else {
-            return new SubmitResponse(id, BasePageResponse.SUCCESS_RESPONSE);
+            return new SubmitResponse(id, BaseResponse.SUCCESS_RESPONSE);
         }
     }
 
 
     @RequestMapping(value = "/gobang/submit", produces = "application/json;charset=utf-8;")
     @ResponseBody
-    public BasePageResponse submit(@RequestBody GobangOptimize gobangOptimize) {
+    public BaseResponse submit(@RequestBody GobangOptimize gobangOptimize) {
         gobangOptimizeService.upsert(gobangOptimize);
-        return BasePageResponse.SUCCESS_RESPONSE;
+        return BaseResponse.SUCCESS_RESPONSE;
     }
 
 

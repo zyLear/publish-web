@@ -36,7 +36,7 @@
         </javaClientGenerator>
 
 
-        <table  tableName="t_pass_check_code" domainObjectName="PassCheckCode"
+        <table  tableName="t_user_account" domainObjectName="UserAccount"
                 enableCountByExample="false" enableSelectByExample="false"
                 enableUpdateByExample="false" enableDeleteByExample="false">
         </table>
