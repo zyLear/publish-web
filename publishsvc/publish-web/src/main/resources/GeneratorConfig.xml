@@ -36,7 +36,7 @@
         </javaClientGenerator>
 
 
-        <table  tableName="t_user_account" domainObjectName="UserAccount"
+        <table  tableName="t_user_log" domainObjectName="UserLog"
                 enableCountByExample="false" enableSelectByExample="false"
                 enableUpdateByExample="false" enableDeleteByExample="false">
         </table>

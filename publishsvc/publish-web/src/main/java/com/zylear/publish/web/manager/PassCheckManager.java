@@ -1,6 +1,5 @@
 package com.zylear.publish.web.manager;
 
-import com.zylear.publish.web.controller.bean.PassCheckBean;
 import com.zylear.publish.web.domain.passcheck.PassCheckCode;
 import com.zylear.publish.web.domain.passcheck.UserAccount;
 import com.zylear.publish.web.service.passcheck.PassCheckCodeService;

@@ -4,6 +4,7 @@ public class LoginRequest {
 
     private String account;
     private String password;
+    private String deviceId;
 
     public String getAccount() {
         return account;
@@ -19,5 +20,13 @@ public class LoginRequest {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getDeviceId() {
+        return deviceId;
+    }
+
+    public void setDeviceId(String deviceId) {
+        this.deviceId = deviceId;
     }
 }

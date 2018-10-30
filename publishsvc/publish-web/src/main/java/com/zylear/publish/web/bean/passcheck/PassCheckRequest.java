@@ -1,11 +1,11 @@
-package com.zylear.publish.web.controller.bean;
+package com.zylear.publish.web.bean.passcheck;
 
-public class PassCheckBean {
+public class PassCheckRequest {
 
-    public PassCheckBean() {
+    public PassCheckRequest() {
     }
 
-    public PassCheckBean(String account, String password, String codeKey) {
+    public PassCheckRequest(String account, String password, String codeKey) {
         this.account = account;
         this.password = password;
         this.codeKey = codeKey;
@@ -14,6 +14,7 @@ public class PassCheckBean {
     private String account;
     private String password;
     private String codeKey;
+    private String deviceId;
 
     public String getAccount() {
         return account;
@@ -37,5 +38,13 @@ public class PassCheckBean {
 
     public void setCodeKey(String codeKey) {
         this.codeKey = codeKey;
+    }
+
+    public String getDeviceId() {
+        return deviceId;
+    }
+
+    public void setDeviceId(String deviceId) {
+        this.deviceId = deviceId;
     }
 }

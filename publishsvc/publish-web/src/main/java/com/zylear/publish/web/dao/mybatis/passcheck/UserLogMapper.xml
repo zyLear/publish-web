@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zylear.publish.web.dao.mybatis.passcheck.UserLogMapper" >
+  <resultMap id="BaseResultMap" type="com.zylear.publish.web.domain.passcheck.UserLog" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="account" property="account" jdbcType="VARCHAR" />
+    <result column="device_id" property="deviceId" jdbcType="VARCHAR" />
+    <result column="action_key" property="actionKey" jdbcType="VARCHAR" />
+    <result column="action_value" property="actionValue" jdbcType="VARCHAR" />
+    <result column="is_deleted" property="isDeleted" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, account, device_id, action_key, action_value, is_deleted, create_time, last_update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_user_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_user_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zylear.publish.web.domain.passcheck.UserLog" >
+    insert into t_user_log (id, account, device_id, 
+      action_key, action_value, is_deleted, 
+      create_time, last_update_time)
+    values (#{id,jdbcType=INTEGER}, #{account,jdbcType=VARCHAR}, #{deviceId,jdbcType=VARCHAR}, 
+      #{actionKey,jdbcType=VARCHAR}, #{actionValue,jdbcType=VARCHAR}, #{isDeleted,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{lastUpdateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zylear.publish.web.domain.passcheck.UserLog" >
+    insert into t_user_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="account != null" >
+        account,
+      </if>
+      <if test="deviceId != null" >
+        device_id,
+      </if>
+      <if test="actionKey != null" >
+        action_key,
+      </if>
+      <if test="actionValue != null" >
+        action_value,
+      </if>
+      <if test="isDeleted != null" >
+        is_deleted,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="lastUpdateTime != null" >
+        last_update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="account != null" >
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceId != null" >
+        #{deviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="actionKey != null" >
+        #{actionKey,jdbcType=VARCHAR},
+      </if>
+      <if test="actionValue != null" >
+        #{actionValue,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null" >
+        #{isDeleted,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateTime != null" >
+        #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zylear.publish.web.domain.passcheck.UserLog" >
+    update t_user_log
+    <set >
+      <if test="account != null" >
+        account = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceId != null" >
+        device_id = #{deviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="actionKey != null" >
+        action_key = #{actionKey,jdbcType=VARCHAR},
+      </if>
+      <if test="actionValue != null" >
+        action_value = #{actionValue,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null" >
+        is_deleted = #{isDeleted,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateTime != null" >
+        last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zylear.publish.web.domain.passcheck.UserLog" >
+    update t_user_log
+    set account = #{account,jdbcType=VARCHAR},
+      device_id = #{deviceId,jdbcType=VARCHAR},
+      action_key = #{actionKey,jdbcType=VARCHAR},
+      action_value = #{actionValue,jdbcType=VARCHAR},
+      is_deleted = #{isDeleted,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
