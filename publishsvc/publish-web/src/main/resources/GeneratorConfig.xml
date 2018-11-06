@@ -36,7 +36,12 @@
         </javaClientGenerator>
 
 
-        <table  tableName="t_user_log" domainObjectName="UserLog"
+        <!--<table  tableName="t_user_log" domainObjectName="UserLog"-->
+                <!--enableCountByExample="false" enableSelectByExample="false"-->
+                <!--enableUpdateByExample="false" enableDeleteByExample="false">-->
+        <!--</table>-->
+
+        <table  tableName="t_card_info" domainObjectName="CardInfo"
                 enableCountByExample="false" enableSelectByExample="false"
                 enableUpdateByExample="false" enableDeleteByExample="false">
         </table>

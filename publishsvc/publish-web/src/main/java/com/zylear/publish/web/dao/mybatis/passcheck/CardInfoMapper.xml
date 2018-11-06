@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zylear.publish.web.dao.mybatis.passcheck.CardInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.zylear.publish.web.domain.passcheck.CardInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="card_number" property="cardNumber" jdbcType="VARCHAR" />
+    <result column="card_password" property="cardPassword" jdbcType="VARCHAR" />
+    <result column="months" property="months" jdbcType="INTEGER" />
+    <result column="is_used" property="isUsed" jdbcType="TINYINT" />
+    <result column="use_account" property="useAccount" jdbcType="VARCHAR" />
+    <result column="is_deleted" property="isDeleted" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, card_number, card_password, months, is_used, use_account, is_deleted, create_time, 
+    last_update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_card_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_card_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zylear.publish.web.domain.passcheck.CardInfo" >
+    insert into t_card_info (id, card_number, card_password, 
+      months, is_used, use_account, 
+      is_deleted, create_time, last_update_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{cardNumber,jdbcType=VARCHAR}, #{cardPassword,jdbcType=VARCHAR}, 
+      #{months,jdbcType=INTEGER}, #{isUsed,jdbcType=TINYINT}, #{useAccount,jdbcType=VARCHAR}, 
+      #{isDeleted,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{lastUpdateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zylear.publish.web.domain.passcheck.CardInfo" >
+    insert into t_card_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="cardNumber != null" >
+        card_number,
+      </if>
+      <if test="cardPassword != null" >
+        card_password,
+      </if>
+      <if test="months != null" >
+        months,
+      </if>
+      <if test="isUsed != null" >
+        is_used,
+      </if>
+      <if test="useAccount != null" >
+        use_account,
+      </if>
+      <if test="isDeleted != null" >
+        is_deleted,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="lastUpdateTime != null" >
+        last_update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="cardNumber != null" >
+        #{cardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="cardPassword != null" >
+        #{cardPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="months != null" >
+        #{months,jdbcType=INTEGER},
+      </if>
+      <if test="isUsed != null" >
+        #{isUsed,jdbcType=TINYINT},
+      </if>
+      <if test="useAccount != null" >
+        #{useAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null" >
+        #{isDeleted,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateTime != null" >
+        #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zylear.publish.web.domain.passcheck.CardInfo" >
+    update t_card_info
+    <set >
+      <if test="cardNumber != null" >
+        card_number = #{cardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="cardPassword != null" >
+        card_password = #{cardPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="months != null" >
+        months = #{months,jdbcType=INTEGER},
+      </if>
+      <if test="isUsed != null" >
+        is_used = #{isUsed,jdbcType=TINYINT},
+      </if>
+      <if test="useAccount != null" >
+        use_account = #{useAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null" >
+        is_deleted = #{isDeleted,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateTime != null" >
+        last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zylear.publish.web.domain.passcheck.CardInfo" >
+    update t_card_info
+    set card_number = #{cardNumber,jdbcType=VARCHAR},
+      card_password = #{cardPassword,jdbcType=VARCHAR},
+      months = #{months,jdbcType=INTEGER},
+      is_used = #{isUsed,jdbcType=TINYINT},
+      use_account = #{useAccount,jdbcType=VARCHAR},
+      is_deleted = #{isDeleted,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="findByNumberAndPassword" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from t_card_info
+    where card_number = #{cardNumber,jdbcType=VARCHAR}
+    AND card_password = #{cardPassword,jdbcType=VARCHAR}
+    AND is_deleted = 0
+  </select>
+
+  <update id="updateByCardNumber">
+    UPDATE t_card_info
+    SET
+    is_used     = #{isUsed,jdbcType=TINYINT},
+    use_account = #{useAccount,jdbcType=VARCHAR}
+    WHERE card_number = #{cardNumber,jdbcType=VARCHAR}
+  </update>
+
+</mapper>

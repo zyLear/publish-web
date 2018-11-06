@@ -6,6 +6,8 @@ import com.zylear.publish.web.service.passcheck.UserAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
+
 /**
  * Created by xiezongyu on 2018/10/12.
  */
@@ -34,5 +36,10 @@ public class UserAccountServiceImpl implements UserAccountService {
     @Override
     public UserAccount findByAccountAndPassword(String account, String password) {
         return userAccountMapper.findByAccountAndPassword(account, password);
+    }
+
+    @Override
+    public void updateVipExpireTimeByAccount(String account, Date vipExpireTime) {
+        userAccountMapper.updateVipExpireTimeByAccount(account, vipExpireTime);
     }
 }

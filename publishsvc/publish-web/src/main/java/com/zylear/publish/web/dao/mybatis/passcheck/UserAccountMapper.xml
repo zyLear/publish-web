@@ -151,4 +151,10 @@
         AND is_deleted = 0
     </select>
 
+    <update id="updateVipExpireTimeByAccount">
+        UPDATE t_user_account
+        SET vip_expire_time = #{vipExpireTime,jdbcType=TIMESTAMP}
+        WHERE account = #{account,jdbcType=VARCHAR}
+    </update>
+
 </mapper>
