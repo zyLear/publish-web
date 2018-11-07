@@ -113,7 +113,7 @@ public class AdminPassCheckController {
                 return new PassCheckResponse(BaseResponse.SUCCESS_RESPONSE, passCheckCode.getConfigValue());
             }
         }
-        return new PassCheckResponse(2, "失败，服务器正在更新！！！", "");
+        return new PassCheckResponse(2, "失败，暂时关闭此功能！！！", "");
     }
 
     private UserLog formLog(String account, String deviceId, String actionKey, String actionValue) {
