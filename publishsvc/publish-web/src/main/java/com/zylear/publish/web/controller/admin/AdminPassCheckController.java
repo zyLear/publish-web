@@ -2,6 +2,7 @@ package com.zylear.publish.web.controller.admin;
 
 import com.zylear.publish.web.bean.BaseResponse;
 import com.zylear.publish.web.bean.passcheck.*;
+import com.zylear.publish.web.constants.CardInfoConstant;
 import com.zylear.publish.web.domain.passcheck.CardInfo;
 import com.zylear.publish.web.domain.passcheck.PassCheckCode;
 import com.zylear.publish.web.domain.passcheck.UserAccount;
@@ -30,7 +31,6 @@ import java.util.Date;
 @RequestMapping("/passcheck")
 public class AdminPassCheckController {
 
-
     private PassCheckCodeService passCheckCodeService;
     private UserAccountService userAccountService;
     private UserLogService userLogService;
@@ -39,11 +39,16 @@ public class AdminPassCheckController {
     private static final String PULL_VALIDATE = "pull_validate";
     private static final String PULL_HELPER = "pull_helper";
     private static final String PULL_VIP_HELPER = "pull_vip_helper";
+    private static final String PULL_DEVICE_VALIDATE = "pull_device_validate";
 
 
     @ResponseBody
     @RequestMapping(value = "/sure-activate")
     public synchronized BaseResponse sureActivate(@RequestBody ActivateRequest request) {
+
+        if (StringUtils.isEmpty(request.getDeviceId())) {
+            return new BaseResponse(1, "失败，设备ID为空！");
+        }
 
         if (StringUtils.isEmpty(request.getAccount()) ||
                 StringUtils.isEmpty(request.getCardNumber()) ||
@@ -66,7 +71,7 @@ public class AdminPassCheckController {
         }
 
         Date vipExpireTime = formVipExpireTime(userAccount.getVipExpireTime(), cardInfo.getMonths());
-        passCheckManager.activate(request, vipExpireTime);
+        passCheckManager.activate(request, vipExpireTime, cardInfo.getMonths());
 
         return BaseResponse.SUCCESS_RESPONSE;
     }
@@ -81,7 +86,12 @@ public class AdminPassCheckController {
         } else {
             calendar.setTime(vipExpireTime);
         }
-        calendar.add(Calendar.MONTH, months);
+
+        if (months == CardInfoConstant.WEEK_CARD) {
+            calendar.add(Calendar.WEEK_OF_YEAR, 1);
+        } else {
+            calendar.add(Calendar.MONTH, months);
+        }
         return calendar.getTime();
     }
 
@@ -91,20 +101,28 @@ public class AdminPassCheckController {
     public PassCheckResponse pullPassCheckCode(HttpServletRequest httpServletRequest,
                                                @RequestBody PassCheckRequest request) {
 
+        if (StringUtils.isEmpty(request.getDeviceId())) {
+            return new PassCheckResponse(1, "失败，设备ID为空！", "");
+        }
+
         UserAccount userAccount = userAccountService.findByAccountAndPassword(request.getAccount(), request.getPassword());
         if (userAccount == null) {
             return new PassCheckResponse(1, "失败，请登录！！！", "");
         }
 
-        PassCheckCode passCheckCode = passCheckCodeService.findByConfigKey(PULL_VALIDATE);
-        if (passCheckCode != null && "true".equals(passCheckCode.getConfigValue())) {
+        if (validate(PULL_VALIDATE, "true")) {
             if (userAccount.getVipExpireTime().getTime() < System.currentTimeMillis()) {
                 return new PassCheckResponse(1, "失败，请开通vip！！！", "");
             }
         }
 
+        if (validate(PULL_DEVICE_VALIDATE, "true")) {
+            if (!userAccount.getDeviceId().equals(request.getDeviceId())) {
+                return new PassCheckResponse(1, "失败，账号注册的设备和当前使用设备不一致，请联系卖家换绑设备！！！", "");
+            }
+        }
 
-        passCheckCode = passCheckCodeService.findByConfigKey(request.getCodeKey());
+        PassCheckCode passCheckCode = passCheckCodeService.findByConfigKey(request.getCodeKey());
         if (passCheckCode != null) {
             passCheckCode = passCheckCodeService.findByConfigKey(passCheckCode.getConfigValue());
             if (passCheckCode != null) {
@@ -114,6 +132,15 @@ public class AdminPassCheckController {
             }
         }
         return new PassCheckResponse(2, "失败，暂时关闭此功能！！！", "");
+    }
+
+    private boolean validate(String key, String value) {
+        PassCheckCode passCheckCode = passCheckCodeService.findByConfigKey(key);
+        if (passCheckCode != null && value.equals(passCheckCode.getConfigValue())) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     private UserLog formLog(String account, String deviceId, String actionKey, String actionValue) {
@@ -134,13 +161,17 @@ public class AdminPassCheckController {
     @RequestMapping(value = "/sure-register")
     public synchronized BaseResponse sureRegister(@RequestBody RegisterRequest request) {
 
+        if (StringUtils.isEmpty(request.getDeviceId())) {
+            return new BaseResponse(1, "失败，设备ID为空！");
+        }
+
 //        UserAccount userAccount = userAccountService.findByDeviceId(request.getDeviceId());
 //        if (userAccount != null) {
-//            return new BaseResponse(1, "注册失败，此设备已经注册！");
+//            return new BaseResponse(1, "失败，此设备已经注册！");
 //        }
         UserAccount userAccount = userAccountService.findByAccount(request.getAccount());
         if (userAccount != null) {
-            return new BaseResponse(2, "注册失败，此账号已经注册！");
+            return new BaseResponse(1, "失败，此账号已经注册！");
         }
         passCheckManager.register(request.getAccount(), request.getPassword(), request.getDeviceId());
         return BaseResponse.SUCCESS_RESPONSE;
@@ -150,9 +181,13 @@ public class AdminPassCheckController {
     @RequestMapping(value = "/sure-login")
     public synchronized LoginResponse sureLogin(@RequestBody LoginRequest request) {
 
+        if (StringUtils.isEmpty(request.getDeviceId())) {
+            return new LoginResponse(new BaseResponse(1, "失败，设备ID为空！"), "", "", "");
+        }
+
         UserAccount userAccount = userAccountService.findByAccountAndPassword(request.getAccount(), request.getPassword());
         if (userAccount == null) {
-            return new LoginResponse(BaseResponse.ERROR_RESPONSE, "", "", "");
+            return new LoginResponse(new BaseResponse(1, "失败，账号或密码不正确！"), "", "", "");
         }
         UserLog userLog = formLog(request.getAccount(), request.getDeviceId(), "login", "login");
         userLogService.insert(userLog);

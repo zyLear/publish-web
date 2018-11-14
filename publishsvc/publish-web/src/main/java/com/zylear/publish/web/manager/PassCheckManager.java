@@ -2,6 +2,7 @@ package com.zylear.publish.web.manager;
 
 import com.zylear.publish.web.bean.passcheck.ActivateRequest;
 import com.zylear.publish.web.config.DataSourcePassCheckConfig;
+import com.zylear.publish.web.constants.CardInfoConstant;
 import com.zylear.publish.web.domain.passcheck.PassCheckCode;
 import com.zylear.publish.web.domain.passcheck.UserAccount;
 import com.zylear.publish.web.domain.passcheck.UserLog;
@@ -57,9 +58,14 @@ public class PassCheckManager {
 
 
     @Transactional(DataSourcePassCheckConfig.TX_MANAGER)
-    public void activate(ActivateRequest request, Date vipExpireTime) {
-
-        userAccountService.updateVipExpireTimeByAccount(request.getAccount(), vipExpireTime);
+    public void activate(ActivateRequest request, Date vipExpireTime, Integer months) {
+        Integer day;
+        if (months == CardInfoConstant.WEEK_CARD) {
+            day = 7;
+        } else {
+            day = months * 30;
+        }
+        userAccountService.updateVipExpireTimeByAccount(request.getAccount(), vipExpireTime, day);
         cardInfoService.updateByCardNumber(request.getCardNumber(), true, request.getAccount());
         userLogService.insert(formLog(request.getAccount(), request.getDeviceId(), "activate", request.getCardNumber()));
 

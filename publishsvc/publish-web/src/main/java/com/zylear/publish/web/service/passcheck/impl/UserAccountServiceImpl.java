@@ -39,7 +39,7 @@ public class UserAccountServiceImpl implements UserAccountService {
     }
 
     @Override
-    public void updateVipExpireTimeByAccount(String account, Date vipExpireTime) {
-        userAccountMapper.updateVipExpireTimeByAccount(account, vipExpireTime);
+    public void updateVipExpireTimeByAccount(String account, Date vipExpireTime, Integer day) {
+        userAccountMapper.updateVipExpireTimeByAccount(account, vipExpireTime, day);
     }
 }

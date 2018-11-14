@@ -27,5 +27,6 @@ public interface UserAccountMapper {
                                          @Param("password") String password);
 
     void updateVipExpireTimeByAccount(@Param("account") String account,
-                                      @Param("vipExpireTime") Date vipExpireTime);
+                                      @Param("vipExpireTime") Date vipExpireTime,
+                                      @Param("accumulateVipDay") Integer accumulateVipDay);
 }
