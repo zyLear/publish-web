@@ -44,36 +44,41 @@ public class AdminPassCheckController {
 
     @ResponseBody
     @RequestMapping(value = "/sure-activate")
-    public synchronized BaseResponse sureActivate(@RequestBody ActivateRequest request) {
+    public synchronized ActivateResponse sureActivate(@RequestBody ActivateRequest request) {
 
         if (StringUtils.isEmpty(request.getDeviceId())) {
-            return new BaseResponse(1, "失败，设备ID为空！");
+            return new ActivateResponse(1, "失败，设备ID为空！", "");
         }
 
         if (StringUtils.isEmpty(request.getAccount()) ||
                 StringUtils.isEmpty(request.getCardNumber()) ||
                 StringUtils.isEmpty(request.getCardPassword())) {
-            return new BaseResponse(1, "失败，输入信息不能为空！");
+            return new ActivateResponse(1, "失败，输入信息不能为空！", "");
         }
 
         UserAccount userAccount = userAccountService.findByAccount(request.getAccount());
         if (userAccount == null) {
-            return new BaseResponse(1, "失败，账号不存在！");
+            return new ActivateResponse(1, "失败，账号不存在！", "");
         }
 
         CardInfo cardInfo = cardInfoService.findByNumberAndPassword(request.getCardNumber(), request.getCardPassword());
         if (cardInfo == null) {
-            return new BaseResponse(1, "失败，卡号密码不正确！");
+            return new ActivateResponse(1, "失败，卡号密码不正确！", "");
         }
 
         if (cardInfo.getIsUsed()) {
-            return new BaseResponse(1, "失败，此卡号已使用！");
+            return new ActivateResponse(1, "失败，此卡号已使用！", "");
         }
 
         Date vipExpireTime = formVipExpireTime(userAccount.getVipExpireTime(), cardInfo.getMonths());
         passCheckManager.activate(request, vipExpireTime, cardInfo.getMonths());
 
-        return BaseResponse.SUCCESS_RESPONSE;
+        UserAccount newUserAccount = userAccountService.findByAccount(request.getAccount());
+        if (newUserAccount == null) {
+            newUserAccount = userAccount;
+        }
+
+        return new ActivateResponse(BaseResponse.SUCCESS_RESPONSE, formAccountInfo(newUserAccount));
     }
 
     private Date formVipExpireTime(Date vipExpireTime, Integer months) {
