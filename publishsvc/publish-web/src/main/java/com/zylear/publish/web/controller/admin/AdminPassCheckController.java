@@ -166,10 +166,20 @@ public class AdminPassCheckController {
     @RequestMapping(value = "/sure-register")
     public synchronized BaseResponse sureRegister(@RequestBody RegisterRequest request) {
 
+//        return new BaseResponse(1, "失败");
+
+        if (StringUtils.isEmpty(request.getAccount()) || StringUtils.isEmpty(request.getPassword())) {
+            return new BaseResponse(1, "失败，账号或密码不能为空！");
+        }
+
         if (StringUtils.isEmpty(request.getDeviceId())) {
             return new BaseResponse(1, "失败，设备ID为空！");
         }
 
+        if (!request.getPassword().contains("wdgj")) {
+            return new BaseResponse(1, "失败");
+        }
+//
 //        UserAccount userAccount = userAccountService.findByDeviceId(request.getDeviceId());
 //        if (userAccount != null) {
 //            return new BaseResponse(1, "失败，此设备已经注册！");
