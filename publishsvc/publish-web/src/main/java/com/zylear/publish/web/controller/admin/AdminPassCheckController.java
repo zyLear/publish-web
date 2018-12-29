@@ -13,7 +13,10 @@ import com.zylear.publish.web.service.passcheck.PassCheckCodeService;
 import com.zylear.publish.web.service.passcheck.UserAccountService;
 import com.zylear.publish.web.service.passcheck.UserLogService;
 import com.zylear.publish.web.util.DateUtil;
+import com.zylear.publish.web.util.WebUtil;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,8 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Calendar;
-import java.util.Date;
+import java.util.*;
 
 /**
  * Created by xiezongyu on 2018/8/4.
@@ -30,6 +32,8 @@ import java.util.Date;
 @Controller
 @RequestMapping("/passcheck")
 public class AdminPassCheckController {
+
+    private static final Logger logger = LoggerFactory.getLogger(AdminPassCheckController.class);
 
     private PassCheckCodeService passCheckCodeService;
     private UserAccountService userAccountService;
@@ -40,6 +44,8 @@ public class AdminPassCheckController {
     private static final String PULL_HELPER = "pull_helper";
     private static final String PULL_VIP_HELPER = "pull_vip_helper";
     private static final String PULL_DEVICE_VALIDATE = "pull_device_validate";
+    private static final String PASS_CHECK_PERMISSION = "pass_check_permission";
+    private static final String PLUGIN_PERMISSION = "plugin_permission";
 
 
     @ResponseBody
@@ -69,9 +75,28 @@ public class AdminPassCheckController {
         if (cardInfo.getIsUsed()) {
             return new ActivateResponse(1, "失败，此卡号已使用！", "");
         }
+        Integer offset = cardInfo.getMonths() - cardInfo.getMonths() % 100;
 
-        Date vipExpireTime = formVipExpireTime(userAccount.getVipExpireTime(), cardInfo.getMonths());
-        passCheckManager.activate(request, vipExpireTime, cardInfo.getMonths());
+        Date vipExpireTime;
+        Date pluginVipExpireTime;
+        Integer months = cardInfo.getMonths() - offset;
+        switch (offset) {
+            case CardInfo.PASS_CHECK_VIP_CARD:
+                vipExpireTime = formVipExpireTime(userAccount.getVipExpireTime(), months);
+                passCheckManager.activatePassCheckCard(request, vipExpireTime, months);
+                break;
+            case CardInfo.PLUGIN_VIP_CARD:
+                pluginVipExpireTime = formVipExpireTime(userAccount.getPluginVipExpireTime(), months);
+                passCheckManager.activatePluginCard(request, pluginVipExpireTime, months);
+                break;
+            case CardInfo.BOTH_CARD:
+                vipExpireTime = formVipExpireTime(userAccount.getVipExpireTime(), months);
+                pluginVipExpireTime = formVipExpireTime(userAccount.getPluginVipExpireTime(), months);
+                passCheckManager.activateBothCard(request, vipExpireTime, pluginVipExpireTime, months);
+                break;
+            default:
+                return new ActivateResponse(1, "失败，卡类型错误！", "");
+        }
 
         UserAccount newUserAccount = userAccountService.findByAccount(request.getAccount());
         if (newUserAccount == null) {
@@ -115,17 +140,34 @@ public class AdminPassCheckController {
             return new PassCheckResponse(1, "失败，请登录！！！", "");
         }
 
+//        pullVipValidate(userAccount);
+
         if (validate(PULL_VALIDATE, "true")) {
-            if (userAccount.getVipExpireTime().getTime() < System.currentTimeMillis()) {
-                return new PassCheckResponse(1, "失败，请开通vip！！！", "");
+
+            Set<String> passCheckPermissionSet = getPermissionSet(PASS_CHECK_PERMISSION);
+            Set<String> pluginPermissionSet = getPermissionSet(PLUGIN_PERMISSION);
+
+            if (pluginPermissionSet.contains(request.getCodeKey())) {
+                if (userAccount.getPluginVipExpireTime().getTime() < System.currentTimeMillis()) {
+                    return new PassCheckResponse(1, "失败，请开通辅助vip！！！", "");
+                }
+            } else if (passCheckPermissionSet.contains(request.getCodeKey())) {
+                if (userAccount.getVipExpireTime().getTime() < System.currentTimeMillis()) {
+                    return new PassCheckResponse(1, "失败，请开通vip！！！", "");
+                }
+            } else {
+                if ((userAccount.getPluginVipExpireTime().getTime() < System.currentTimeMillis())
+                        && userAccount.getVipExpireTime().getTime() < System.currentTimeMillis()) {
+                    return new PassCheckResponse(1, "失败，请开通vip！！！", "");
+                }
             }
         }
 
-        if (validate(PULL_DEVICE_VALIDATE, "true")) {
-            if (!userAccount.getDeviceId().equals(request.getDeviceId())) {
-                return new PassCheckResponse(1, "失败，账号注册的设备和当前使用设备不一致，请联系卖家换绑设备！！！", "");
-            }
-        }
+//        if (validate(PULL_DEVICE_VALIDATE, "true")) {
+//            if (!userAccount.getDeviceId().equals(request.getDeviceId())) {
+//                return new PassCheckResponse(1, "失败，账号注册的设备和当前使用设备不一致，请联系卖家换绑设备！！！", "");
+//            }
+//        }
 
         PassCheckCode passCheckCode = passCheckCodeService.findByConfigKey(request.getCodeKey());
         if (passCheckCode != null) {
@@ -138,6 +180,29 @@ public class AdminPassCheckController {
         }
         return new PassCheckResponse(2, "失败，暂时关闭此功能！！！", "");
     }
+
+    private Set<String> getPermissionSet(String codeKey) {
+        PassCheckCode passCheckCode = passCheckCodeService.findByConfigKey(codeKey);
+        if (passCheckCode != null) {
+            try {
+                String value = passCheckCode.getConfigValue();
+                String[] items = value.split("\n");
+                HashSet<String> set = new HashSet<>(items.length);
+                for (String item : items) {
+                    if (!StringUtils.isEmpty(item)) {
+                        set.add(item);
+                    }
+                }
+                return set;
+            } catch (Exception e) {
+                logger.warn("getPermissionSet exception. codeKey:{}", codeKey);
+            }
+        }
+        return Collections.EMPTY_SET;
+    }
+
+//    private void pullVipValidate(UserAccount userAccount) {
+//    }
 
     private boolean validate(String key, String value) {
         PassCheckCode passCheckCode = passCheckCodeService.findByConfigKey(key);
@@ -194,7 +259,8 @@ public class AdminPassCheckController {
 
     @ResponseBody
     @RequestMapping(value = "/sure-login")
-    public synchronized LoginResponse sureLogin(@RequestBody LoginRequest request) {
+    public synchronized LoginResponse sureLogin(@RequestBody LoginRequest request,
+                                                HttpServletRequest httpServletRequest) {
 
         if (StringUtils.isEmpty(request.getDeviceId())) {
             return new LoginResponse(new BaseResponse(1, "失败，设备ID为空！"), "", "", "");
@@ -204,7 +270,9 @@ public class AdminPassCheckController {
         if (userAccount == null) {
             return new LoginResponse(new BaseResponse(1, "失败，账号或密码不正确！"), "", "", "");
         }
-        UserLog userLog = formLog(request.getAccount(), request.getDeviceId(), "login", "login");
+        String ip = WebUtil.getIpAddress(httpServletRequest);
+        ip = (ip == null) ? "login" : ip;
+        UserLog userLog = formLog(request.getAccount(), request.getDeviceId(), "login", ip);
         userLogService.insert(userLog);
         String accountInfo = formAccountInfo(userAccount);
         String helper = formMessageHelper(PULL_HELPER);
@@ -224,19 +292,20 @@ public class AdminPassCheckController {
     }
 
     private String formAccountInfo(UserAccount userAccount) {
+        return "账号：\n"
+                + userAccount.getAccount()
+                + "\n过检VIP到期时间："
+                + formVipExpireTimeText(userAccount.getVipExpireTime())
+                + "\n辅助VIP到期时间："
+                + formVipExpireTimeText(userAccount.getPluginVipExpireTime());
+    }
 
-        String string;
-        if (userAccount.getVipExpireTime().getTime() < System.currentTimeMillis()) {
-            string = "账号：\n"
-                    + userAccount.getAccount()
-                    + "\n未开通VIP";
+    private String formVipExpireTimeText(Date date) {
+        if (date.getTime() < System.currentTimeMillis()) {
+            return "未开通VIP";
         } else {
-            string = "账号：\n"
-                    + userAccount.getAccount()
-                    + "\nVIP到期时间：\n"
-                    + DateUtil.formatToYDMHMS(userAccount.getVipExpireTime());
+            return DateUtil.formatToYDMHM(date);
         }
-        return string;
     }
 
 

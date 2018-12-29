@@ -3,6 +3,13 @@ package com.zylear.publish.web.domain.passcheck;
 import java.util.Date;
 
 public class PassCheckCode {
+
+//    public static final Set<String> PLUGIN_KEY_SET
+//            = new HashSet<>(Arrays.asList("hosts", "start_plugin", "repair_pubg", "v2_hosts", "v2_start_plugin", "v2_repair_pubg"));
+//
+//    public static final Set<String> PASS_CHECK_SET
+//            = new HashSet<>(Arrays.asList("init.sh", "build.prop", "pass_check", "stop_pass_check","v2_init.sh", "v2_build.prop", "v2_pass_check", "v2_stop_pass_check"));
+
     private Integer id;
 
     private String configKey;

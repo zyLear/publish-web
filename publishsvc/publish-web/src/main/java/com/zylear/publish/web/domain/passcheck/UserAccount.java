@@ -19,6 +19,10 @@ public class UserAccount {
 
     private Date lastUpdateTime;
 
+
+    private Date pluginVipExpireTime;  //20181228
+
+
     public Integer getId() {
         return id;
     }
@@ -81,5 +85,13 @@ public class UserAccount {
 
     public void setLastUpdateTime(Date lastUpdateTime) {
         this.lastUpdateTime = lastUpdateTime;
+    }
+
+    public Date getPluginVipExpireTime() {
+        return pluginVipExpireTime;
+    }
+
+    public void setPluginVipExpireTime(Date pluginVipExpireTime) {
+        this.pluginVipExpireTime = pluginVipExpireTime;
     }
 }

@@ -18,4 +18,6 @@ public interface UserAccountService {
     UserAccount findByAccountAndPassword(String account, String password);
 
     void updateVipExpireTimeByAccount(String account, Date vipExpireTime, Integer day);
+
+    void updatePluginVipExpireTimeByAccount(String account, Date pluginVipExpireTime, Integer day);
 }

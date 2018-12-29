@@ -3,6 +3,19 @@ package com.zylear.publish.web.domain.passcheck;
 import java.util.Date;
 
 public class CardInfo {
+
+    public static final int PASS_CHECK_VIP_CARD = 0;
+
+    public static final int PLUGIN_VIP_CARD = 100;
+
+    public static final int BOTH_CARD = 200;
+
+    public static void main(String[] args) {
+        System.out.println(70 - 70 % 100);
+        System.out.println(170 - 170 % 100);
+        System.out.println(201 - 201 % 100);
+    }
+
     private Integer id;
 
     private String cardNumber;

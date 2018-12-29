@@ -6,15 +6,10 @@ import org.apache.ibatis.annotations.Param;
 import java.util.Date;
 
 public interface UserAccountMapper {
-    int deleteByPrimaryKey(Integer id);
 
     int insert(UserAccount record);
 
-    int insertSelective(UserAccount record);
-
     UserAccount selectByPrimaryKey(Integer id);
-
-    int updateByPrimaryKeySelective(UserAccount record);
 
     int updateByPrimaryKey(UserAccount record);
 
@@ -29,4 +24,8 @@ public interface UserAccountMapper {
     void updateVipExpireTimeByAccount(@Param("account") String account,
                                       @Param("vipExpireTime") Date vipExpireTime,
                                       @Param("accumulateVipDay") Integer accumulateVipDay);
+
+    void updatePluginVipExpireTimeByAccount(@Param("account") String account,
+                                            @Param("pluginVipExpireTime") Date pluginVipExpireTime,
+                                            @Param("pluginAccumulateVipDay") Integer pluginAccumulateVipDay);
 }

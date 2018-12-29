@@ -14,11 +14,17 @@ public class DateUtil {
     private static final Logger logger = LoggerFactory.getLogger(DateUtil.class);
 
     private final static String YMDHMS = "yyyy-MM-dd HH:mm:ss";
+    private final static String YMDHM = "yyyy-MM-dd HH:mm";
     private final static String YMD = "yyyy-MM-dd";
     private final static String YMD_COMPACT = "yyyyMMdd";
 
     public static String formatToYDMHMS(Date date) {
         SimpleDateFormat formatter = new SimpleDateFormat(YMDHMS);
+        return formatter.format(date);
+    }
+
+    public static String formatToYDMHM(Date date) {
+        SimpleDateFormat formatter = new SimpleDateFormat(YMDHM);
         return formatter.format(date);
     }
 

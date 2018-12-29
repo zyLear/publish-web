@@ -42,4 +42,9 @@ public class UserAccountServiceImpl implements UserAccountService {
     public void updateVipExpireTimeByAccount(String account, Date vipExpireTime, Integer day) {
         userAccountMapper.updateVipExpireTimeByAccount(account, vipExpireTime, day);
     }
+
+    @Override
+    public void updatePluginVipExpireTimeByAccount(String account, Date pluginVipExpireTime, Integer day) {
+        userAccountMapper.updatePluginVipExpireTimeByAccount(account, pluginVipExpireTime, day);
+    }
 }

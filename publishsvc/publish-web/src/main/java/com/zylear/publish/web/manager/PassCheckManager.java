@@ -39,11 +39,13 @@ public class PassCheckManager {
         if (config != null) {
             vipDay = Integer.parseInt(config.getConfigValue());
         }
+        Date vipExpireTime = formVipExpireTime(vipDay);
         UserAccount userAccount = new UserAccount();
         userAccount.setAccount(account);
         userAccount.setPassword(password);
         userAccount.setDeviceId(deviceId);
-        userAccount.setVipExpireTime(formVipExpireTime(vipDay));
+        userAccount.setVipExpireTime(vipExpireTime);
+        userAccount.setPluginVipExpireTime(vipExpireTime);
         userAccount.setIsDeleted(false);
         userAccount.setCreateTime(new Date());
         userAccount.setLastUpdateTime(new Date());
@@ -58,17 +60,42 @@ public class PassCheckManager {
 
 
     @Transactional(DataSourcePassCheckConfig.TX_MANAGER)
-    public void activate(ActivateRequest request, Date vipExpireTime, Integer months) {
+    public void activatePassCheckCard(ActivateRequest request, Date vipExpireTime, Integer months) {
+        Integer day;
+        day = getVipDay(months);
+        userAccountService.updateVipExpireTimeByAccount(request.getAccount(), vipExpireTime, day);
+        cardInfoService.updateByCardNumber(request.getCardNumber(), true, request.getAccount());
+        userLogService.insert(formLog(request.getAccount(), request.getDeviceId(), "activate", request.getCardNumber()));
+    }
+
+    @Transactional(DataSourcePassCheckConfig.TX_MANAGER)
+    public void activatePluginCard(ActivateRequest request, Date pluginVipExpireTime, Integer months) {
+        Integer day;
+        day = getVipDay(months);
+        userAccountService.updatePluginVipExpireTimeByAccount(request.getAccount(), pluginVipExpireTime, day);
+        cardInfoService.updateByCardNumber(request.getCardNumber(), true, request.getAccount());
+        userLogService.insert(formLog(request.getAccount(), request.getDeviceId(), "activate", request.getCardNumber()));
+    }
+
+    @Transactional(DataSourcePassCheckConfig.TX_MANAGER)
+    public void activateBothCard(ActivateRequest request, Date vipExpireTime, Date pluginVipExpireTime, Integer months) {
+        Integer day;
+        day = getVipDay(months);
+        userAccountService.updateVipExpireTimeByAccount(request.getAccount(), vipExpireTime, day);
+        userAccountService.updatePluginVipExpireTimeByAccount(request.getAccount(), pluginVipExpireTime, day);
+        cardInfoService.updateByCardNumber(request.getCardNumber(), true, request.getAccount());
+        userLogService.insert(formLog(request.getAccount(), request.getDeviceId(), "activate", request.getCardNumber()));
+    }
+
+
+    private Integer getVipDay(Integer months) {
         Integer day;
         if (months == CardInfoConstant.WEEK_CARD) {
             day = 7;
         } else {
             day = months * 30;
         }
-        userAccountService.updateVipExpireTimeByAccount(request.getAccount(), vipExpireTime, day);
-        cardInfoService.updateByCardNumber(request.getCardNumber(), true, request.getAccount());
-        userLogService.insert(formLog(request.getAccount(), request.getDeviceId(), "activate", request.getCardNumber()));
-
+        return day;
     }
 
 
@@ -103,4 +130,6 @@ public class PassCheckManager {
     public void setCardInfoService(CardInfoService cardInfoService) {
         this.cardInfoService = cardInfoService;
     }
+
+
 }
