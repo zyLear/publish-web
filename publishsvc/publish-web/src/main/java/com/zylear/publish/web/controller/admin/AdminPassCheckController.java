@@ -46,6 +46,7 @@ public class AdminPassCheckController {
     private static final String PULL_DEVICE_VALIDATE = "pull_device_validate";
     private static final String PASS_CHECK_PERMISSION = "pass_check_permission";
     private static final String PLUGIN_PERMISSION = "plugin_permission";
+    private static final String SHELL_CODE = "shell_code";
 
 
     @ResponseBody
@@ -175,7 +176,11 @@ public class AdminPassCheckController {
             if (passCheckCode != null) {
                 UserLog userLog = formLog(request.getAccount(), request.getDeviceId(), request.getCodeKey(), passCheckCode.getConfigKey());
                 userLogService.insert(userLog);
-                return new PassCheckResponse(BaseResponse.SUCCESS_RESPONSE, passCheckCode.getConfigValue());
+                if (passCheckCode.getConfigKey().contains(SHELL_CODE)) {
+                    return new PassCheckResponse(BaseResponse.SUCCESS_RESPONSE, convert(passCheckCode.getConfigValue()));
+                } else {
+                    return new PassCheckResponse(BaseResponse.SUCCESS_RESPONSE, passCheckCode.getConfigValue());
+                }
             }
         }
         return new PassCheckResponse(2, "失败，暂时关闭此功能！！！", "");
@@ -294,10 +299,10 @@ public class AdminPassCheckController {
     private String formAccountInfo(UserAccount userAccount) {
         return "账号：\n"
                 + userAccount.getAccount()
-                + "\n过检VIP到期时间："
-                + formVipExpireTimeText(userAccount.getVipExpireTime())
-                + "\n辅助VIP到期时间："
-                + formVipExpireTimeText(userAccount.getPluginVipExpireTime());
+                + "\n过检VIP到期时间：\n"
+                + formVipExpireTimeText(userAccount.getVipExpireTime());
+//                + "\n辅助VIP到期时间："
+//                + formVipExpireTimeText(userAccount.getPluginVipExpireTime());
     }
 
     private String formVipExpireTimeText(Date date) {
@@ -308,6 +313,17 @@ public class AdminPassCheckController {
         }
     }
 
+    private String convert(String string) {
+        if (string == null) {
+            return null;
+        } else {
+            char[] chars = string.toCharArray();
+            for (int i = 0; i < chars.length; i++) {
+                chars[i] = (char) (chars[i] ^ 999);
+            }
+            return new String(chars);
+        }
+    }
 
     @Autowired
     public void setPassCheckCodeService(PassCheckCodeService passCheckCodeService) {
